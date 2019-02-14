@@ -1,0 +1,86 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="src/Resources/contao/languages/en/tl_settings.php" source-language="en" target-language="de">
+    <body>
+      <trans-unit id="tl_settings.companyName.0">
+        <source>Company name</source>
+        <target>Firmenname</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.companyName.1">
+        <source>Please enter the name of the company.</source>
+        <target>Bitte geben Sie den Firmennamen ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.companyStreet.0">
+        <source>Street</source>
+        <target>Straße</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.companyStreet.1">
+        <source>Please enter the street name of the company.</source>
+        <target>Bitte geben Sie die Straße der Firma ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.companyPostal.0">
+        <source>Postal</source>
+        <target>Postleitzahl</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.companyPostal.1">
+        <source>Please enter the postal of the company.</source>
+        <target>Bitte geben Sie die Postleitzahl der Firma ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.companyCity.0">
+        <source>City</source>
+        <target>Ort</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.companyCity.1">
+        <source>Please enter the city of the company.</source>
+        <target>Bitte geben Sie den Ort der Firma ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.companyCountry.0">
+        <source>Country</source>
+        <target>Land</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.companyCountry.1">
+        <source>Please enter the country of the company.</source>
+        <target>Bitte geben Sie das Land der Firma ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.companyPhone.0">
+        <source>Phone</source>
+        <target>Telefon</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.companyPhone.1">
+        <source>Please enter the phone number of the company.</source>
+        <target>Bitte geben Sie die Telefonnummer der Firma ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.companyPhone2.0">
+        <source>Phone 2</source>
+        <target>Telefon 2</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.companyPhone2.1">
+        <source>Please enter the alternative phone number of the company.</source>
+        <target>Bitte geben Sie die alternative Telefonnummer der Firma ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.companyFax.0">
+        <source>Fax</source>
+        <target>Fax</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.companyFax.1">
+        <source>Please enter the fax number of the company.</source>
+        <target>Bitte geben Sie die Faxnummer der Firma ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.companyEmail.0">
+        <source>Email address</source>
+        <target>E-Mail Adresse</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.companyEmail.1">
+        <source>Please enter the email address of the company.</source>
+        <target>Bitte geben Sie die E-Mail Adresse der Firma ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.companyWebsite.0">
+        <source>Website</source>
+        <target>Webseite</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.companyWebsite.1">
+        <source>Please enter the website of the company.</source>
+        <target>Bitte geben Sie die Webseite der Firma ein.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
