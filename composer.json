@@ -3,7 +3,7 @@
   "type":"contao-bundle",
   "description":"Company integration for Contao.",
   "keywords":["contao","company-bundle"],
-  "homepage":"https://ovealeon.de/",
+  "homepage":"https://www.ovealeon.de/",
   "license":"MIT",
   "authors":[
     {
