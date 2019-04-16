@@ -52,4 +52,18 @@ class Company extends \Frontend
         return false;
     }
 
+    public function addInsertTagsFlags($flag, $tag, $cachedValue, $flags, $blnCache, $tags, $arrCache, $_rit, $_cnt)
+    {
+        if ($flag === 'remove_specialchars')
+        {
+            return preg_replace('/[^a-z0-9 ]/i', '', $cachedValue);
+        }
+
+        if ($flag === 'trim_all')
+        {
+            return str_replace(' ', '', $cachedValue);
+        }
+
+        return false;
+    }
 }
