@@ -17,7 +17,7 @@ Creates a simple location mask in the backend settings. The fields can then be i
 
 or
 
-- `{{company::mailto}}`: Outputs a link e.g. <a href="mailto:my@mail.de">my@mail.de</a> 
+- `{{company::mailto}}`: Outputs a link e.g. `<a href="mailto:my@mail.de">my@mail.de</a>` 
 - `{{company::address}}`: Outputs the full address
 
 In addition, two more insert tag flags are added:
