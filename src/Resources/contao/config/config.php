@@ -1,3 +1,4 @@
 <?php
-$GLOBALS['TL_HOOKS']['replaceInsertTags'][] = array('Oveleon\ContaoCompanyBundle\Company', 'replaceCompanyInsertTags');
-$GLOBALS['TL_HOOKS']['insertTagFlags'][] = array('Oveleon\ContaoCompanyBundle\Company', 'addInsertTagsFlags');
+
+// Register hooks
+$GLOBALS['TL_HOOKS']['replaceInsertTags'][] = array('contao_company.listener.insert_tags', 'onReplaceInsertTags');
