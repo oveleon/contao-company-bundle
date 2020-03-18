@@ -1,7 +1,7 @@
 # Contao Company Bundle
-Simple Company integration for Contao 4 Open Source CMS
+Simple integration of company details for Contao 4 Open Source CMS
 
-Creates a simple location mask in the backend settings. The fields can then be inserted anywhere as insert tags. 
+Adds company detail fields to settings and root pages. Company details in settings are used as fallback if field is not given root page. Details can be called anywhere by the following insert tags:
 
 - `{{company::name}}`
 - `{{company::street}}`
@@ -15,11 +15,8 @@ Creates a simple location mask in the backend settings. The fields can then be i
 - `{{company::email}}`
 - `{{company::website}}`
 
-or
+Additional insert tags:
 
-- `{{company::mailto}}`: Outputs a link e.g. `<a href="mailto:my@mail.de">my@mail.de</a>` 
+- `{{company::mailto}}`: Outputs a mailto link e.g. `<a href="mailto:my@mail.de">my@mail.de</a>` 
+- `{{company::tel}}`: Outputs a tel link e.g. `<a href="tel:01234567890">+49 1234 / 56 78 90</a>` 
 - `{{company::address}}`: Outputs the full address
-
-In addition, two more insert tag flags are added:
-- remove_specialchars
-- trim_all
