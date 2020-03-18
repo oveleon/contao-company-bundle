@@ -1,0 +1,75 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="src/Resources/contao/languages/en/tl_page.php" source-language="en">
+    <body>
+      <trans-unit id="tl_page.companyName.0">
+        <source>Company</source>
+      </trans-unit>
+      <trans-unit id="tl_page.companyName.1">
+        <source>Here you can enter a company name.</source>
+      </trans-unit>
+      <trans-unit id="tl_page.companyStreet.0">
+        <source>Street</source>
+      </trans-unit>
+      <trans-unit id="tl_page.companyStreet.1">
+        <source>Please enter the street name and number.</source>
+      </trans-unit>
+      <trans-unit id="tl_page.companyPostal.0">
+        <source>Postal code</source>
+      </trans-unit>
+      <trans-unit id="tl_page.companyPostal.1">
+        <source>Please enter the postal code.</source>
+      </trans-unit>
+      <trans-unit id="tl_page.companyCity.0">
+        <source>City</source>
+      </trans-unit>
+      <trans-unit id="tl_page.companyCity.1">
+        <source>Plase enter the name of the city.</source>
+      </trans-unit>
+      <trans-unit id="tl_page.companyState.0">
+        <source>State</source>
+      </trans-unit>
+      <trans-unit id="tl_page.companyState.1">
+        <source>Plase enter the name of the state.</source>
+      </trans-unit>
+      <trans-unit id="tl_page.companyCountry.0">
+        <source>Country</source>
+      </trans-unit>
+      <trans-unit id="tl_page.companyCountry.1">
+        <source>Please select the country.</source>
+      </trans-unit>
+      <trans-unit id="tl_page.companyPhone.0">
+        <source>Phone number</source>
+      </trans-unit>
+      <trans-unit id="tl_page.companyPhone.1">
+        <source>Please enter the phone number.</source>
+      </trans-unit>
+      <trans-unit id="tl_page.companyPhone2.0">
+        <source>Phone number 2</source>
+      </trans-unit>
+      <trans-unit id="tl_page.companyPhone2.1">
+        <source>Please enter an alternative phone number.</source>
+      </trans-unit>
+      <trans-unit id="tl_page.companyFax.0">
+        <source>Fax number</source>
+      </trans-unit>
+      <trans-unit id="tl_page.companyFax.1">
+        <source>Please enter the fax number.</source>
+      </trans-unit>
+      <trans-unit id="tl_page.companyEmail.0">
+        <source>E-mail address</source>
+      </trans-unit>
+      <trans-unit id="tl_page.companyEmail.1">
+        <source>Please enter the e-mail address.</source>
+      </trans-unit>
+      <trans-unit id="tl_page.companyWebsite.0">
+        <source>Website</source>
+      </trans-unit>
+      <trans-unit id="tl_page.companyWebsite.1">
+        <source>Here you can enter a web address.</source>
+      </trans-unit>
+      <trans-unit id="tl_page.company_legend">
+        <source>Company details</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

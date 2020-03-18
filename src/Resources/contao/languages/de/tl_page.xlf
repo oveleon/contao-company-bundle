@@ -1,0 +1,98 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="src/Resources/contao/languages/en/tl_page.php" source-language="en" target-language="de">
+    <body>
+      <trans-unit id="tl_page.companyName.0">
+        <source>Company</source>
+        <target>Firma</target>
+      </trans-unit>
+      <trans-unit id="tl_page.companyName.1">
+        <source>Here you can enter a company name.</source>
+        <target>Hier können Sie einen Firmennamen eingeben.</target>
+      </trans-unit>
+      <trans-unit id="tl_page.companyStreet.0">
+        <source>Street</source>
+        <target>Straße</target>
+      </trans-unit>
+      <trans-unit id="tl_page.companyStreet.1">
+        <source>Please enter the street name and number.</source>
+        <target>Bitte geben Sie den Straßennamen und die Hausnummer ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_page.companyPostal.0">
+        <source>Postal code</source>
+        <target>Postleitzahl</target>
+      </trans-unit>
+      <trans-unit id="tl_page.companyPostal.1">
+        <source>Please enter the postal code.</source>
+        <target>Bitte geben Sie die Postleitzahl ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_page.companyCity.0">
+        <source>City</source>
+        <target>Ort</target>
+      </trans-unit>
+      <trans-unit id="tl_page.companyCity.1">
+        <source>Plase enter the name of the city.</source>
+        <target>Bitte geben Sie den Namen des Ortes ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_page.companyState.0">
+        <source>State</source>
+        <target>Staat</target>
+      </trans-unit>
+      <trans-unit id="tl_page.companyState.1">
+        <source>Plase enter the name of the state.</source>
+        <target>Bitte geben Sie den Namen des Staates ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_page.companyCountry.0">
+        <source>Country</source>
+        <target>Land</target>
+      </trans-unit>
+      <trans-unit id="tl_page.companyCountry.1">
+        <source>Please select the country.</source>
+        <target>Bitte wählen Sie ein Land.</target>
+      </trans-unit>
+      <trans-unit id="tl_page.companyPhone.0">
+        <source>Phone number</source>
+        <target>Telefonnummer</target>
+      </trans-unit>
+      <trans-unit id="tl_page.companyPhone.1">
+        <source>Please enter the phone number.</source>
+        <target>Bitte geben Sie die Telefonnummer ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_page.companyPhone2.0">
+        <source>Phone number 2</source>
+        <target>Telefonnummer 2</target>
+      </trans-unit>
+      <trans-unit id="tl_page.companyPhone2.1">
+        <source>Please enter an alternative phone number.</source>
+        <target>Bitte geben Sie eine alternative Telefonnummer ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_page.companyFax.0">
+        <source>Fax number</source>
+        <target>Faxnummer</target>
+      </trans-unit>
+      <trans-unit id="tl_page.companyFax.1">
+        <source>Please enter the fax number.</source>
+        <target>Bitte geben Sie die Faxnummer ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_page.companyEmail.0">
+        <source>E-mail address</source>
+        <target>E-Mail-Adresse</target>
+      </trans-unit>
+      <trans-unit id="tl_page.companyEmail.1">
+        <source>Please enter the e-mail address.</source>
+        <target>Bitte geben Sie die E-Mail-Adresse ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_page.companyWebsite.0">
+        <source>Website</source>
+        <target>Webseite</target>
+      </trans-unit>
+      <trans-unit id="tl_page.companyWebsite.1">
+        <source>Here you can enter a web address.</source>
+        <target>Hier können Sie eine Web-Adresse eingeben.</target>
+      </trans-unit>
+      <trans-unit id="tl_page.company_legend">
+        <source>Company details</source>
+        <target>Unternehmensdaten</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
