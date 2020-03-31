@@ -9,7 +9,7 @@
 // Extend the default palette
 Contao\CoreBundle\DataContainer\PaletteManipulator::create()
     ->addLegend('company_legend', 'chmod_legend', Contao\CoreBundle\DataContainer\PaletteManipulator::POSITION_AFTER, true)
-    ->addField(array('companyName', 'companyStreet', 'companyPostal', 'companyCity', 'companyState', 'companyCountry', 'companyPhone', 'companyPhone2', 'companyFax', 'companyEmail', 'companyWebsite'), 'company_legend', Contao\CoreBundle\DataContainer\PaletteManipulator::POSITION_APPEND)
+    ->addField(array('companyName', 'companyStreet', 'companyPostal', 'companyCity', 'companyState', 'companyCountry', 'companyPhone', 'companyPhone2', 'companyFax', 'companyEmail', 'companyWebsite', 'companySocialMedia'), 'company_legend', Contao\CoreBundle\DataContainer\PaletteManipulator::POSITION_APPEND)
     ->applyToPalette(array_key_exists('rootfallback', $GLOBALS['TL_DCA']['tl_page']['palettes']) ? 'rootfallback' : 'root', 'tl_page')
 ;
 
@@ -114,4 +114,50 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['companyWebsite'] = array
     'inputType'               => 'text',
     'eval'                    => array('maxlength'=>255, 'rgxp'=>'url', 'tl_class'=>'w50'),
     'sql'                     => "varchar(255) NOT NULL default ''"
+);
+
+$GLOBALS['TL_DCA']['tl_page']['fields']['companySocialMedia'] = array
+(
+    'label'                     => &$GLOBALS['TL_LANG']['tl_page']['companySocialMedia'],
+    'inputType' 	            => 'multiColumnWizard',
+    'eval' 			            => array
+    (
+        'columnFields' => array
+        (
+            'type' => array
+            (
+                'label'                 => &$GLOBALS['TL_LANG']['tl_page']['type'],
+                'inputType'             => 'select',
+                'options'               => array
+                (
+                    'bitbucket',
+                    'facebook',
+                    'flickr',
+                    'github',
+                    'gitlab',
+                    'googleplus',
+                    'instagram',
+                    'linkedin',
+                    'pinterest',
+                    'reddit',
+                    'rss',
+                    'tumblr',
+                    'twitter',
+                    'vimeo',
+                    'xing',
+                    'youtube'
+                ),
+                'reference'             => &$GLOBALS['TL_LANG']['tl_page'],
+                'eval' 			        => array('style'=>'width:100%')
+            ),
+            'url' => array
+            (
+                'label'                 => &$GLOBALS['TL_LANG']['tl_page']['url'],
+                'inputType'             => 'text',
+                'eval' 			        => array('style'=>'width:100%')
+            )
+        ),
+        'tl_class' => 'clr'
+    ),
+    'sql'                     => "blob NULL"
 );

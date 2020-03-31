@@ -89,6 +89,86 @@
         <source>Here you can enter a web address.</source>
         <target>Hier können Sie eine Web-Adresse eingeben.</target>
       </trans-unit>
+      <trans-unit id="tl_settings.companySocialMedia.0">
+        <source>Social-Media</source>
+        <target>Social-Media</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.companySocialMedia.1">
+        <source>Here you can enter links of your social media profiles.</source>
+        <target>Hier können Sie die Links Ihrer Social-Media Profile eingeben.</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.type">
+        <source>Type</source>
+        <target>Typ</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.url">
+        <source>URL</source>
+        <target>URL</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.bitbucket">
+        <source>Bitbucket</source>
+        <target>Bitbucket</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.facebook">
+        <source>Facebook</source>
+        <target>Facebook</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.flickr">
+        <source>Flickr</source>
+        <target>Flickr</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.github">
+        <source>GitHub</source>
+        <target>GitHub</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.gitlab">
+        <source>GitLab</source>
+        <target>GitLab</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.googleplus">
+        <source>Google+</source>
+        <target>Google+</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.instagram">
+        <source>Instagram</source>
+        <target>Instagram</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.linkedin">
+        <source>LinkedIn</source>
+        <target>LinkedIn</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.pinterest">
+        <source>Pinterest</source>
+        <target>Pinterest</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.reddit">
+        <source>Reddit</source>
+        <target>Reddit</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.rss">
+        <source>RSS</source>
+        <target>RSS</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.tumblr">
+        <source>Tumblr</source>
+        <target>Tumblr</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.twitter">
+        <source>Twitter</source>
+        <target>Twitter</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.vimeo">
+        <source>Vimeo</source>
+        <target>Vimeo</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.xing">
+        <source>Xing</source>
+        <target>Xing</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.youtube">
+        <source>YouTube</source>
+        <target>YouTube</target>
+      </trans-unit>
       <trans-unit id="tl_settings.company_legend">
         <source>Company details</source>
         <target>Unternehmensdaten</target>

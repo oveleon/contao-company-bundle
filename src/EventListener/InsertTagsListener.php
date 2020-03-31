@@ -10,7 +10,8 @@ declare(strict_types=1);
 
 namespace Oveleon\ContaoCompanyBundle\EventListener;
 
-use Contao\CoreBundle\Framework\ContaoFrameworkInterface;
+use Contao\CoreBundle\Framework\ContaoFramework;
+use Oveleon\ContaoCompanyBundle\Company;
 
 /**
  * Handles insert tags for company details.
@@ -23,41 +24,17 @@ class InsertTagsListener
         'company'
     ];
 
-    private const SUPPORTED_FIELDS = [
-        'companyName',
-        'companyStreet',
-        'companyPostal',
-        'companyCity',
-        'companyState',
-        'companyCountry',
-        'companyPhone',
-        'companyPhone2',
-        'companyFax',
-        'companyEmail',
-        'companyWebsite'
-    ];
-
     /**
-     * @var ContaoFrameworkInterface
+     * @var ContaoFramework
      */
     private $framework;
 
     /**
-     * @var bool $initialized
-     */
-    private static $initialized = false;
-
-    /**
-     * @var \PageModel|null $objRootPage
-     */
-    private static $objRootPage;
-
-    /**
      * Constructor.
      *
-     * @param ContaoFrameworkInterface $framework
+     * @param ContaoFramework $framework
      */
-    public function __construct(ContaoFrameworkInterface $framework)
+    public function __construct(ContaoFramework $framework)
     {
         $this->framework = $framework;
     }
@@ -91,20 +68,11 @@ class InsertTagsListener
      */
     private function replaceCompanyInsertTags($insertTag, $field)
     {
-        if (!static::$initialized)
-        {
-            $this->framework->initialize();
-
-            $this->loadDetails();
-
-            static::$initialized = true;
-        }
-
         switch ($field)
         {
             case 'mailto':
             case 'email':
-                $value = $this->getValue('email');
+                $value = Company::get('email');
 
                 if (empty($value))
                 {
@@ -121,7 +89,7 @@ class InsertTagsListener
                 return $strEmail;
             case 'tel':
             case 'tel2':
-                $value = $this->getValue($field === 'tel' ? 'phone' : 'phone2');
+                $value = Company::get($field === 'tel' ? 'phone' : 'phone2');
 
                 if (empty($value))
                 {
@@ -134,9 +102,9 @@ class InsertTagsListener
             case 'address':
                 $arrAddress = array();
 
-                $postal = $this->getValue('postal');
-                $city = $this->getValue('city');
-                $street = $this->getValue('street');
+                $postal = Company::get('postal');
+                $city = Company::get('city');
+                $street = Company::get('street');
 
                 if ($street)
                 {
@@ -159,45 +127,6 @@ class InsertTagsListener
                 return implode(', ', $arrAddress);
         }
 
-        return $this->getValue($field);
-    }
-
-    /**
-     * Get value by root page or config
-     *
-     * @param string $field
-     *
-     * @return string
-     */
-    private function getValue($field)
-    {
-        $fieldName = 'company'.ucfirst(strtolower($field));
-        $value = '';
-
-        if (\in_array($fieldName, self::SUPPORTED_FIELDS, true))
-        {
-            $value = static::$objRootPage->{$fieldName};
-
-            if (empty($value))
-            {
-                $value = \Config::get($fieldName);
-            }
-        }
-
-        return $value;
-    }
-
-    /**
-     * Load root page details
-     */
-    private function loadDetails()
-    {
-        global $objPage;
-        $objRoot = $objPage->loadDetails();
-
-        /** @var \PageModel $adapter */
-        $adapter = $this->framework->getAdapter(\PageModel::class);
-
-        static::$objRootPage = $adapter->findByPk($objRoot->rootId);
+        return Company::get($field);
     }
 }

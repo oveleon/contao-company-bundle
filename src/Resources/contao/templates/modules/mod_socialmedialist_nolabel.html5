@@ -1,0 +1,9 @@
+<?php $this->extend('block_unsearchable'); ?>
+
+<?php $this->block('content'); ?>
+
+    <?php foreach ($this->items as $item): ?>
+        <a href="<?= $item['url'] ?>" target="_blank" rel="noopener" class="<?= $item['class'] ?>" title="<?= $item['title'] ?>"></a>
+    <?php endforeach; ?>
+
+<?php $this->endblock(); ?>

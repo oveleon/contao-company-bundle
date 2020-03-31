@@ -67,6 +67,66 @@
       <trans-unit id="tl_page.companyWebsite.1">
         <source>Here you can enter a web address.</source>
       </trans-unit>
+      <trans-unit id="tl_page.companySocialMedia.0">
+        <source>Social-Media</source>
+      </trans-unit>
+      <trans-unit id="tl_page.companySocialMedia.1">
+        <source>Here you can enter links of your social media profiles.</source>
+      </trans-unit>
+      <trans-unit id="tl_page.type">
+        <source>Type</source>
+      </trans-unit>
+      <trans-unit id="tl_page.url">
+        <source>URL</source>
+      </trans-unit>
+      <trans-unit id="tl_page.bitbucket">
+        <source>Bitbucket</source>
+      </trans-unit>
+      <trans-unit id="tl_page.facebook">
+        <source>Facebook</source>
+      </trans-unit>
+      <trans-unit id="tl_page.flickr">
+        <source>Flickr</source>
+      </trans-unit>
+      <trans-unit id="tl_page.github">
+        <source>GitHub</source>
+      </trans-unit>
+      <trans-unit id="tl_page.gitlab">
+        <source>GitLab</source>
+      </trans-unit>
+      <trans-unit id="tl_page.googleplus">
+        <source>Google+</source>
+      </trans-unit>
+      <trans-unit id="tl_page.instagram">
+        <source>Instagram</source>
+      </trans-unit>
+      <trans-unit id="tl_page.linkedin">
+        <source>LinkedIn</source>
+      </trans-unit>
+      <trans-unit id="tl_page.pinterest">
+        <source>Pinterest</source>
+      </trans-unit>
+      <trans-unit id="tl_page.reddit">
+        <source>Reddit</source>
+      </trans-unit>
+      <trans-unit id="tl_page.rss">
+        <source>RSS</source>
+      </trans-unit>
+      <trans-unit id="tl_page.tumblr">
+        <source>Tumblr</source>
+      </trans-unit>
+      <trans-unit id="tl_page.twitter">
+        <source>Twitter</source>
+      </trans-unit>
+      <trans-unit id="tl_page.vimeo">
+        <source>Vimeo</source>
+      </trans-unit>
+      <trans-unit id="tl_page.xing">
+        <source>Xing</source>
+      </trans-unit>
+      <trans-unit id="tl_page.youtube">
+        <source>YouTube</source>
+      </trans-unit>
       <trans-unit id="tl_page.company_legend">
         <source>Company details</source>
       </trans-unit>

@@ -67,6 +67,66 @@
       <trans-unit id="tl_settings.companyWebsite.1">
         <source>Here you can enter a web address.</source>
       </trans-unit>
+      <trans-unit id="tl_settings.companySocialMedia.0">
+        <source>Social-Media</source>
+      </trans-unit>
+      <trans-unit id="tl_settings.companySocialMedia.1">
+        <source>Here you can enter links of your social media profiles.</source>
+      </trans-unit>
+      <trans-unit id="tl_settings.type">
+        <source>Type</source>
+      </trans-unit>
+      <trans-unit id="tl_settings.url">
+        <source>URL</source>
+      </trans-unit>
+      <trans-unit id="tl_settings.bitbucket">
+        <source>Bitbucket</source>
+      </trans-unit>
+      <trans-unit id="tl_settings.facebook">
+        <source>Facebook</source>
+      </trans-unit>
+      <trans-unit id="tl_settings.flickr">
+        <source>Flickr</source>
+      </trans-unit>
+      <trans-unit id="tl_settings.github">
+        <source>GitHub</source>
+      </trans-unit>
+      <trans-unit id="tl_settings.gitlab">
+        <source>GitLab</source>
+      </trans-unit>
+      <trans-unit id="tl_settings.googleplus">
+        <source>Google+</source>
+      </trans-unit>
+      <trans-unit id="tl_settings.instagram">
+        <source>Instagram</source>
+      </trans-unit>
+      <trans-unit id="tl_settings.linkedin">
+        <source>LinkedIn</source>
+      </trans-unit>
+      <trans-unit id="tl_settings.pinterest">
+        <source>Pinterest</source>
+      </trans-unit>
+      <trans-unit id="tl_settings.reddit">
+        <source>Reddit</source>
+      </trans-unit>
+      <trans-unit id="tl_settings.rss">
+        <source>RSS</source>
+      </trans-unit>
+      <trans-unit id="tl_settings.tumblr">
+        <source>Tumblr</source>
+      </trans-unit>
+      <trans-unit id="tl_settings.twitter">
+        <source>Twitter</source>
+      </trans-unit>
+      <trans-unit id="tl_settings.vimeo">
+        <source>Vimeo</source>
+      </trans-unit>
+      <trans-unit id="tl_settings.xing">
+        <source>Xing</source>
+      </trans-unit>
+      <trans-unit id="tl_settings.youtube">
+        <source>YouTube</source>
+      </trans-unit>
       <trans-unit id="tl_settings.company_legend">
         <source>Company details</source>
       </trans-unit>
