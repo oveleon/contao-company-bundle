@@ -5,6 +5,14 @@
         <source>Company</source>
         <target>Unternehmen</target>
       </trans-unit>
+      <trans-unit id="FMD.logo.0">
+        <source>Logo</source>
+        <target>Logo</target>
+      </trans-unit>
+      <trans-unit id="FMD.logo.1">
+        <source>Shows the logo based on the stored company details</source>
+        <target>Zeigt das Logo anhand der hinterlegten Unternehmensdetails an</target>
+      </trans-unit>
       <trans-unit id="FMD.socialmedialist.0">
         <source>Social media list</source>
         <target>Social-Media Liste</target>

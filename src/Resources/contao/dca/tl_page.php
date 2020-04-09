@@ -9,11 +9,19 @@
 // Extend the default palette
 Contao\CoreBundle\DataContainer\PaletteManipulator::create()
     ->addLegend('company_legend', 'chmod_legend', Contao\CoreBundle\DataContainer\PaletteManipulator::POSITION_AFTER, true)
-    ->addField(array('companyName', 'companyStreet', 'companyPostal', 'companyCity', 'companyState', 'companyCountry', 'companyPhone', 'companyPhone2', 'companyFax', 'companyEmail', 'companyWebsite', 'companySocialMedia'), 'company_legend', Contao\CoreBundle\DataContainer\PaletteManipulator::POSITION_APPEND)
+    ->addField(array('companyLogo', 'companyName', 'companyStreet', 'companyPostal', 'companyCity', 'companyState', 'companyCountry', 'companyPhone', 'companyPhone2', 'companyFax', 'companyEmail', 'companySocialMedia'), 'company_legend', Contao\CoreBundle\DataContainer\PaletteManipulator::POSITION_APPEND)
     ->applyToPalette(array_key_exists('rootfallback', $GLOBALS['TL_DCA']['tl_page']['palettes']) ? 'rootfallback' : 'root', 'tl_page')
 ;
 
 // Add fields to tl_page
+$GLOBALS['TL_DCA']['tl_page']['fields']['companyLogo'] = array
+(
+    'label'                   => &$GLOBALS['TL_LANG']['tl_page']['companyLogo'],
+    'inputType'               => 'fileTree',
+    'eval'                    => array('fieldType'=>'radio', 'files'=>true, 'extensions'=>Contao\Config::get('validImageTypes')),
+    'sql'                     => "binary(16) NULL"
+);
+
 $GLOBALS['TL_DCA']['tl_page']['fields']['companyName'] = array
 (
     'label'                   => &$GLOBALS['TL_LANG']['tl_page']['companyName'],
@@ -104,15 +112,6 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['companyEmail'] = array
     'exclude'                 => true,
     'inputType'               => 'text',
     'eval'                    => array('maxlength'=>255, 'rgxp'=>'email', 'decodeEntities'=>true, 'tl_class'=>'w50'),
-    'sql'                     => "varchar(255) NOT NULL default ''"
-);
-
-$GLOBALS['TL_DCA']['tl_page']['fields']['companyWebsite'] = array
-(
-    'label'                   => &$GLOBALS['TL_LANG']['tl_page']['companyWebsite'],
-    'exclude'                 => true,
-    'inputType'               => 'text',
-    'eval'                    => array('maxlength'=>255, 'rgxp'=>'url', 'tl_class'=>'w50'),
     'sql'                     => "varchar(255) NOT NULL default ''"
 );
 

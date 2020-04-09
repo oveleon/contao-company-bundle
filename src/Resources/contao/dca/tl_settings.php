@@ -9,11 +9,18 @@
 // Extend the default palette
 Contao\CoreBundle\DataContainer\PaletteManipulator::create()
     ->addLegend('company_legend', 'chmod_legend', Contao\CoreBundle\DataContainer\PaletteManipulator::POSITION_AFTER, true)
-    ->addField(array('companyName', 'companyStreet', 'companyPostal', 'companyCity', 'companyState', 'companyCountry', 'companyPhone', 'companyPhone2', 'companyFax', 'companyEmail', 'companyWebsite', 'companySocialMedia'), 'company_legend', Contao\CoreBundle\DataContainer\PaletteManipulator::POSITION_APPEND)
+    ->addField(array('companyLogo', 'companyName', 'companyStreet', 'companyPostal', 'companyCity', 'companyState', 'companyCountry', 'companyPhone', 'companyPhone2', 'companyFax', 'companyEmail', 'companySocialMedia'), 'company_legend', Contao\CoreBundle\DataContainer\PaletteManipulator::POSITION_APPEND)
     ->applyToPalette('default', 'tl_settings')
 ;
 
 // Add fields to tl_settings
+$GLOBALS['TL_DCA']['tl_settings']['fields']['companyLogo'] = array
+(
+    'label'                   => &$GLOBALS['TL_LANG']['tl_settings']['companyLogo'],
+    'inputType'               => 'fileTree',
+    'eval'                    => array('fieldType'=>'radio', 'files'=>true, 'extensions'=>Contao\Config::get('validImageTypes'))
+);
+
 $GLOBALS['TL_DCA']['tl_settings']['fields']['companyName'] = array
 (
     'label'                   => &$GLOBALS['TL_LANG']['tl_settings']['companyName'],
@@ -86,13 +93,6 @@ $GLOBALS['TL_DCA']['tl_settings']['fields']['companyEmail'] = array
     'label'                   => &$GLOBALS['TL_LANG']['tl_settings']['companyEmail'],
     'inputType'               => 'text',
     'eval'                    => array('maxlength'=>255, 'rgxp'=>'email', 'decodeEntities'=>true, 'tl_class'=>'w50')
-);
-
-$GLOBALS['TL_DCA']['tl_settings']['fields']['companyWebsite'] = array
-(
-    'label'                   => &$GLOBALS['TL_LANG']['tl_settings']['companyWebsite'],
-    'inputType'               => 'text',
-    'eval'                    => array('maxlength'=>255, 'rgxp'=>'url', 'tl_class'=>'w50')
 );
 
 $GLOBALS['TL_DCA']['tl_settings']['fields']['companySocialMedia'] = array

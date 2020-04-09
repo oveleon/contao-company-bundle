@@ -1,6 +1,12 @@
 <?xml version="1.0" ?><xliff version="1.1">
   <file datatype="php" original="src/Resources/contao/languages/en/tl_settings.php" source-language="en">
     <body>
+      <trans-unit id="tl_settings.companyLogo.0">
+        <source>Logo</source>
+      </trans-unit>
+      <trans-unit id="tl_settings.companyLogo.1">
+        <source>Here you can select the company logo.</source>
+      </trans-unit>
       <trans-unit id="tl_settings.companyName.0">
         <source>Company</source>
       </trans-unit>
@@ -60,12 +66,6 @@
       </trans-unit>
       <trans-unit id="tl_settings.companyEmail.1">
         <source>Please enter the e-mail address.</source>
-      </trans-unit>
-      <trans-unit id="tl_settings.companyWebsite.0">
-        <source>Website</source>
-      </trans-unit>
-      <trans-unit id="tl_settings.companyWebsite.1">
-        <source>Here you can enter a web address.</source>
       </trans-unit>
       <trans-unit id="tl_settings.companySocialMedia.0">
         <source>Social-Media</source>

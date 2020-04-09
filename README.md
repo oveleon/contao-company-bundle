@@ -13,7 +13,6 @@ Adds company detail fields to settings and root pages. Company details in settin
 - `{{company::phone2}}`
 - `{{company::fax}}`
 - `{{company::email}}`
-- `{{company::website}}`
 
 Additional insert tags:
 

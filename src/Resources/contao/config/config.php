@@ -9,6 +9,7 @@
 // Front end modules
 $GLOBALS['FE_MOD']['company'] = array
 (
+    'logo'            => 'Oveleon\\ContaoCompanyBundle\\ModuleLogo',
     'socialmedialist' => 'Oveleon\\ContaoCompanyBundle\\ModuleSocialMediaList'
 );
 
@@ -19,6 +20,7 @@ $GLOBALS['TL_HOOKS']['replaceInsertTags'][] = array('contao_company.listener.ins
 // Company field mapping
 $GLOBALS['TL_COMPANY_MAPPING'] = array
 (
+    'logo' => 'companyLogo',
     'name' => 'companyName',
     'street' => 'companyStreet',
     'postal' => 'companyPostal',
@@ -29,6 +31,5 @@ $GLOBALS['TL_COMPANY_MAPPING'] = array
     'phone2' => 'companyPhone2',
     'fax' => 'companyFax',
     'email' => 'companyEmail',
-    'website' => 'companyWebsite',
     'socialmedia' => 'companySocialMedia'
 );
