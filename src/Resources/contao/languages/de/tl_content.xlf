@@ -1,0 +1,14 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="src/Resources/contao/languages/en/tl_content.php" source-language="en" target-language="de">
+    <body>
+      <trans-unit id="tl_content.advancedForm.0">
+        <source>Advanced form</source>
+        <target>Erweitertes Formular</target>
+      </trans-unit>
+      <trans-unit id="tl_content.advancedForm.1">
+        <source>Please select an advanced form.</source>
+        <target>Bitte wählen Sie ein erweitertes Formular.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
