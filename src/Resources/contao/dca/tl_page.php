@@ -147,7 +147,7 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['companySocialMedia'] = array
                     'youtube'
                 ),
                 'reference'             => &$GLOBALS['TL_LANG']['tl_page'],
-                'eval' 			        => array('style'=>'width:100%')
+                'eval' 			        => array('includeBlankOption'=>true, 'style'=>'width:100%')
             ),
             'url' => array
             (

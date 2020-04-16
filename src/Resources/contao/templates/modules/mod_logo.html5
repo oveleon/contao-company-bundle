@@ -2,6 +2,8 @@
 
 <?php $this->block('content'); ?>
 
-<?php $this->insert('image', $this->arrData); ?>
+    <a href="/">
+        <?php $this->insert('image', $this->arrData); ?>
+    </a>
 
 <?php $this->endblock(); ?>

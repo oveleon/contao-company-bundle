@@ -8,7 +8,6 @@
 
 namespace Oveleon\ContaoCompanyBundle;
 
-use Contao\FilesModel;
 use Patchwork\Utf8;
 
 /**
@@ -18,6 +17,12 @@ use Patchwork\Utf8;
  */
 class ModuleLogo extends \Module
 {
+    /**
+     * Files model of logo
+     * @var \FilesModel
+     */
+    protected $objFile;
+
     /**
      * Template
      * @var string
@@ -43,6 +48,20 @@ class ModuleLogo extends \Module
             return $objTemplate->parse();
         }
 
+        $singleSRC = Company::get('logo');
+
+        if ($singleSRC == '')
+        {
+            return '';
+        }
+
+        $this->objFile = \FilesModel::findByUuid($singleSRC);
+
+        if ($this->objFile === null || !is_file(\System::getContainer()->getParameter('kernel.project_dir') . '/' . $this->objFile->path))
+        {
+            return '';
+        }
+
         return parent::generate();
     }
 
@@ -51,34 +70,9 @@ class ModuleLogo extends \Module
      */
     protected function compile()
     {
-        $singleSRC = Company::get('logo');
-
-        if ($singleSRC == '')
-        {
-            return '';
-        }
-
-        $objFile = \FilesModel::findByUuid($singleSRC);
-
-        if ($objFile === null || !is_file(\System::getContainer()->getParameter('kernel.project_dir') . '/' . $objFile->path))
-        {
-            return '';
-        }
-
-        $this->arrData['singleSRC'] = $objFile->path;
+        $this->arrData['singleSRC'] = $this->objFile->path;
         $this->arrData['size'] = $this->imgSize;
 
-        $this->addImageToTemplate($this->Template, $this->arrData, null, null, $objFile);
-
-        $arrCompanyLogos = \StringUtil::deserialize($this->companyLogo, true);
-
-        $container = \System::getContainer();
-
-        foreach ($arrCompanyLogos as $companyLogo)
-        {
-            $objFile = \FilesModel::findByUuid($companyLogo['imageSRC']);
-
-            $picture = $container->get('contao.image.picture_factory')->create($container->getParameter('kernel.project_dir') . '/' . $objFile->path, array($companyLogo['width'], '', 'proportional'));
-        }
+        $this->addImageToTemplate($this->Template, $this->arrData, null, null, $this->objFile);
     }
 }
