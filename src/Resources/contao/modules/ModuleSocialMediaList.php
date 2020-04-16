@@ -18,6 +18,12 @@ use Patchwork\Utf8;
 class ModuleSocialMediaList extends \Module
 {
     /**
+     * Social media items
+     * @var array
+     */
+    protected $arrItems;
+
+    /**
      * Template
      * @var string
      */
@@ -42,22 +48,19 @@ class ModuleSocialMediaList extends \Module
             return $objTemplate->parse();
         }
 
-        return parent::generate();
-    }
-
-    /**
-     * Generate the module
-     */
-    protected function compile()
-    {
         $this->loadLanguageFile('tl_settings');
 
-        $arrItems = array();
+        $this->arrItems = array();
         $arrSocialMedia = \StringUtil::deserialize(Company::get('socialmedia'), true);
 
         foreach ($arrSocialMedia as $item)
         {
-            $arrItems[] = array
+            if (empty($item['type']) || empty($item['url']))
+            {
+                continue;
+            }
+
+            $this->arrItems[] = array
             (
                 'url'   => $item['url'],
                 'class' => $item['type'],
@@ -66,6 +69,19 @@ class ModuleSocialMediaList extends \Module
             );
         }
 
-        $this->Template->items = $arrItems;
+        if (!count($this->arrItems))
+        {
+            return '';
+        }
+
+        return parent::generate();
+    }
+
+    /**
+     * Generate the module
+     */
+    protected function compile()
+    {
+        $this->Template->items = $this->arrItems;
     }
 }
