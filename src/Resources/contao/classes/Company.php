@@ -21,18 +21,15 @@ class Company
      */
     public function initialize($parentModels, $page)
     {
-        if ($page->type !== 'root')
-        {
-            return;
-        }
+        $objPage = ($index = count($parentModels)) ? $parentModels[--$index] : $page;
 
         foreach ($GLOBALS['TL_COMPANY_MAPPING'] as $key => $field)
         {
             $this->set($key, \Config::get($field));
 
-            if (!empty($page->{$field}))
+            if (!empty($objPage->{$field}))
             {
-                $this->set($key, $page->{$field});
+                $this->set($key, $objPage->{$field});
             }
         }
 
