@@ -125,7 +125,7 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['companySocialMedia'] = array
         (
             'type' => array
             (
-                'label'                 => &$GLOBALS['TL_LANG']['tl_page']['type'],
+                'label'                 => &$GLOBALS['TL_LANG']['tl_page']['socialmediaType'],
                 'inputType'             => 'select',
                 'options'               => array
                 (

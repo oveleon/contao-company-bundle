@@ -97,7 +97,7 @@
         <source>Here you can enter links of your social media profiles.</source>
         <target>Hier können Sie die Links Ihrer Social-Media Profile eingeben.</target>
       </trans-unit>
-      <trans-unit id="tl_page.type">
+      <trans-unit id="tl_page.socialmediaType">
         <source>Type</source>
         <target>Typ</target>
       </trans-unit>
