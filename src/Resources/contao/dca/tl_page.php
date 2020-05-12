@@ -158,5 +158,60 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['companySocialMedia'] = array
         ),
         'tl_class' => 'clr'
     ),
+    'save_callback' => array
+    (
+        array('tl_page_company', 'clearEmptyValue')
+    ),
     'sql'                     => "blob NULL"
 );
+
+
+/**
+ * Provide miscellaneous methods that are used by the data configuration array.
+ *
+ * @author Fabian Ekert <https://github.com/eki89>
+ */
+class tl_page_company extends Contao\Backend
+{
+    /**
+     * Import the back end user object
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->import('Contao\BackendUser', 'User');
+    }
+
+    /**
+     * Clears field socialmedia if no records found
+     *
+     * @param mixed                $varValue
+     * @param Contao\DataContainer $dc
+     *
+     * @return string
+     */
+    public function clearEmptyValue($varValue, Contao\DataContainer $dc): string
+    {
+        if ($varValue == '')
+        {
+            return $varValue;
+        }
+
+        $arrValue = Contao\StringUtil::deserialize($varValue, true);
+
+        if (!count($arrValue))
+        {
+            return '';
+        }
+
+        if (array_key_exists('type', $arrValue[0]))
+        {
+            if ($arrValue[0]['type'] === '')
+            {
+                return '';
+            }
+        }
+
+        return $varValue;
+    }
+}
