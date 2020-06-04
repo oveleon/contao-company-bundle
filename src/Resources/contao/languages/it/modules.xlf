@@ -1,0 +1,26 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="src/Resources/contao/languages/en/modules.php" source-language="en" target-language="de">
+    <body>
+      <trans-unit id="FMD.company">
+        <source>Company</source>
+        <target>Azienda</target>
+      </trans-unit>
+      <trans-unit id="FMD.logo.0">
+        <source>Logo</source>
+        <target>Logo</target>
+      </trans-unit>
+      <trans-unit id="FMD.logo.1">
+        <source>Shows the logo based on the stored company details</source>
+        <target>Mostra il logo in base ai dettagli dell'azienda</target>
+      </trans-unit>
+      <trans-unit id="FMD.socialmedialist.0">
+        <source>Social media list</source>
+        <target>Elenco Social Network</target>
+      </trans-unit>
+      <trans-unit id="FMD.socialmedialist.1">
+        <source>Generates a list based on the stored social media links</source>
+        <target>Genera un elenco basato sui social network dell'azienda</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
