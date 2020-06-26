@@ -33,3 +33,6 @@ $GLOBALS['TL_COMPANY_MAPPING'] = array
     'email' => 'companyEmail',
     'socialmedia' => 'companySocialMedia'
 );
+
+// Skip page types
+$GLOBALS['TL_COMPANY_ALLOWED_PAGE_TYPES'] = array();

@@ -73,7 +73,7 @@
       <trans-unit id="tl_page.companySocialMedia.1">
         <source>Here you can enter links of your social media profiles.</source>
       </trans-unit>
-      <trans-unit id="tl_page.socialmediaType">
+      <trans-unit id="tl_page.type">
         <source>Type</source>
       </trans-unit>
       <trans-unit id="tl_page.url">

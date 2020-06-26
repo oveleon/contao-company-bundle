@@ -8,6 +8,8 @@
 
 namespace Oveleon\ContaoCompanyBundle;
 
+use Contao\PageModel;
+
 class Company
 {
     /**
@@ -21,15 +23,23 @@ class Company
      */
     public function initialize($parentModels, $page)
     {
-        $objPage = ($index = count($parentModels)) ? $parentModels[--$index] : $page;
+        /** @var PageModel $objPage */
+        global $objPage;
+
+        if ($objPage === null && !in_array($page->type, $GLOBALS['TL_COMPANY_ALLOWED_PAGE_TYPES']))
+        {
+            return;
+        }
+
+        $objPage2 = ($index = count($parentModels)) ? $parentModels[--$index] : $page;
 
         foreach ($GLOBALS['TL_COMPANY_MAPPING'] as $key => $field)
         {
             $this->set($key, \Config::get($field));
 
-            if (!empty($objPage->{$field}))
+            if (!empty($objPage2->{$field}))
             {
-                $this->set($key, $objPage->{$field});
+                $this->set($key, $objPage2->{$field});
             }
         }
 
