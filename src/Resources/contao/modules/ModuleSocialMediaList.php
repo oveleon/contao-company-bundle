@@ -8,6 +8,9 @@
 
 namespace Oveleon\ContaoCompanyBundle;
 
+use Contao\BackendTemplate;
+use Contao\Module;
+use Contao\StringUtil;
 use Patchwork\Utf8;
 
 /**
@@ -15,7 +18,7 @@ use Patchwork\Utf8;
  *
  * @author Fabian Ekert <https://github.com/eki89>
  */
-class ModuleSocialMediaList extends \Module
+class ModuleSocialMediaList extends Module
 {
     /**
      * Social media items
@@ -38,7 +41,7 @@ class ModuleSocialMediaList extends \Module
     {
         if (TL_MODE == 'BE')
         {
-            $objTemplate = new \BackendTemplate('be_wildcard');
+            $objTemplate = new BackendTemplate('be_wildcard');
             $objTemplate->wildcard = '### ' . Utf8::strtoupper($GLOBALS['TL_LANG']['FMD']['socialmedialist'][0]) . ' ###';
             $objTemplate->title = $this->headline;
             $objTemplate->id = $this->id;
@@ -51,7 +54,7 @@ class ModuleSocialMediaList extends \Module
         $this->loadLanguageFile('tl_settings');
 
         $this->arrItems = array();
-        $arrSocialMedia = \StringUtil::deserialize(Company::get('socialmedia'), true);
+        $arrSocialMedia = StringUtil::deserialize(Company::get('socialmedia'), true);
 
         foreach ($arrSocialMedia as $item)
         {

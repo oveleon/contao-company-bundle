@@ -31,6 +31,9 @@ $GLOBALS['TL_COMPANY_MAPPING'] = array
     'phone2' => 'companyPhone2',
     'fax' => 'companyFax',
     'email' => 'companyEmail',
+    'email2' => 'companyEmail2',
+    'info' => 'companyInfo',
+    'info2' => 'companyInfo2',
     'socialmedia' => 'companySocialMedia'
 );
 

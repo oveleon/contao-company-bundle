@@ -8,6 +8,10 @@
 
 namespace Oveleon\ContaoCompanyBundle;
 
+use Contao\BackendTemplate;
+use Contao\FilesModel;
+use Contao\Module;
+use Contao\System;
 use Patchwork\Utf8;
 
 /**
@@ -15,11 +19,11 @@ use Patchwork\Utf8;
  *
  * @author Fabian Ekert <https://github.com/eki89>
  */
-class ModuleLogo extends \Module
+class ModuleLogo extends Module
 {
     /**
      * Files model of logo
-     * @var \FilesModel
+     * @var FilesModel
      */
     protected $objFile;
 
@@ -38,7 +42,7 @@ class ModuleLogo extends \Module
     {
         if (TL_MODE == 'BE')
         {
-            $objTemplate = new \BackendTemplate('be_wildcard');
+            $objTemplate = new BackendTemplate('be_wildcard');
             $objTemplate->wildcard = '### ' . Utf8::strtoupper($GLOBALS['TL_LANG']['FMD']['logo'][0]) . ' ###';
             $objTemplate->title = $this->headline;
             $objTemplate->id = $this->id;
@@ -55,9 +59,9 @@ class ModuleLogo extends \Module
             return '';
         }
 
-        $this->objFile = \FilesModel::findByUuid($singleSRC);
+        $this->objFile = FilesModel::findByUuid($singleSRC);
 
-        if ($this->objFile === null || !is_file(\System::getContainer()->getParameter('kernel.project_dir') . '/' . $this->objFile->path))
+        if ($this->objFile === null || !is_file(System::getContainer()->getParameter('kernel.project_dir') . '/' . $this->objFile->path))
         {
             return '';
         }

@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace Oveleon\ContaoCompanyBundle\EventListener;
 
 use Contao\CoreBundle\Framework\ContaoFramework;
+use Contao\StringUtil;
 use Oveleon\ContaoCompanyBundle\Company;
 
 /**
@@ -51,7 +52,7 @@ class InsertTagsListener
         $elements = explode('::', $tag);
         $key = strtolower($elements[0]);
 
-        if (\in_array($key, self::SUPPORTED_TAGS, true)) {
+        if (in_array($key, self::SUPPORTED_TAGS, true)) {
             return $this->replaceCompanyInsertTags($key, $elements[1]);
         }
 
@@ -79,9 +80,26 @@ class InsertTagsListener
                     return '';
                 }
 
-                $strEmail = \StringUtil::encodeEmail($value);
+                $strEmail = StringUtil::encodeEmail($value);
 
                 if($field === 'mailto')
+                {
+                    $strEmail = '<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;' . $strEmail . '" title="' . $strEmail . '">' . preg_replace('/\?.*$/', '', $strEmail) . '</a>';
+                }
+
+                return $strEmail;
+            case 'mailto2':
+            case 'email2':
+                $value = Company::get('email2');
+
+                if (empty($value))
+                {
+                    return '';
+                }
+
+                $strEmail = StringUtil::encodeEmail($value);
+
+                if($field === 'mailto2')
                 {
                     $strEmail = '<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;' . $strEmail . '" title="' . $strEmail . '">' . preg_replace('/\?.*$/', '', $strEmail) . '</a>';
                 }

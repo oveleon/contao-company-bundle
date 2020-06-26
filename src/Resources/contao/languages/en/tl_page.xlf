@@ -67,13 +67,31 @@
       <trans-unit id="tl_page.companyEmail.1">
         <source>Please enter the e-mail address.</source>
       </trans-unit>
+      <trans-unit id="tl_page.companyEmail2.0">
+        <source>E-mail address 2</source>
+      </trans-unit>
+      <trans-unit id="tl_page.companyEmail2.1">
+        <source>Please enter an alternative e-mail address.</source>
+      </trans-unit>
+      <trans-unit id="tl_page.companyInfo.0">
+        <source>Info 1</source>
+      </trans-unit>
+      <trans-unit id="tl_page.companyInfo.1">
+        <source>Here you can store any further information.</source>
+      </trans-unit>
+      <trans-unit id="tl_page.companyInfo2.0">
+        <source>Info 2</source>
+      </trans-unit>
+      <trans-unit id="tl_page.companyInfo2.1">
+        <source>Here you can store any further information.</source>
+      </trans-unit>
       <trans-unit id="tl_page.companySocialMedia.0">
         <source>Social-Media</source>
       </trans-unit>
       <trans-unit id="tl_page.companySocialMedia.1">
         <source>Here you can enter links of your social media profiles.</source>
       </trans-unit>
-      <trans-unit id="tl_page.type">
+      <trans-unit id="tl_page.companyType">
         <source>Type</source>
       </trans-unit>
       <trans-unit id="tl_page.url">

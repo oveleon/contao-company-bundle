@@ -97,7 +97,7 @@
         <source>Here you can enter links of your social media profiles.</source>
         <target>Inserisci l'elenco degli indirizzi dei social network.</target>
       </trans-unit>
-      <trans-unit id="tl_settings.type">
+      <trans-unit id="tl_settings.companyType">
         <source>Type</source>
         <target>Tipologia</target>
       </trans-unit>

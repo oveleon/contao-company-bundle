@@ -61,7 +61,7 @@ class Company
             return static::$arrCache[$strKey];
         }
 
-        if (\in_array($strKey, get_class_methods(self::class)))
+        if (in_array($strKey, get_class_methods(self::class)))
         {
             static::$arrCache[$strKey] = static::$strKey();
         }

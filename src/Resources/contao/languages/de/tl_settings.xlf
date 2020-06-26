@@ -89,6 +89,30 @@
         <source>Please enter the e-mail address.</source>
         <target>Bitte geben Sie die E-Mail-Adresse ein.</target>
       </trans-unit>
+      <trans-unit id="tl_settings.companyEmail2.0">
+        <target>E-Mail-Adresse 2</target>
+        <source>E-mail address 2</source>
+      </trans-unit>
+      <trans-unit id="tl_settings.companyEmail2.1">
+        <source>Please enter an alternative e-mail address.</source>
+        <target>Bitte geben Sie eine alternative E-Mail-Adresse ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.companyInfo.0">
+        <source>Info 1</source>
+        <target>Info 1</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.companyInfo.1">
+        <source>Here you can store any further information.</source>
+        <target>Hier können sie eine beliebige weiteitere Information hinterlegen.</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.companyInfo2.0">
+        <source>Info 2</source>
+        <target>Info 2</target>
+      </trans-unit>
+      <trans-unit id="tl_settings.companyInfo2.1">
+        <source>Here you can store any further information.</source>
+        <target>Hier können sie eine beliebige weiteitere Information hinterlegen.</target>
+      </trans-unit>
       <trans-unit id="tl_settings.companySocialMedia.0">
         <source>Social-Media</source>
         <target>Social-Media</target>
@@ -97,7 +121,7 @@
         <source>Here you can enter links of your social media profiles.</source>
         <target>Hier können Sie die Links Ihrer Social-Media Profile eingeben.</target>
       </trans-unit>
-      <trans-unit id="tl_settings.type">
+      <trans-unit id="tl_settings.companyType">
         <source>Type</source>
         <target>Typ</target>
       </trans-unit>

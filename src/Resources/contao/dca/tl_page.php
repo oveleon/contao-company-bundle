@@ -9,7 +9,7 @@
 // Extend the default palette
 Contao\CoreBundle\DataContainer\PaletteManipulator::create()
     ->addLegend('company_legend', 'chmod_legend', Contao\CoreBundle\DataContainer\PaletteManipulator::POSITION_AFTER, true)
-    ->addField(array('companyLogo', 'companyName', 'companyStreet', 'companyPostal', 'companyCity', 'companyState', 'companyCountry', 'companyPhone', 'companyPhone2', 'companyFax', 'companyEmail', 'companySocialMedia'), 'company_legend', Contao\CoreBundle\DataContainer\PaletteManipulator::POSITION_APPEND)
+    ->addField(array('companyLogo', 'companyName', 'companyStreet', 'companyPostal', 'companyCity', 'companyState', 'companyCountry', 'companyPhone', 'companyPhone2', 'companyFax', 'companyEmail', 'companyEmail2', 'companyInfo', 'companyInfo2', 'companySocialMedia'), 'company_legend', Contao\CoreBundle\DataContainer\PaletteManipulator::POSITION_APPEND)
     ->applyToPalette(array_key_exists('rootfallback', $GLOBALS['TL_DCA']['tl_page']['palettes']) ? 'rootfallback' : 'root', 'tl_page')
 ;
 
@@ -74,7 +74,7 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['companyCountry'] = array
     'eval'                    => array('includeBlankOption'=>true, 'chosen'=>true, 'tl_class'=>'w50'),
     'options_callback' => function ()
     {
-        return System::getCountries();
+        return Contao\System::getCountries();
     },
     'sql'                     => "varchar(2) NOT NULL default ''"
 );
@@ -111,7 +111,34 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['companyEmail'] = array
     'label'                   => &$GLOBALS['TL_LANG']['tl_page']['companyEmail'],
     'exclude'                 => true,
     'inputType'               => 'text',
+    'eval'                    => array('maxlength'=>255, 'rgxp'=>'email', 'decodeEntities'=>true, 'tl_class'=>'w50 clr'),
+    'sql'                     => "varchar(255) NOT NULL default ''"
+);
+
+$GLOBALS['TL_DCA']['tl_page']['fields']['companyEmail2'] = array
+(
+    'label'                   => &$GLOBALS['TL_LANG']['tl_page']['companyEmail2'],
+    'exclude'                 => true,
+    'inputType'               => 'text',
     'eval'                    => array('maxlength'=>255, 'rgxp'=>'email', 'decodeEntities'=>true, 'tl_class'=>'w50'),
+    'sql'                     => "varchar(255) NOT NULL default ''"
+);
+
+$GLOBALS['TL_DCA']['tl_page']['fields']['companyInfo'] = array
+(
+    'label'                   => &$GLOBALS['TL_LANG']['tl_page']['companyInfo'],
+    'exclude'                 => true,
+    'inputType'               => 'text',
+    'eval'                    => array('maxlength'=>255, 'tl_class'=>'w50'),
+    'sql'                     => "varchar(255) NOT NULL default ''"
+);
+
+$GLOBALS['TL_DCA']['tl_page']['fields']['companyInfo2'] = array
+(
+    'label'                   => &$GLOBALS['TL_LANG']['tl_page']['companyInfo2'],
+    'exclude'                 => true,
+    'inputType'               => 'text',
+    'eval'                    => array('maxlength'=>255, 'tl_class'=>'w50'),
     'sql'                     => "varchar(255) NOT NULL default ''"
 );
 
@@ -125,7 +152,7 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['companySocialMedia'] = array
         (
             'type' => array
             (
-                'label'                 => &$GLOBALS['TL_LANG']['tl_page']['type'],
+                'label'                 => &$GLOBALS['TL_LANG']['tl_page']['companyType'],
                 'inputType'             => 'select',
                 'options'               => array
                 (
