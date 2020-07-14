@@ -87,7 +87,31 @@
       </trans-unit>
       <trans-unit id="tl_page.companyEmail.1">
         <source>Please enter the e-mail address.</source>
-        <target>Inserire l'indirizzo email</target>
+        <target>Inserire l'indirizzo e-mail</target>
+      </trans-unit>
+      <trans-unit id="tl_page.companyEmail2.0">
+        <target>E-Mail-Adresse 2</target>
+        <source>Secondo indirizzo e-mail</source>
+      </trans-unit>
+      <trans-unit id="tl_page.companyEmail2.1">
+        <source>Please enter an alternative e-mail address.</source>
+        <target>Aggiungi un secondo indirizzo email es. Pec</target>
+      </trans-unit>
+      <trans-unit id="tl_page.companyInfo.0">
+        <source>Info 1</source>
+        <target>Informazioni azienda</target>
+      </trans-unit>
+      <trans-unit id="tl_page.companyInfo.1">
+        <source>Here you can store any further information.</source>
+        <target>In questo campo si possono inserire informazioni dell'azienda come ad esempio la partita iva o altre informazioni</target>
+      </trans-unit>
+      <trans-unit id="tl_page.companyInfo2.0">
+        <source>Info 2</source>
+        <target>Secondo campo informazioni azienda</target>
+      </trans-unit>
+      <trans-unit id="tl_page.companyInfo2.1">
+        <source>Here you can store any further information.</source>
+        <target>Secondo campo a disposizione per informazioni aziendali, capitale sociale, iscrizioni a registri imprese.</target>
       </trans-unit>
       <trans-unit id="tl_page.companySocialMedia.0">
         <source>Social-Media</source>
