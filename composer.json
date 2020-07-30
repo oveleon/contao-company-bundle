@@ -40,6 +40,9 @@
     ]
   },
   "extra":{
+    "branch-alias": {
+      "dev-master": "1.2.x-dev"
+    },
     "contao-manager-plugin": "Oveleon\\ContaoCompanyBundle\\ContaoManager\\Plugin"
   }
 }

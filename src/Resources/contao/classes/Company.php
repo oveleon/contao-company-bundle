@@ -8,6 +8,7 @@
 
 namespace Oveleon\ContaoCompanyBundle;
 
+use Contao\Config;
 use Contao\PageModel;
 
 class Company
@@ -21,30 +22,19 @@ class Company
     /**
      * Load all company details
      */
-    public function initialize($parentModels, $page)
+    public function initialize($objPage, $objLayout, $context)
     {
-        /** @var PageModel $objPage */
-        global $objPage;
-
-        if ($objPage === null && !in_array($page->type, $GLOBALS['TL_COMPANY_ALLOWED_PAGE_TYPES']))
-        {
-            return;
-        }
-
-        $objPage2 = ($index = count($parentModels)) ? $parentModels[--$index] : $page;
+        $objRootPage = PageModel::findByPk($objPage->rootId);
 
         foreach ($GLOBALS['TL_COMPANY_MAPPING'] as $key => $field)
         {
-            $this->set($key, \Config::get($field));
+            $this->set($key, Config::get($field));
 
-            if (!empty($objPage2->{$field}))
+            if (!empty($objRootPage->{$field}))
             {
-                $this->set($key, $objPage2->{$field});
+                $this->set($key, $objRootPage->{$field});
             }
         }
-
-        $index = array_search('Oveleon\\ContaoCompanyBundle\\Company', $GLOBALS['TL_HOOKS']['loadPageDetails']);
-        unset($GLOBALS['TL_HOOKS']['loadPageDetails'][$index]);
     }
 
     /**
