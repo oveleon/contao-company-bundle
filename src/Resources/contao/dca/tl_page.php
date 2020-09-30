@@ -6,12 +6,20 @@
  * (c) https://www.oveleon.de/
  */
 
-// Extend the default palette
-Contao\CoreBundle\DataContainer\PaletteManipulator::create()
+// Initialize the palette-manipulator
+$manipulator = Contao\CoreBundle\DataContainer\PaletteManipulator::create();
+
+// Add the legend and fields to the root palette of tl_page
+$manipulator
     ->addLegend('company_legend', 'chmod_legend', Contao\CoreBundle\DataContainer\PaletteManipulator::POSITION_AFTER, true)
     ->addField(array('companyLogo', 'companyName', 'companyStreet', 'companyPostal', 'companyCity', 'companyState', 'companyCountry', 'companyPhone', 'companyPhone2', 'companyFax', 'companyEmail', 'companyEmail2', 'companyInfo', 'companyInfo2', 'companySocialMedia'), 'company_legend', Contao\CoreBundle\DataContainer\PaletteManipulator::POSITION_APPEND)
-    ->applyToPalette(array_key_exists('rootfallback', $GLOBALS['TL_DCA']['tl_page']['palettes']) ? 'rootfallback' : 'root', 'tl_page')
+    ->applyToPalette('root', 'tl_page')
 ;
+
+// Check if the rootfallback palette exists
+if (array_key_exists('rootfallback', $GLOBALS['TL_DCA']['tl_page']['palettes'])) {
+    $manipulator->applyToPalette('rootfallback', 'tl_page');
+}
 
 // Add fields to tl_page
 $GLOBALS['TL_DCA']['tl_page']['fields']['companyLogo'] = array
