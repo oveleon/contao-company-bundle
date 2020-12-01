@@ -3,7 +3,7 @@
   "type":"contao-bundle",
   "description":"Company integration for Contao 4 Open Source CMS",
   "keywords":["contao","company-bundle"],
-  "homepage":"https://www.oveleon.de/",
+  "homepage":"https://www.oveleon.de/company.html",
   "license":"MIT",
   "authors":[
     {
