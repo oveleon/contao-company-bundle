@@ -112,9 +112,6 @@
       <trans-unit id="tl_settings.gitlab">
         <source>GitLab</source>
       </trans-unit>
-      <trans-unit id="tl_settings.googleplus">
-        <source>Google+</source>
-      </trans-unit>
       <trans-unit id="tl_settings.instagram">
         <source>Instagram</source>
       </trans-unit>
@@ -144,6 +141,9 @@
       </trans-unit>
       <trans-unit id="tl_settings.youtube">
         <source>YouTube</source>
+      </trans-unit>
+      <trans-unit id="tl_settings.behance">
+        <source>Behance</source>
       </trans-unit>
       <trans-unit id="tl_settings.company_legend">
         <source>Company details</source>
