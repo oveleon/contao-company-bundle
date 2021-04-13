@@ -9,8 +9,10 @@
 namespace Oveleon\ContaoCompanyBundle;
 
 use Contao\BackendTemplate;
+use Contao\Environment;
 use Contao\FilesModel;
 use Contao\Module;
+use Contao\PageModel;
 use Contao\System;
 use Patchwork\Utf8;
 
@@ -74,9 +76,25 @@ class ModuleLogo extends Module
      */
     protected function compile()
     {
+        /** @var PageModel $objPage */
+        global $objPage;
+
         $this->arrData['singleSRC'] = $this->objFile->path;
         $this->arrData['size'] = $this->imgSize;
 
         $this->addImageToTemplate($this->Template, $this->arrData, null, null, $this->objFile);
+
+        $pageUrl = Environment::get('url');
+        $prependLocale = System::getContainer()->getParameter('contao.prepend_locale');
+
+        if($prependLocale)
+        {
+            $pageUrl .= '/' . $objPage->language;
+        }
+
+        $pageUrl .= '/';
+
+        $this->Template->company = Company::get('name');
+        $this->Template->rootHref = $pageUrl;
     }
 }

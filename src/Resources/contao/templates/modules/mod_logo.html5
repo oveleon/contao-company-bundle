@@ -2,7 +2,7 @@
 
 <?php $this->block('content'); ?>
 
-    <a href="/">
+    <a href="<?= $this->rootHref ?>"<?= (!empty($this->company)) ? ' title="'.$this->company.'" alt="'.$this->company.'"' : '' ?>>
         <?php $this->insert('image', $this->arrData); ?>
     </a>
 
