@@ -135,7 +135,6 @@ $GLOBALS['TL_DCA']['tl_settings']['fields']['companySocialMedia'] = array
                     'flickr',
                     'github',
                     'gitlab',
-                    'googleplus',
                     'instagram',
                     'linkedin',
                     'pinterest',
@@ -145,7 +144,8 @@ $GLOBALS['TL_DCA']['tl_settings']['fields']['companySocialMedia'] = array
                     'twitter',
                     'vimeo',
                     'xing',
-                    'youtube'
+                    'youtube',
+                    'behance'
                 ),
                 'reference'             => &$GLOBALS['TL_LANG']['tl_settings'],
                 'eval' 			        => array('includeBlankOption'=>true, 'style'=>'width:100%')
