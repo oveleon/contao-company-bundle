@@ -142,6 +142,9 @@
       <trans-unit id="tl_page.youtube">
         <source>YouTube</source>
       </trans-unit>
+      <trans-unit id="tl_page.whatsapp">
+        <source>WhatsApp</source>
+      </trans-unit>
       <trans-unit id="tl_page.company_legend">
         <source>Company details</source>
       </trans-unit>
