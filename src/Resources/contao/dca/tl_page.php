@@ -179,7 +179,8 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['companySocialMedia'] = array
                     'vimeo',
                     'xing',
                     'youtube',
-                    'behance'
+                    'behance',
+                    'whatsapp'
                 ),
                 'reference'             => &$GLOBALS['TL_LANG']['tl_page'],
                 'eval' 			        => array('includeBlankOption'=>true, 'style'=>'width:100%')

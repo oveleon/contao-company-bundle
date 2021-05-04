@@ -145,6 +145,9 @@
       <trans-unit id="tl_settings.behance">
         <source>Behance</source>
       </trans-unit>
+      <trans-unit id="tl_settings.whatsapp">
+        <source>WhatsApp</source>
+      </trans-unit>
       <trans-unit id="tl_settings.company_legend">
         <source>Company details</source>
       </trans-unit>
