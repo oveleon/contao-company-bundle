@@ -144,7 +144,7 @@ class InsertTagsListener
                 }
 
                 return implode(', ', $arrAddress);
-			case 'countryname':
+			case 'country':
 				$value = Company::get('country');
 
 				if (empty($value))
@@ -157,6 +157,8 @@ class InsertTagsListener
 				$strCountry = $GLOBALS['TL_LANG']['CNT'][$value];
 
 				return $strCountry;
+			case 'countrycode':
+				return Company::get('country');
         }
 
         return Company::get($field);
