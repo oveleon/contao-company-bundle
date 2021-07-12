@@ -52,3 +52,4 @@ All company details can be called anywhere by the following insert tags:
 - `{{company::tel}}`: Outputs a tel link e.g. `<a href="tel:01234567890">+49 1234 / 56 78 90</a>` 
 - `{{company::tel2}}`: Outputs a tel link e.g. `<a href="tel:01234567890">+49 1234 / 56 78 90</a>` 
 - `{{company::address}}`: Outputs the full address
+- `{{company::countryname}}`: Outputs the full name of the company country
