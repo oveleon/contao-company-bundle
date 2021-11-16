@@ -12,6 +12,7 @@ namespace Oveleon\ContaoCompanyBundle\EventListener;
 
 use Contao\CoreBundle\Framework\ContaoFramework;
 use Contao\StringUtil;
+use Contao\System;
 use Oveleon\ContaoCompanyBundle\Company;
 
 /**
@@ -143,6 +144,21 @@ class InsertTagsListener
                 }
 
                 return implode(', ', $arrAddress);
+			case 'country':
+				$value = Company::get('country');
+
+				if (empty($value))
+				{
+					return '';
+				}
+
+				System::loadLanguageFile('countries');
+
+				$strCountry = $GLOBALS['TL_LANG']['CNT'][$value];
+
+				return $strCountry;
+			case 'countrycode':
+				return Company::get('country');
         }
 
         return Company::get($field);

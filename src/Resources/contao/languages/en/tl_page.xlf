@@ -148,6 +148,9 @@
       <trans-unit id="tl_page.behance">
         <source>Behance</source>
       </trans-unit>
+      <trans-unit id="tl_page.whatsapp">
+        <source>WhatsApp</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>
