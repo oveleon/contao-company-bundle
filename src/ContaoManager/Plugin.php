@@ -3,9 +3,13 @@
 declare(strict_types=1);
 
 /*
- * This file is part of Oveleon company bundle.
+ * This file is part of Oveleon Company Bundle.
  *
- * (c) https://www.oveleon.de/
+ * @package     contao-company-bundle
+ * @license     MIT
+ * @author      Fabian Ekert        <https://github.com/eki89>
+ * @author      Sebastian Zoglowek  <https://github.com/zoglo>
+ * @copyright   Oveleon             <https://www.oveleon.de/>
  */
 
 namespace Oveleon\ContaoCompanyBundle\ContaoManager;
