@@ -162,29 +162,10 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['companySocialMedia'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_company']['companySocialMedia'],
 	'inputType' 	          => 'cySelectTextWizard',
-	'options'                 => array
-	(
-		'facebook',
-		'instagram',
-		'twitter',
-		'xing',
-		'linkedin',
-		'youtube',
-		'vimeo',
-		'twitch',
-		'tiktok',
-		'whatsapp',
-		'telegram',
-		'flickr',
-		'behance',
-		'pinterest',
-		'bitbucket',
-		'github',
-		'gitlab',
-		'reddit',
-		'rss',
-		'tumblr'
-	),
+	'options_callback' => static function ()
+	{
+		return array_keys($GLOBALS['TL_LANG']['tl_company_socials']);
+	},
 	'reference'               => &$GLOBALS['TL_LANG']['tl_company_socials'],
 	'eval'                    => array
 	(
