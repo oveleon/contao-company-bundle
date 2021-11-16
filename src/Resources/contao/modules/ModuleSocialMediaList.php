@@ -1,9 +1,13 @@
 <?php
 
 /*
- * This file is part of Oveleon company bundle.
+ * This file is part of Oveleon Company Bundle.
  *
- * (c) https://www.oveleon.de/
+ * @package     contao-company-bundle
+ * @license     MIT
+ * @author      Fabian Ekert        <https://github.com/eki89>
+ * @author      Sebastian Zoglowek  <https://github.com/zoglo>
+ * @copyright   Oveleon             <https://www.oveleon.de/>
  */
 
 namespace Oveleon\ContaoCompanyBundle;
@@ -11,6 +15,7 @@ namespace Oveleon\ContaoCompanyBundle;
 use Contao\BackendTemplate;
 use Contao\Module;
 use Contao\StringUtil;
+use Contao\System;
 use Patchwork\Utf8;
 
 /**
@@ -39,19 +44,21 @@ class ModuleSocialMediaList extends Module
      */
     public function generate()
     {
-        if (TL_MODE == 'BE')
-        {
-            $objTemplate = new BackendTemplate('be_wildcard');
-            $objTemplate->wildcard = '### ' . Utf8::strtoupper($GLOBALS['TL_LANG']['FMD']['socialmedialist'][0]) . ' ###';
-            $objTemplate->title = $this->headline;
-            $objTemplate->id = $this->id;
-            $objTemplate->link = $this->name;
-            $objTemplate->href = 'contao/main.php?do=themes&amp;table=tl_module&amp;act=edit&amp;id=' . $this->id;
+	    $request = System::getContainer()->get('request_stack')->getCurrentRequest();
 
-            return $objTemplate->parse();
-        }
+	    if ($request && System::getContainer()->get('contao.routing.scope_matcher')->isBackendRequest($request))
+	    {
+		    $objTemplate = new BackendTemplate('be_wildcard');
+		    $objTemplate->wildcard = '### ' . Utf8::strtoupper($GLOBALS['TL_LANG']['FMD']['socialmedialist'][0]) . ' ###';
+		    $objTemplate->title = $this->headline;
+		    $objTemplate->id = $this->id;
+		    $objTemplate->link = $this->name;
+		    $objTemplate->href = 'contao/main.php?do=themes&amp;table=tl_module&amp;act=edit&amp;id=' . $this->id;
 
-        $this->loadLanguageFile('tl_settings');
+		    return $objTemplate->parse();
+	    }
+
+        $this->loadLanguageFile('tl_company_socials');
 
         $this->arrItems = array();
         $arrSocialMedia = StringUtil::deserialize(Company::get('socialmedia'), true);
@@ -67,8 +74,8 @@ class ModuleSocialMediaList extends Module
             (
                 'url'   => $item['url'],
                 'class' => $item['type'],
-                'title' => $GLOBALS['TL_LANG']['tl_settings'][$item['type']],
-                'label' => $GLOBALS['TL_LANG']['tl_settings'][$item['type']]
+                'title' => $GLOBALS['TL_LANG']['tl_company_socials'][$item['type']],
+                'label' => $GLOBALS['TL_LANG']['tl_company_socials'][$item['type']]
             );
         }
 
