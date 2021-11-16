@@ -14,9 +14,9 @@ declare(strict_types=1);
 
 namespace Oveleon\ContaoCompanyBundle\EventListener;
 
-use Contao\CoreBundle\Framework\ContaoFramework;
-use Contao\StringUtil;
 use Contao\System;
+use Contao\StringUtil;
+use Contao\CoreBundle\Framework\ContaoFramework;
 use Oveleon\ContaoCompanyBundle\Company;
 
 /**
@@ -35,34 +35,26 @@ class InsertTagsListener
      */
     private $framework;
 
-    /**
-     * Constructor.
-     *
-     * @param ContaoFramework $framework
-     */
     public function __construct(ContaoFramework $framework)
     {
         $this->framework = $framework;
     }
 
-    /**
-     * Replaces company insert tags.
-     *
-     * @param string $tag
-     *
-     * @return string|false
-     */
-    public function onReplaceInsertTags(string $tag)
-    {
-        $elements = explode('::', $tag);
-        $key = strtolower($elements[0]);
+	/**
+	 * @return string|false
+	 */
+	public function __invoke(string $tag)
+	{
+		$elements = explode('::', $tag);
+		$key = strtolower($elements[0]);
 
-        if (in_array($key, self::SUPPORTED_TAGS, true)) {
-            return $this->replaceCompanyInsertTags($key, $elements[1]);
-        }
+		if (\in_array($key, self::SUPPORTED_TAGS, true))
+		{
+			return $this->replaceCompanyInsertTags($key, $elements[1]);
+		}
 
-        return false;
-    }
+		return false;
+	}
 
     /**
      * Replaces a company-related insert tag.
@@ -119,7 +111,7 @@ class InsertTagsListener
                     return '';
                 }
 
-                $strTel = preg_replace('/[^a-z0-9\+]/i', '', $value);
+                $strTel = preg_replace('/[^a-z0-9\+]/i', '', (string) $value);
 
                 return '<a href="tel:' . $strTel . '" title="' . $value . '">' . $value . '</a>';
             case 'address':

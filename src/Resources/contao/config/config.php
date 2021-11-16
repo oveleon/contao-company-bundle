@@ -19,7 +19,6 @@ $GLOBALS['FE_MOD']['company'] = array
 
 // Register hooks
 $GLOBALS['TL_HOOKS']['getPageLayout'][]     = array('Oveleon\ContaoCompanyBundle\Company', 'initialize');
-$GLOBALS['TL_HOOKS']['replaceInsertTags'][] = array('contao_company.listener.insert_tags', 'onReplaceInsertTags');
 
 // Company field mapping
 $GLOBALS['TL_COMPANY_MAPPING'] = array
