@@ -2,7 +2,7 @@
   "name":"oveleon/contao-company-bundle",
   "type":"contao-bundle",
   "description":"Company integration for Contao 4 Open Source CMS",
-  "keywords":["contao","company-bundle"],
+  "keywords":["contao","company-bundle", "insert-tags"],
   "homepage":"https://www.oveleon.de/company.html",
   "license":"MIT",
   "authors":[
@@ -10,19 +10,27 @@
       "name":"Oveleon",
       "homepage":"https://oveleon.de/",
       "role":"Developer"
+    },
+    {
+      "name": "Fabian Ekert",
+      "homepage": "https://github.com/eki89",
+      "role":"Developer"
+    },
+    {
+      "name": "Sebastian Zoglowek",
+      "homepage": "https://github.com/zoglo",
+      "role":"Developer"
     }
   ],
   "require":{
-    "php":"^7.1",
-    "contao/core-bundle":"^4.4",
-    "menatwork/contao-multicolumnwizard-bundle": "^3.4"
+    "php": "^7.4 || ^8.0",
+    "contao/core-bundle":"^4.9"
   },
   "require-dev": {
-    "contao/manager-plugin": "^2.0"
+    "contao/manager-plugin": "^2.3.1"
   },
   "conflict": {
     "contao/core": "*",
-    "contao/core-bundle": "4.4.1",
     "contao/manager-plugin": "<2.0 || >=3.0"
   },
   "autoload":{
@@ -41,7 +49,7 @@
   },
   "extra":{
     "branch-alias": {
-      "dev-master": "1.2.x-dev"
+      "dev-master": "1.3.x-dev"
     },
     "contao-manager-plugin": "Oveleon\\ContaoCompanyBundle\\ContaoManager\\Plugin"
   }

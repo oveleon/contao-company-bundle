@@ -2,8 +2,8 @@
 
 <?php $this->block('content'); ?>
 
-    <a href="/">
-        <?php $this->insert('image', $this->arrData); ?>
-    </a>
+  <a href="<?= $this->rootHref ?>" title="<?= $this->title ?>">
+	  <?php $this->insert('image', $this->arrData); ?>
+  </a>
 
 <?php $this->endblock(); ?>

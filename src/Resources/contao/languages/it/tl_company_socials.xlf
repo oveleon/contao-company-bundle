@@ -1,0 +1,92 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="src/Resources/contao/languages/en/tl_company_socials.php" source-language="en" target-language="de">
+    <body>
+      <trans-unit id="tl_company_socials.facebook">
+        <source>Facebook</source>
+        <target>Facebook</target>
+      </trans-unit>
+      <trans-unit id="tl_company_socials.instagram">
+        <source>Instagram</source>
+        <target>Instagram</target>
+      </trans-unit>
+      <trans-unit id="tl_company_socials.twitter">
+        <source>Twitter</source>
+        <target>Twitter</target>
+      </trans-unit>
+
+      <trans-unit id="tl_company_socials.xing">
+        <source>Xing</source>
+        <target>Xing</target>
+      </trans-unit>
+      <trans-unit id="tl_company_socials.linkedin">
+        <source>LinkedIn</source>
+        <target>LinkedIn</target>
+      </trans-unit>
+
+      <trans-unit id="tl_company_socials.youtube">
+        <source>YouTube</source>
+        <target>YouTube</target>
+      </trans-unit>
+      <trans-unit id="tl_company_socials.vimeo">
+        <source>Vimeo</source>
+        <target>Vimeo</target>
+      </trans-unit>
+      <trans-unit id="tl_company_socials.twitch">
+        <source>Twitch</source>
+        <target>Twitch</target>
+      </trans-unit>
+
+      <trans-unit id="tl_company_socials.tiktok">
+        <source>TikTok</source>
+        <target>TikTok</target>
+      </trans-unit>
+      <trans-unit id="tl_company_socials.whatsapp">
+        <source>WhatsApp</source>
+        <target>WhatsApp</target>
+      </trans-unit>
+      <trans-unit id="tl_company_socials.telegram">
+        <source>Telegram</source>
+        <target>Telegram</target>
+      </trans-unit>
+
+      <trans-unit id="tl_company_socials.flickr">
+        <source>Flickr</source>
+        <target>Flickr</target>
+      </trans-unit>
+      <trans-unit id="tl_company_socials.behance">
+        <source>Behance</source>
+        <target>Behance</target>
+      </trans-unit>
+      <trans-unit id="tl_company_socials.pinterest">
+        <source>Pinterest</source>
+        <target>Pinterest</target>
+      </trans-unit>
+
+      <trans-unit id="tl_company_socials.bitbucket">
+        <source>Bitbucket</source>
+        <target>Bitbucket</target>
+      </trans-unit>
+      <trans-unit id="tl_company_socials.github">
+        <source>GitHub</source>
+        <target>GitHub</target>
+      </trans-unit>
+      <trans-unit id="tl_company_socials.gitlab">
+        <source>GitLab</source>
+        <target>GitLab</target>
+      </trans-unit>
+
+      <trans-unit id="tl_company_socials.reddit">
+        <source>Reddit</source>
+        <target>Reddit</target>
+      </trans-unit>
+      <trans-unit id="tl_company_socials.rss">
+        <source>RSS</source>
+        <target>RSS</target>
+      </trans-unit>
+      <trans-unit id="tl_company_socials.tumblr">
+        <source>Tumblr</source>
+        <target>Tumblr</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

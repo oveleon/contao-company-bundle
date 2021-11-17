@@ -1,9 +1,13 @@
 <?php
 
 /*
- * This file is part of Oveleon company bundle.
+ * This file is part of Oveleon Company Bundle.
  *
- * (c) https://www.oveleon.de/
+ * @package     contao-company-bundle
+ * @license     MIT
+ * @author      Fabian Ekert        <https://github.com/eki89>
+ * @author      Sebastian Zoglowek  <https://github.com/zoglo>
+ * @copyright   Oveleon             <https://www.oveleon.de/>
  */
 
 // Initialize the palette-manipulator
@@ -21,10 +25,14 @@ if (array_key_exists('rootfallback', $GLOBALS['TL_DCA']['tl_page']['palettes']))
     $manipulator->applyToPalette('rootfallback', 'tl_page');
 }
 
+// Load Company language files
+System::loadLanguageFile('tl_company');
+System::loadLanguageFile('tl_company_socials');
+
 // Add fields to tl_page
 $GLOBALS['TL_DCA']['tl_page']['fields']['companyLogo'] = array
 (
-    'label'                   => &$GLOBALS['TL_LANG']['tl_page']['companyLogo'],
+    'label'                   => &$GLOBALS['TL_LANG']['tl_company']['companyLogo'],
     'inputType'               => 'fileTree',
     'eval'                    => array('fieldType'=>'radio', 'files'=>true, 'extensions'=>Contao\Config::get('validImageTypes')),
     'sql'                     => "binary(16) NULL"
@@ -32,7 +40,7 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['companyLogo'] = array
 
 $GLOBALS['TL_DCA']['tl_page']['fields']['companyName'] = array
 (
-    'label'                   => &$GLOBALS['TL_LANG']['tl_page']['companyName'],
+    'label'                   => &$GLOBALS['TL_LANG']['tl_company']['companyName'],
     'inputType'               => 'text',
     'eval'                    => array('maxlength'=>255, 'tl_class'=>'w50'),
     'sql'                     => "varchar(255) NOT NULL default ''"
@@ -40,7 +48,7 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['companyName'] = array
 
 $GLOBALS['TL_DCA']['tl_page']['fields']['companyStreet'] = array
 (
-    'label'                   => &$GLOBALS['TL_LANG']['tl_page']['companyStreet'],
+    'label'                   => &$GLOBALS['TL_LANG']['tl_company']['companyStreet'],
     'exclude'                 => true,
     'inputType'               => 'text',
     'eval'                    => array('maxlength'=>255, 'tl_class'=>'w50'),
@@ -49,7 +57,7 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['companyStreet'] = array
 
 $GLOBALS['TL_DCA']['tl_page']['fields']['companyPostal'] = array
 (
-    'label'                   => &$GLOBALS['TL_LANG']['tl_page']['companyPostal'],
+    'label'                   => &$GLOBALS['TL_LANG']['tl_company']['companyPostal'],
     'exclude'                 => true,
     'inputType'               => 'text',
     'eval'                    => array('maxlength'=>32, 'tl_class'=>'w50'),
@@ -58,7 +66,7 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['companyPostal'] = array
 
 $GLOBALS['TL_DCA']['tl_page']['fields']['companyCity'] = array
 (
-    'label'                   => &$GLOBALS['TL_LANG']['tl_page']['companyCity'],
+    'label'                   => &$GLOBALS['TL_LANG']['tl_company']['companyCity'],
     'exclude'                 => true,
     'inputType'               => 'text',
     'eval'                    => array('maxlength'=>255, 'tl_class'=>'w50'),
@@ -67,7 +75,7 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['companyCity'] = array
 
 $GLOBALS['TL_DCA']['tl_page']['fields']['companyState'] = array
 (
-    'label'                   => &$GLOBALS['TL_LANG']['tl_page']['companyState'],
+    'label'                   => &$GLOBALS['TL_LANG']['tl_company']['companyState'],
     'exclude'                 => true,
     'inputType'               => 'text',
     'eval'                    => array('maxlength'=>64, 'tl_class'=>'w50'),
@@ -76,7 +84,7 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['companyState'] = array
 
 $GLOBALS['TL_DCA']['tl_page']['fields']['companyCountry'] = array
 (
-    'label'                   => &$GLOBALS['TL_LANG']['tl_page']['companyCountry'],
+    'label'                   => &$GLOBALS['TL_LANG']['tl_company']['companyCountry'],
     'exclude'                 => true,
     'inputType'               => 'select',
     'eval'                    => array('includeBlankOption'=>true, 'chosen'=>true, 'tl_class'=>'w50'),
@@ -89,7 +97,7 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['companyCountry'] = array
 
 $GLOBALS['TL_DCA']['tl_page']['fields']['companyPhone'] = array
 (
-    'label'                   => &$GLOBALS['TL_LANG']['tl_page']['companyPhone'],
+    'label'                   => &$GLOBALS['TL_LANG']['tl_company']['companyPhone'],
     'exclude'                 => true,
     'inputType'               => 'text',
     'eval'                    => array('maxlength'=>64, 'rgxp'=>'phone', 'decodeEntities'=>true, 'tl_class'=>'w50'),
@@ -98,7 +106,7 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['companyPhone'] = array
 
 $GLOBALS['TL_DCA']['tl_page']['fields']['companyPhone2'] = array
 (
-    'label'                   => &$GLOBALS['TL_LANG']['tl_page']['companyPhone2'],
+    'label'                   => &$GLOBALS['TL_LANG']['tl_company']['companyPhone2'],
     'exclude'                 => true,
     'inputType'               => 'text',
     'eval'                    => array('maxlength'=>64, 'rgxp'=>'phone', 'decodeEntities'=>true, 'tl_class'=>'w50'),
@@ -107,7 +115,7 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['companyPhone2'] = array
 
 $GLOBALS['TL_DCA']['tl_page']['fields']['companyFax'] = array
 (
-    'label'                   => &$GLOBALS['TL_LANG']['tl_page']['companyFax'],
+    'label'                   => &$GLOBALS['TL_LANG']['tl_company']['companyFax'],
     'exclude'                 => true,
     'inputType'               => 'text',
     'eval'                    => array('maxlength'=>64, 'rgxp'=>'phone', 'decodeEntities'=>true, 'tl_class'=>'w50'),
@@ -116,7 +124,7 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['companyFax'] = array
 
 $GLOBALS['TL_DCA']['tl_page']['fields']['companyEmail'] = array
 (
-    'label'                   => &$GLOBALS['TL_LANG']['tl_page']['companyEmail'],
+    'label'                   => &$GLOBALS['TL_LANG']['tl_company']['companyEmail'],
     'exclude'                 => true,
     'inputType'               => 'text',
     'eval'                    => array('maxlength'=>255, 'rgxp'=>'email', 'decodeEntities'=>true, 'tl_class'=>'w50 clr'),
@@ -125,7 +133,7 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['companyEmail'] = array
 
 $GLOBALS['TL_DCA']['tl_page']['fields']['companyEmail2'] = array
 (
-    'label'                   => &$GLOBALS['TL_LANG']['tl_page']['companyEmail2'],
+    'label'                   => &$GLOBALS['TL_LANG']['tl_company']['companyEmail2'],
     'exclude'                 => true,
     'inputType'               => 'text',
     'eval'                    => array('maxlength'=>255, 'rgxp'=>'email', 'decodeEntities'=>true, 'tl_class'=>'w50'),
@@ -134,7 +142,7 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['companyEmail2'] = array
 
 $GLOBALS['TL_DCA']['tl_page']['fields']['companyInfo'] = array
 (
-    'label'                   => &$GLOBALS['TL_LANG']['tl_page']['companyInfo'],
+    'label'                   => &$GLOBALS['TL_LANG']['tl_company']['companyInfo'],
     'exclude'                 => true,
     'inputType'               => 'text',
     'eval'                    => array('maxlength'=>255, 'tl_class'=>'w50'),
@@ -143,7 +151,7 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['companyInfo'] = array
 
 $GLOBALS['TL_DCA']['tl_page']['fields']['companyInfo2'] = array
 (
-    'label'                   => &$GLOBALS['TL_LANG']['tl_page']['companyInfo2'],
+    'label'                   => &$GLOBALS['TL_LANG']['tl_company']['companyInfo2'],
     'exclude'                 => true,
     'inputType'               => 'text',
     'eval'                    => array('maxlength'=>255, 'tl_class'=>'w50'),
@@ -152,48 +160,30 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['companyInfo2'] = array
 
 $GLOBALS['TL_DCA']['tl_page']['fields']['companySocialMedia'] = array
 (
-    'label'                     => &$GLOBALS['TL_LANG']['tl_page']['companySocialMedia'],
-    'inputType' 	            => 'multiColumnWizard',
-    'eval' 			            => array
-    (
-        'columnFields' => array
-        (
-            'type' => array
-            (
-                'label'                 => &$GLOBALS['TL_LANG']['tl_page']['companyType'],
-                'inputType'             => 'select',
-                'options'               => array
-                (
-                    'bitbucket',
-                    'facebook',
-                    'flickr',
-                    'github',
-                    'gitlab',
-                    'instagram',
-                    'linkedin',
-                    'pinterest',
-                    'reddit',
-                    'rss',
-                    'tumblr',
-                    'twitter',
-                    'vimeo',
-                    'xing',
-                    'youtube',
-                    'behance',
-                    'whatsapp'
-                ),
-                'reference'             => &$GLOBALS['TL_LANG']['tl_page'],
-                'eval' 			        => array('includeBlankOption'=>true, 'style'=>'width:100%')
-            ),
-            'url' => array
-            (
-                'label'                 => &$GLOBALS['TL_LANG']['tl_page']['url'],
-                'inputType'             => 'text',
-                'eval' 			        => array('style'=>'width:100%')
-            )
-        ),
-        'tl_class' => 'clr'
-    ),
+	'label'                   => &$GLOBALS['TL_LANG']['tl_company']['companySocialMedia'],
+	'inputType' 	          => 'cySelectTextWizard',
+	'options_callback' => static function ()
+	{
+		return array_keys($GLOBALS['TL_LANG']['tl_company_socials']);
+	},
+	'reference'               => &$GLOBALS['TL_LANG']['tl_company_socials'],
+	'eval'                    => array
+	(
+		'includeBlankOption' => true,
+		'chosen' => true,
+		'tl_class' => 'clr',
+		'dragAndDrop' => true,
+		'fieldNames' => array
+		(
+			'type',
+			'url'
+		),
+		'fieldLabels' => array
+		(
+			&$GLOBALS['TL_LANG']['tl_company']['companyType'],
+			&$GLOBALS['TL_LANG']['tl_company']['url']
+		)
+	),
     'save_callback' => array
     (
         array('tl_page_company', 'clearEmptyValue')
