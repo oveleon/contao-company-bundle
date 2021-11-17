@@ -247,7 +247,7 @@ You are able to add new social-media by creating a translation file and uploadin
 ## Support
 > We **only provide support** for **bugs, and feature requests**; please only post issues about these two topics.
 >
-> If you need help implementing Contao Glossary Bundle or you are just starting out with Contao/CSS/JavaScript or HTML, please contact us on our [website](https://www.oveleon.de/kontakt.html#kontaktformular),
+> If you need help implementing Contao Company Bundle or you are just starting out with Contao/CSS or HTML, please contact us on our [website](https://www.oveleon.de/kontakt.html#kontaktformular),
 > visit the [Contao Community](https://community.contao.org/) or the [Contao Slack](https://join.slack.com/t/contao/shared_invite/enQtNjUzMjY4MDU0ODM3LWVjYWMzODVkZjM5NjdlNDRiZjk2OTI3OWVkMmQ1YjA0MTQ3YTljMjFjODkwYTllN2NkMDcxMThiNzMzZjZlOGU),
 > you will be able to find more help there.
 >
