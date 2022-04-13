@@ -102,6 +102,11 @@ class ModuleLogo extends Module
         {
 	        $strPageUrl .= '/' . $objPage->language;
         }
+        // consider urlPrefix with disabled legacy routing (Contao 4.10 and up)
+        else if(!!$objPage->urlPrefix)
+        {
+            $strPageUrl .= '/' . $objPage->urlPrefix;
+        }
 
 	    $strPageUrl .= '/';
 
