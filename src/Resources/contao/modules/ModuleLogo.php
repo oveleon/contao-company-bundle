@@ -50,19 +50,19 @@ class ModuleLogo extends Module
      */
     public function generate()
     {
-	    $request = System::getContainer()->get('request_stack')->getCurrentRequest();
+        $request = System::getContainer()->get('request_stack')->getCurrentRequest();
 
-	    if ($request && System::getContainer()->get('contao.routing.scope_matcher')->isBackendRequest($request))
-	    {
-		    $objTemplate = new BackendTemplate('be_wildcard');
-		    $objTemplate->wildcard = '### ' . mb_strtoupper($GLOBALS['TL_LANG']['FMD']['logo'][0], 'UTF-8') . ' ###';
-		    $objTemplate->title = $this->headline;
-		    $objTemplate->id = $this->id;
-		    $objTemplate->link = $this->name;
-		    $objTemplate->href = 'contao/main.php?do=themes&amp;table=tl_module&amp;act=edit&amp;id=' . $this->id;
+        if ($request && System::getContainer()->get('contao.routing.scope_matcher')->isBackendRequest($request))
+        {
+            $objTemplate = new BackendTemplate('be_wildcard');
+            $objTemplate->wildcard = '### ' . mb_strtoupper($GLOBALS['TL_LANG']['FMD']['logo'][0], 'UTF-8') . ' ###';
+            $objTemplate->title = $this->headline;
+            $objTemplate->id = $this->id;
+            $objTemplate->link = $this->name;
+            $objTemplate->href = 'contao/main.php?do=themes&amp;table=tl_module&amp;act=edit&amp;id=' . $this->id;
 
-		    return $objTemplate->parse();
-	    }
+            return $objTemplate->parse();
+        }
 
         $singleSRC = Company::get('logo');
 
@@ -94,27 +94,32 @@ class ModuleLogo extends Module
 
         $this->addImageToTemplate($this->Template, $this->arrData, null, null, $this->objFile);
 
-		// Create rootHref URL
+        // Create rootHref URL
         $strPageUrl = Environment::get('url');
         $prependLocale = System::getContainer()->getParameter('contao.prepend_locale');
 
         if($prependLocale)
         {
-	        $strPageUrl .= '/' . $objPage->language;
+            $strPageUrl .= '/' . $objPage->language;
+        }
+        // consider urlPrefix with disabled legacy routing (Contao 4.10 and up)
+        else if(!!$objPage->urlPrefix)
+        {
+            $strPageUrl .= '/' . $objPage->urlPrefix;
         }
 
-	    $strPageUrl .= '/';
+        $strPageUrl .= '/';
 
-		// Set URI as title tag
-		$strCompanyName = $strPageUrl;
+        // Set URI as title tag
+        $strCompanyName = $strPageUrl;
 
-	    // Override title tag with company name if it is set
-	    if (!empty(Company::get('name')))
-		{
-			$strCompanyName = Company::get('name');
-	    }
+        // Override title tag with company name if it is set
+        if (!empty(Company::get('name')))
+        {
+            $strCompanyName = Company::get('name');
+        }
 
-	    $this->Template->rootHref = $strPageUrl;
-	    $this->Template->title = $strCompanyName;
+        $this->Template->rootHref = $strPageUrl;
+        $this->Template->title = $strCompanyName;
     }
 }
