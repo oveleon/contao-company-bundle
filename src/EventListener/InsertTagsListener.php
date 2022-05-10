@@ -172,7 +172,7 @@ class InsertTagsListener
                     $pageId = $page->id;
                 }
 
-                return $this->router->generate('contao_company_vcard_download', ['redirect' => $pageId]);
+                return $this->router->generate('contao_company_vcard_download', ['page' => $pageId]);
         }
 
         return Company::get($field);
