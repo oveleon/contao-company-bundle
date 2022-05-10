@@ -156,7 +156,8 @@ class vCardGenerator
             return $this;
         }
 
-        $this->vCard->addLogo($file->getAbsolutePath());
+        $projectDir = System::getContainer()->getParameter('kernel.project_dir');
+        $this->vCard->addLogo(Path::makeAbsolute($file->path, $projectDir));
 
         return $this;
     }
