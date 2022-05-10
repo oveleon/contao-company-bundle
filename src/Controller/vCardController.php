@@ -36,7 +36,7 @@ class vCardController extends AbstractController
     public function download(Request $request): Response
     {
         // Try to load the current contao page
-        $pageId = (int) $request->query->get('contaoPage');
+        $pageId = (int) $request->query->get('page');
         $pageModel = PageModel::findById($pageId);
         if (null === $pageModel) {
             throw new \Exception('Could not load correct redirect page');
