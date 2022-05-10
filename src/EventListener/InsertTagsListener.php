@@ -14,10 +14,13 @@ declare(strict_types=1);
 
 namespace Oveleon\ContaoCompanyBundle\EventListener;
 
+use Contao\PageModel;
 use Contao\System;
 use Contao\StringUtil;
 use Contao\CoreBundle\Framework\ContaoFramework;
 use Oveleon\ContaoCompanyBundle\Company;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Routing\RouterInterface;
 
 /**
  * Handles insert tags for company details.
@@ -35,9 +38,14 @@ class InsertTagsListener
      */
     private $framework;
 
-    public function __construct(ContaoFramework $framework)
+    private RouterInterface $router;
+    private RequestStack $requestStack;
+
+    public function __construct(ContaoFramework $framework, RouterInterface $router, RequestStack $requestStack)
     {
         $this->framework = $framework;
+        $this->router = $router;
+        $this->requestStack = $requestStack;
     }
 
 	/**
@@ -155,6 +163,16 @@ class InsertTagsListener
 				return $strCountry;
 			case 'countrycode':
 				return Company::get('country');
+            case 'vcard_url':
+                $pageId = 0;
+                $request = $this->requestStack->getCurrentRequest();
+                if (null !== $request) {
+                    /** @var PageModel $page */
+                    $page = $request->attributes->get('pageModel');
+                    $pageId = $page->id;
+                }
+
+                return $this->router->generate('contao_company_vcard_download', ['redirect' => $pageId]);
         }
 
         return Company::get($field);
