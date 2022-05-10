@@ -4,8 +4,10 @@ namespace Oveleon\ContaoCompanyBundle\Generator;
 
 use Contao\FilesModel;
 use Contao\PageModel;
+use Contao\System;
 use JeroenDesloovere\VCard\VCard;
 use Oveleon\ContaoCompanyBundle\Company;
+use Symfony\Component\Filesystem\Path;
 
 class vCardGenerator
 {
