@@ -24,7 +24,8 @@
   ],
   "require":{
     "php": "^7.4 || ^8.0",
-    "contao/core-bundle":"^4.9"
+    "contao/core-bundle":"^4.9",
+    "jeroendesloovere/vcard": "^1.7"
   },
   "require-dev": {
     "contao/manager-plugin": "^2.3.1"

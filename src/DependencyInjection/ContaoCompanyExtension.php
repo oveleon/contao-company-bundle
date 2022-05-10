@@ -29,5 +29,6 @@ class ContaoCompanyExtension extends Extension
         );
 
         $loader->load('listener.yml');
+        $loader->load('services.yaml');
     }
 }
