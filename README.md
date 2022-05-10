@@ -215,6 +215,10 @@ Your company information can be displayed using following *insert-tags*.
     <td>{{company::countrycode}}</td>
     <td>Displays the ISO 639-1 country code from <i>Country</i></td>
   </tr>
+  <tr>
+    <td>{{company::vcard_url}}</td>
+    <td>Generates a vcard out of the company data</td>
+  </tr>
 </table>
 
 ## Front end modules
