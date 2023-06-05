@@ -1,0 +1,10 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="contao/languages/en/tl_module.php" source-language="en" target-language="it">
+    <body>
+      <trans-unit id="tl_module.logo_legend">
+        <source>Logo settings</source>
+        <source>Impostazioni logo</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

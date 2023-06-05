@@ -1,0 +1,72 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="contao/languages/en/tl_company_socials.php" source-language="en">
+    <body>
+      <trans-unit id="tl_company_socials.facebook">
+        <source>Facebook</source>
+      </trans-unit>
+      <trans-unit id="tl_company_socials.instagram">
+        <source>Instagram</source>
+      </trans-unit>
+      <trans-unit id="tl_company_socials.twitter">
+        <source>Twitter</source>
+      </trans-unit>
+
+      <trans-unit id="tl_company_socials.xing">
+        <source>Xing</source>
+      </trans-unit>
+      <trans-unit id="tl_company_socials.linkedin">
+        <source>LinkedIn</source>
+      </trans-unit>
+
+      <trans-unit id="tl_company_socials.youtube">
+        <source>YouTube</source>
+      </trans-unit>
+      <trans-unit id="tl_company_socials.vimeo">
+        <source>Vimeo</source>
+      </trans-unit>
+      <trans-unit id="tl_company_socials.twitch">
+        <source>Twitch</source>
+      </trans-unit>
+
+      <trans-unit id="tl_company_socials.tiktok">
+        <source>TikTok</source>
+      </trans-unit>
+      <trans-unit id="tl_company_socials.whatsapp">
+        <source>WhatsApp</source>
+      </trans-unit>
+      <trans-unit id="tl_company_socials.telegram">
+        <source>Telegram</source>
+      </trans-unit>
+
+      <trans-unit id="tl_company_socials.flickr">
+        <source>Flickr</source>
+      </trans-unit>
+      <trans-unit id="tl_company_socials.behance">
+        <source>Behance</source>
+      </trans-unit>
+      <trans-unit id="tl_company_socials.pinterest">
+        <source>Pinterest</source>
+      </trans-unit>
+
+      <trans-unit id="tl_company_socials.bitbucket">
+        <source>Bitbucket</source>
+      </trans-unit>
+      <trans-unit id="tl_company_socials.github">
+        <source>GitHub</source>
+      </trans-unit>
+      <trans-unit id="tl_company_socials.gitlab">
+        <source>GitLab</source>
+      </trans-unit>
+
+      <trans-unit id="tl_company_socials.reddit">
+        <source>Reddit</source>
+      </trans-unit>
+      <trans-unit id="tl_company_socials.rss">
+        <source>RSS</source>
+      </trans-unit>
+      <trans-unit id="tl_company_socials.tumblr">
+        <source>Tumblr</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

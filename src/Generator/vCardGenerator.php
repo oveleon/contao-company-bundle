@@ -11,26 +11,18 @@ use Symfony\Component\Filesystem\Path;
 
 class vCardGenerator
 {
-    private ?VCard $vCard;
-    private Company $company;
-
-    public function __construct()
-    {
-        $this->vCard = null;
-    }
+    public function __construct(
+        private ?VCard $vCard,
+        private Company $company
+    ){}
 
     /**
      * Generate a vcard with the given company values.
-     *
-     * @param PageModel $pageModel
-     *
-     * @return $this
      */
     public function createCard(PageModel $pageModel): self
     {
         // Init company with current page model
-        $this->company = new Company();
-        $this->company->initialize($pageModel, null, null);
+        $this->company = new Company($pageModel);
 
         // Generate the vcard
         $this->vCard = new VCard();
@@ -50,8 +42,6 @@ class vCardGenerator
     /**
      * Get the content of the vcard as string.
      *
-     * @return string
-     *
      * @throws \Exception
      */
     public function getContent(): string
@@ -65,8 +55,6 @@ class vCardGenerator
 
     /**
      * Get the correct headers to be able to download the vcard.
-     *
-     * @return array
      */
     public function getHeaders(): array
     {
@@ -75,27 +63,29 @@ class vCardGenerator
 
     private function addName(): self
     {
-        $this->vCard->addName($this->company::get('name'));
+        $this->vCard->addName($this->company->get('name'));
 
         return $this;
     }
 
     private function addCompany(): self
     {
-        $this->vCard->addCompany($this->company::get('name'));
+        $this->vCard->addCompany($this->company->get('name'));
 
         return $this;
     }
 
     private function addAddress(): self
     {
-        $street = $this->company::get('street') ?: null;
-        $city = $this->company::get('city') ?: null;
-        $state = $this->company::get('state') ?: null;
-        $zip = $this->company::get('postal') ?: null;
-        $country = $this->company::get('country') ?: null;
-        $type = 'WORK;POSTAL';
-        if (null === $street && null === $city && null === $state && null === $zip && null === $country) {
+        $street  = $this->company->get('street') ?: null;
+        $city    = $this->company->get('city') ?: null;
+        $state   = $this->company->get('state') ?: null;
+        $zip     = $this->company->get('postal') ?: null;
+        $country = $this->company->get('country') ?: null;
+        $type    = 'WORK;POSTAL';
+
+        if (null === $street && null === $city && null === $state && null === $zip && null === $country)
+        {
             return $this;
         }
 
@@ -106,11 +96,14 @@ class vCardGenerator
 
     private function addEmail(): self
     {
-        $mail = $this->company::get('email') ?: null;
-        if (null === $mail) {
-            $mail = $this->company::get('email2') ?: null;
+        // If no mail found, use second mail
+        if (null === ($mail = $this->company->get('email') ?: null))
+        {
+            $mail = $this->company->get('email2') ?: null;
         }
-        if (null === $mail) {
+
+        if (null === $mail)
+        {
             return $this;
         }
 
@@ -121,11 +114,14 @@ class vCardGenerator
 
     private function addPhone(): self
     {
-        $phone = $this->company::get('phone') ?: null;
-        if (null === $phone) {
-            $phone = $this->company::get('phone2') ?: null;
+        // If no phone number found, use second phone number
+        if (null === ($phone = $this->company->get('phone') ?: null))
+        {
+            $phone = $this->company->get('phone2') ?: null;
         }
-        if (null === $phone) {
+
+        if (null === $phone)
+        {
             return $this;
         }
 
@@ -136,8 +132,8 @@ class vCardGenerator
 
     private function addFax(): self
     {
-        $fax = $this->company::get('fax') ?: null;
-        if (null === $fax) {
+        if (null === ($fax = $this->company->get('fax') ?: null))
+        {
             return $this;
         }
 
@@ -148,13 +144,11 @@ class vCardGenerator
 
     private function addLogo(): self
     {
-        $uuid = $this->company::get('logo') ?: null;
-        if (null === $uuid) {
-            return $this;
-        }
-
-        $file = FilesModel::findByUuid($uuid);
-        if (null === $file) {
+        if (
+            null === ($uuid = $this->company->get('logo') ?: null) ||
+            null === ($file = FilesModel::findByUuid($uuid))
+        )
+        {
             return $this;
         }
 

@@ -1,0 +1,140 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="contao/languages/en/tl_company.php" source-language="en" target-language="de">
+    <body>
+      <trans-unit id="tl_company.company_legend">
+        <source>Company details</source>
+        <target>Dettagli azienda</target>
+      </trans-unit>
+      <trans-unit id="tl_company.companyLogo.0">
+        <source>Logo</source>
+        <target>Logo</target>
+      </trans-unit>
+      <trans-unit id="tl_company.companyLogo.1">
+        <source>Here you can select the company logo.</source>
+        <target>Seleziona il logo della tua azienda.</target>
+      </trans-unit>
+      <trans-unit id="tl_company.companyName.0">
+        <source>Company</source>
+        <target>Azienda</target>
+      </trans-unit>
+      <trans-unit id="tl_company.companyName.1">
+        <source>Here you can enter a company name.</source>
+        <target>Inserisci la denominazione azienda.</target>
+      </trans-unit>
+      <trans-unit id="tl_company.companyStreet.0">
+        <source>Street</source>
+        <target>Indirizzo</target>
+      </trans-unit>
+      <trans-unit id="tl_company.companyStreet.1">
+        <source>Please enter the street name and number.</source>
+        <target>Inserisci l'indirizzo ed il numero civico.</target>
+      </trans-unit>
+      <trans-unit id="tl_company.companyPostal.0">
+        <source>Postal code</source>
+        <target>Codice postale</target>
+      </trans-unit>
+      <trans-unit id="tl_company.companyPostal.1">
+        <source>Please enter the postal code.</source>
+        <target>Inserisci il codice postale.</target>
+      </trans-unit>
+      <trans-unit id="tl_company.companyCity.0">
+        <source>City</source>
+        <target>Città</target>
+      </trans-unit>
+      <trans-unit id="tl_company.companyCity.1">
+        <source>Plase enter the name of the city.</source>
+        <target>Inserisci la città dell'azienda.</target>
+      </trans-unit>
+      <trans-unit id="tl_company.companyState.0">
+        <source>State</source>
+        <target>Provincia</target>
+      </trans-unit>
+      <trans-unit id="tl_company.companyState.1">
+        <source>Plase enter the name of the state.</source>
+        <target>Inserisci la provincia dell'azienda.</target>
+      </trans-unit>
+      <trans-unit id="tl_company.companyCountry.0">
+        <source>Country</source>
+        <target>Stato</target>
+      </trans-unit>
+      <trans-unit id="tl_company.companyCountry.1">
+        <source>Please select the country.</source>
+        <target>Inserisci lo stato dell'azienda.</target>
+      </trans-unit>
+      <trans-unit id="tl_company.companyPhone.0">
+        <source>Phone number</source>
+        <target>Numero telefonico principale</target>
+      </trans-unit>
+      <trans-unit id="tl_company.companyPhone.1">
+        <source>Please enter the phone number.</source>
+        <target>Inserisci il numero telefonico principale dell'azienda.</target>
+      </trans-unit>
+      <trans-unit id="tl_company.companyPhone2.0">
+        <source>Phone number 2</source>
+        <target>Numero telefonico secondario</target>
+      </trans-unit>
+      <trans-unit id="tl_company.companyPhone2.1">
+        <source>Please enter an alternative phone number.</source>
+        <target>Inserisci un secondo numero telefonico alternativo.</target>
+      </trans-unit>
+      <trans-unit id="tl_company.companyFax.0">
+        <source>Fax number</source>
+        <target>Numero fax</target>
+      </trans-unit>
+      <trans-unit id="tl_company.companyFax.1">
+        <source>Please enter the fax number.</source>
+        <target>Inserisci il numero di fax.</target>
+      </trans-unit>
+      <trans-unit id="tl_company.companyEmail.0">
+        <source>E-mail address</source>
+        <target>Indirizzo E-mail</target>
+      </trans-unit>
+      <trans-unit id="tl_company.companyEmail.1">
+        <source>Please enter the e-mail address.</source>
+        <target>Inserire l'indirizzo email.</target>
+      </trans-unit>
+
+      <trans-unit id="tl_company.companyEmail2.0">
+        <target>E-Mail-Adresse 2</target>
+        <source>Secondo indirizzo e-mail</source>
+      </trans-unit>
+      <trans-unit id="tl_company.companyEmail2.1">
+        <source>Please enter an alternative e-mail address.</source>
+        <target>Aggiungi un secondo indirizzo email es. Pec.</target>
+      </trans-unit>
+      <trans-unit id="tl_company.companyInfo.0">
+        <source>Info 1</source>
+        <target>Informazioni azienda</target>
+      </trans-unit>
+      <trans-unit id="tl_company.companyInfo.1">
+        <source>Here you can store any further information.</source>
+        <target>In questo campo si possono inserire informazioni dell'azienda come ad esempio la partita iva o altre informazioni.</target>
+      </trans-unit>
+      <trans-unit id="tl_company.companyInfo2.0">
+        <source>Info 2</source>
+        <target>Secondo campo informazioni azienda</target>
+      </trans-unit>
+      <trans-unit id="tl_company.companyInfo2.1">
+        <source>Here you can store any further information.</source>
+        <target>Secondo campo a disposizione per informazioni aziendali, capitale sociale, iscrizioni a registri imprese.</target>
+      </trans-unit>
+
+      <trans-unit id="tl_company.companySocialMedia.0">
+        <source>Social-Media</source>
+        <target>Social Network</target>
+      </trans-unit>
+      <trans-unit id="tl_company.companySocialMedia.1">
+        <source>Here you can enter links of your social media profiles.</source>
+        <target>Inserisci l'elenco degli indirizzi dei social network.</target>
+      </trans-unit>
+      <trans-unit id="tl_company.companyType">
+        <source>Type</source>
+        <target>Tipologia</target>
+      </trans-unit>
+      <trans-unit id="tl_company.url">
+        <source>URL</source>
+        <target>URL</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
