@@ -86,7 +86,11 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['companyCountry'] = [
     'exclude'                 => true,
     'inputType'               => 'select',
     'eval'                    => ['includeBlankOption'=>true, 'chosen'=>true, 'tl_class'=>'w50'],
-    'options_callback'        => static fn () => System::getContainer()->get('contao.intl.countries')->getCountries(),
+    'options_callback'        => static function ()
+    {
+        $countries = System::getContainer()->get('contao.intl.countries')->getCountries();
+        return array_combine(array_map('strtolower', array_keys($countries)), $countries);
+    },
     'sql'                     => "varchar(2) NOT NULL default ''"
 ];
 
