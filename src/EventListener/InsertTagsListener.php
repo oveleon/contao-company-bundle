@@ -116,7 +116,7 @@ class InsertTagsListener
                 return empty($value = $company->get('country')) ? '' : System::getContainer()->get('contao.intl.countries')->getCountries()[strtoupper($value)] ?? $value;
 
             case 'countrycode':
-                return $company->get('country');
+                return $company->get('country') ?? '';
 
             case 'vcard_url':
                 $pageId = (null !== ($request = $this->requestStack->getCurrentRequest())) ? $request->attributes->get('pageModel')->id : 0;
