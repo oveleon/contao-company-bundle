@@ -32,12 +32,7 @@ use Symfony\Component\DependencyInjection\Exception\ParameterNotFoundException;
  */
 class ModuleLogo extends Module
 {
-    /**
-     * Files model of logo
-     *
-     * @var FilesModel
-     */
-    protected $objFile;
+    protected FilesModel $objFile;
 
     /**
      * Template
@@ -50,7 +45,7 @@ class ModuleLogo extends Module
      *
      * @return string
      */
-    public function generate()
+    public function generate(): string
     {
         $request = System::getContainer()->get('request_stack')->getCurrentRequest();
 
@@ -66,32 +61,25 @@ class ModuleLogo extends Module
             return $objTemplate->parse();
         }
 
-        $singleSRC = Company::get('logo');
-
-        if ($singleSRC == '')
-        {
-            return '';
-        }
-
-        $this->objFile = FilesModel::findByUuid($singleSRC);
-
-        if ($this->objFile === null || !is_file(System::getContainer()->getParameter('kernel.project_dir') . '/' . $this->objFile->path))
-        {
+        if (
+            ('' === ($singleSRC = System::getContainer()->get('contao_company.company')->get('logo'))) ||
+            (null === ($this->objFile = FilesModel::findByUuid($singleSRC)) || !is_file(System::getContainer()->getParameter('kernel.project_dir') . '/' . $this->objFile->path))
+        ) {
             return '';
         }
 
         return parent::generate();
     }
 
-    /**
-     * Generate the module
-     */
     protected function compile(): void
     {
         /** @var PageModel $objPage */
         global $objPage;
 
-        $figureBuilder = System::getContainer()
+        $container = System::getContainer();
+
+        $companyName   = $container->get('contao_company.company')->get('name');
+        $figureBuilder = $container
             ->get('contao.image.studio')
             ->createFigureBuilder()
             ->from($this->objFile->path)
@@ -107,7 +95,7 @@ class ModuleLogo extends Module
 
         // Contao 4.13 legacy routing fallback + contao 5.1 compatibility
         try {
-            $prependLocale = System::getContainer()->getParameter('contao.prepend_locale');
+            $prependLocale = $container->getParameter('contao.prepend_locale');
         }
         catch (ParameterNotFoundException $e)
         {
@@ -127,7 +115,7 @@ class ModuleLogo extends Module
         $strPageUrl .= '/';
 
         // Override title tag with company name if it is set, otherwise set page URI
-        $strCompanyName = !empty(Company::get('name')) ? Company::get('name') : $strPageUrl;
+        $strCompanyName = !empty($companyName) ? $companyName : $strPageUrl;
 
         $this->Template->rootHref = $strPageUrl;
         $this->Template->title = $strCompanyName;

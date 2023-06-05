@@ -60,7 +60,7 @@ class ModuleSocialMediaList extends Module
         $this->loadLanguageFile('tl_company_socials');
 
         $this->arrItems = [];
-        $arrSocialMedia = StringUtil::deserialize(Company::get('socialmedia'), true);
+        $arrSocialMedia = StringUtil::deserialize(System::getContainer()->get('contao_company.company')->get('socialmedia'), true);
 
         foreach ($arrSocialMedia as $item)
         {
@@ -69,13 +69,12 @@ class ModuleSocialMediaList extends Module
                 continue;
             }
 
-            $this->arrItems[] = array
-            (
+            $this->arrItems[] = [
                 'url'   => $item['url'],
                 'class' => $item['type'],
                 'title' => $GLOBALS['TL_LANG']['tl_company_socials'][$item['type']],
                 'label' => $GLOBALS['TL_LANG']['tl_company_socials'][$item['type']]
-            );
+            ];
         }
 
         if (!count($this->arrItems))
