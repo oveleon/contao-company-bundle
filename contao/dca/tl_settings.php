@@ -10,10 +10,14 @@
  * @copyright   Oveleon             <https://www.oveleon.de/>
  */
 
+use Contao\CoreBundle\DataContainer\PaletteManipulator;
+use Contao\System;
+use Oveleon\ContaoCompanyBundle\EventListener\DataContainer\DataContainerListener;
+
 // Extend the default palette
-Contao\CoreBundle\DataContainer\PaletteManipulator::create()
-    ->addLegend('company_legend', 'chmod_legend', Contao\CoreBundle\DataContainer\PaletteManipulator::POSITION_AFTER, true)
-    ->addField(array('companyLogo', 'companyName', 'companyStreet', 'companyPostal', 'companyCity', 'companyState', 'companyCountry', 'companyPhone', 'companyPhone2', 'companyFax', 'companyEmail', 'companyEmail2', 'companyInfo', 'companyInfo2', 'companySocialMedia'), 'company_legend', Contao\CoreBundle\DataContainer\PaletteManipulator::POSITION_APPEND)
+PaletteManipulator::create()
+    ->addLegend('company_legend', 'chmod_legend', PaletteManipulator::POSITION_AFTER, true)
+    ->addField(['companyLogo', 'companyName', 'companyStreet', 'companyPostal', 'companyCity', 'companyState', 'companyCountry', 'companyPhone', 'companyPhone2', 'companyFax', 'companyEmail', 'companyEmail2', 'companyInfo', 'companyInfo2', 'companySocialMedia'], 'company_legend', PaletteManipulator::POSITION_APPEND)
     ->applyToPalette('default', 'tl_settings')
 ;
 
@@ -22,133 +26,114 @@ System::loadLanguageFile('tl_company');
 System::loadLanguageFile('tl_company_socials');
 
 // Add fields to tl_settings
-$GLOBALS['TL_DCA']['tl_settings']['fields']['companyLogo'] = array
-(
+$GLOBALS['TL_DCA']['tl_settings']['fields']['companyLogo'] = [
     'label'                   => &$GLOBALS['TL_LANG']['tl_company']['companyLogo'],
     'inputType'               => 'fileTree',
-    'eval'                    => array('fieldType'=>'radio', 'files'=>true, 'extensions'=>Contao\Config::get('validImageTypes'))
-);
+    'eval'                    => ['fieldType'=>'radio', 'files'=>true, 'extensions'=>'%contao.image.valid_extensions%']
+];
 
-$GLOBALS['TL_DCA']['tl_settings']['fields']['companyName'] = array
-(
+$GLOBALS['TL_DCA']['tl_settings']['fields']['companyName'] = [
     'label'                   => &$GLOBALS['TL_LANG']['tl_company']['companyName'],
     'inputType'               => 'text',
-    'eval'                    => array('maxlength'=>255, 'tl_class'=>'w50')
-);
+    'eval'                    => ['maxlength'=>255, 'tl_class'=>'w50']
+];
 
-$GLOBALS['TL_DCA']['tl_settings']['fields']['companyStreet'] = array
-(
+$GLOBALS['TL_DCA']['tl_settings']['fields']['companyStreet'] = [
     'label'                   => &$GLOBALS['TL_LANG']['tl_company']['companyStreet'],
     'inputType'               => 'text',
-    'eval'                    => array('maxlength'=>255, 'tl_class'=>'w50')
-);
+    'eval'                    => ['maxlength'=>255, 'tl_class'=>'w50']
+];
 
-$GLOBALS['TL_DCA']['tl_settings']['fields']['companyPostal'] = array
-(
+$GLOBALS['TL_DCA']['tl_settings']['fields']['companyPostal'] = [
     'label'                   => &$GLOBALS['TL_LANG']['tl_company']['companyPostal'],
     'inputType'               => 'text',
-    'eval'                    => array('maxlength'=>32, 'tl_class'=>'w50')
-);
+    'eval'                    => ['maxlength'=>32, 'tl_class'=>'w50']
+];
 
-$GLOBALS['TL_DCA']['tl_settings']['fields']['companyCity'] = array
-(
+$GLOBALS['TL_DCA']['tl_settings']['fields']['companyCity'] = [
     'label'                   => &$GLOBALS['TL_LANG']['tl_company']['companyCity'],
     'inputType'               => 'text',
-    'eval'                    => array('maxlength'=>255, 'tl_class'=>'w50')
-);
+    'eval'                    => ['maxlength'=>255, 'tl_class'=>'w50']
+];
 
-$GLOBALS['TL_DCA']['tl_settings']['fields']['companyState'] = array
-(
+$GLOBALS['TL_DCA']['tl_settings']['fields']['companyState'] = [
     'label'                   => &$GLOBALS['TL_LANG']['tl_company']['companyState'],
     'inputType'               => 'text',
-    'eval'                    => array('maxlength'=>64, 'tl_class'=>'w50')
-);
+    'eval'                    => ['maxlength'=>64, 'tl_class'=>'w50']
+];
 
-$GLOBALS['TL_DCA']['tl_settings']['fields']['companyCountry'] = array
-(
+$GLOBALS['TL_DCA']['tl_settings']['fields']['companyCountry'] = [
     'label'                   => &$GLOBALS['TL_LANG']['tl_company']['companyCountry'],
     'inputType'               => 'select',
-    'eval'                    => array('includeBlankOption'=>true, 'chosen'=>true, 'tl_class'=>'w50'),
-    'options_callback' => function ()
-    {
-        return Contao\System::getCountries();
-    }
-);
+    'eval'                    => ['includeBlankOption'=>true, 'chosen'=>true, 'tl_class'=>'w50'],
+    'options_callback'        => static fn () => System::getContainer()->get('contao.intl.countries')->getCountries()
+];
 
-$GLOBALS['TL_DCA']['tl_settings']['fields']['companyPhone'] = array
-(
+$GLOBALS['TL_DCA']['tl_settings']['fields']['companyPhone'] = [
     'label'                   => &$GLOBALS['TL_LANG']['tl_company']['companyPhone'],
     'inputType'               => 'text',
-    'eval'                    => array('maxlength'=>64, 'rgxp'=>'phone', 'decodeEntities'=>true, 'tl_class'=>'w50')
-);
+    'eval'                    => ['maxlength'=>64, 'rgxp'=>'phone', 'decodeEntities'=>true, 'tl_class'=>'w50']
+];
 
-$GLOBALS['TL_DCA']['tl_settings']['fields']['companyPhone2'] = array
-(
+$GLOBALS['TL_DCA']['tl_settings']['fields']['companyPhone2'] = [
     'label'                   => &$GLOBALS['TL_LANG']['tl_company']['companyPhone2'],
     'inputType'               => 'text',
-    'eval'                    => array('maxlength'=>64, 'rgxp'=>'phone', 'decodeEntities'=>true, 'tl_class'=>'w50'),
-);
+    'eval'                    => ['maxlength'=>64, 'rgxp'=>'phone', 'decodeEntities'=>true, 'tl_class'=>'w50'],
+];
 
-$GLOBALS['TL_DCA']['tl_settings']['fields']['companyFax'] = array
-(
+$GLOBALS['TL_DCA']['tl_settings']['fields']['companyFax'] = [
     'label'                   => &$GLOBALS['TL_LANG']['tl_company']['companyFax'],
     'inputType'               => 'text',
-    'eval'                    => array('maxlength'=>64, 'rgxp'=>'phone', 'decodeEntities'=>true, 'tl_class'=>'w50')
-);
+    'eval'                    => ['maxlength'=>64, 'rgxp'=>'phone', 'decodeEntities'=>true, 'tl_class'=>'w50']
+];
 
-$GLOBALS['TL_DCA']['tl_settings']['fields']['companyEmail'] = array
-(
+$GLOBALS['TL_DCA']['tl_settings']['fields']['companyEmail'] = [
     'label'                   => &$GLOBALS['TL_LANG']['tl_company']['companyEmail'],
     'inputType'               => 'text',
-    'eval'                    => array('maxlength'=>255, 'rgxp'=>'email', 'decodeEntities'=>true, 'tl_class'=>'w50 clr')
-);
+    'eval'                    => ['maxlength'=>255, 'rgxp'=>'email', 'decodeEntities'=>true, 'tl_class'=>'w50 clr']
+];
 
-$GLOBALS['TL_DCA']['tl_settings']['fields']['companyEmail2'] = array
-(
+$GLOBALS['TL_DCA']['tl_settings']['fields']['companyEmail2'] = [
     'label'                   => &$GLOBALS['TL_LANG']['tl_company']['companyEmail2'],
     'inputType'               => 'text',
-    'eval'                    => array('maxlength'=>255, 'rgxp'=>'email', 'decodeEntities'=>true, 'tl_class'=>'w50')
-);
+    'eval'                    => ['maxlength'=>255, 'rgxp'=>'email', 'decodeEntities'=>true, 'tl_class'=>'w50']
+];
 
-$GLOBALS['TL_DCA']['tl_settings']['fields']['companyInfo'] = array
-(
+$GLOBALS['TL_DCA']['tl_settings']['fields']['companyInfo'] = [
     'label'                   => &$GLOBALS['TL_LANG']['tl_company']['companyInfo'],
     'inputType'               => 'text',
-    'eval'                    => array('maxlength'=>255, 'tl_class'=>'w50')
-);
+    'eval'                    => ['maxlength'=>255, 'tl_class'=>'w50']
+];
 
-$GLOBALS['TL_DCA']['tl_settings']['fields']['companyInfo2'] = array
-(
+$GLOBALS['TL_DCA']['tl_settings']['fields']['companyInfo2'] = [
     'label'                   => &$GLOBALS['TL_LANG']['tl_company']['companyInfo2'],
     'inputType'               => 'text',
-    'eval'                    => array('maxlength'=>255, 'tl_class'=>'w50')
-);
+    'eval'                    => ['maxlength'=>255, 'tl_class'=>'w50']
+];
 
-$GLOBALS['TL_DCA']['tl_settings']['fields']['companySocialMedia'] = array
-(
+$GLOBALS['TL_DCA']['tl_settings']['fields']['companySocialMedia'] = [
     'label'                   => &$GLOBALS['TL_LANG']['tl_company']['companySocialMedia'],
-	'inputType' 	          => 'cySelectTextWizard',
-	'options_callback' => static function ()
-	{
-		return array_keys($GLOBALS['TL_LANG']['tl_company_socials']);
-	},
-	'reference'               => &$GLOBALS['TL_LANG']['tl_company_socials'],
-	'eval'                    => array
-	(
+	'inputType' 	          => 'cyColumnWizard',
+	'eval'                    => [
 		'includeBlankOption' => true,
-		'chosen' => true,
 		'tl_class' => 'clr',
 		'dragAndDrop' => true,
-		'fieldNames' => array
-		(
-			'type',
-			'url'
-		),
-		'fieldLabels' => array
-		(
-			&$GLOBALS['TL_LANG']['tl_company']['companyType'],
-			&$GLOBALS['TL_LANG']['tl_company']['url']
-		)
-	),
-    'sql'                     => "blob NULL"
-);
+        'columnFields' => [
+            'type' => [
+                'label'            => &$GLOBALS['TL_LANG']['tl_company']['companyType'],
+                'inputType'        => 'select',
+                'options_callback' => static fn () => array_keys($GLOBALS['TL_LANG']['tl_company_socials']),
+                'reference'        => &$GLOBALS['TL_LANG']['tl_company_socials'],
+                'eval'             => ['includeBlankOption' => true, 'chosen' => true, 'tl_class' => 'clr']
+            ],
+            'url' => [
+                'label'            => &$GLOBALS['TL_LANG']['tl_company']['url'],
+                'inputType'        => 'text'
+            ]
+        ],
+    ],
+    'save_callback' => [
+        [DataContainerListener::class, 'clearEmptySocialMediaValue']
+    ],
+    'sql' => "blob NULL"
+];
