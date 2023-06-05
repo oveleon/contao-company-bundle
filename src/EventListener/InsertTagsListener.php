@@ -26,6 +26,7 @@ use Symfony\Component\Routing\RouterInterface;
  * Handles insert tags for company details.
  *
  * @author Fabian Ekert <https://github.com/eki89>
+ * @author Sebastian Zoglowek <https://github.com/zoglo>
  */
 class InsertTagsListener
 {
@@ -33,25 +34,13 @@ class InsertTagsListener
         'company'
     ];
 
-    /**
-     * @var ContaoFramework
-     */
-    private $framework;
+    public function __construct(
+        private ContaoFramework $framework,
+        private RouterInterface $router,
+        private RequestStack $requestStack
+    ){}
 
-    private RouterInterface $router;
-    private RequestStack $requestStack;
-
-    public function __construct(ContaoFramework $framework, RouterInterface $router, RequestStack $requestStack)
-    {
-        $this->framework = $framework;
-        $this->router = $router;
-        $this->requestStack = $requestStack;
-    }
-
-	/**
-	 * @return string|false
-	 */
-	public function __invoke(string $tag)
+	public function __invoke(string $tag, bool $useCache, $cacheValue, array $flags): string|false
 	{
 		$elements = explode('::', $tag);
 		$key = strtolower($elements[0]);
@@ -66,115 +55,75 @@ class InsertTagsListener
 
     /**
      * Replaces a company-related insert tag.
-     *
-     * @param string $insertTag
-     * @param string $field
-     *
-     * @return string
      */
-    private function replaceCompanyInsertTags($insertTag, $field)
+    private function replaceCompanyInsertTags(string $insertTag, string $field): string
     {
-        switch ($field)
+        $company = System::getContainer()->get('contao_company.company');
+
+        switch($field)
         {
             case 'mailto':
             case 'email':
-                $value = Company::get('email');
-
-                if (empty($value))
+                if (empty($value = $company->get('email')))
                 {
                     return '';
                 }
 
                 $strEmail = StringUtil::encodeEmail($value);
+                return 'mailto' === $field ? '<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;' . $strEmail . '" title="' . $strEmail . '">' . preg_replace('/\?.*$/', '', $strEmail) . '</a>' : $strEmail;
 
-                if($field === 'mailto')
-                {
-                    $strEmail = '<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;' . $strEmail . '" title="' . $strEmail . '">' . preg_replace('/\?.*$/', '', $strEmail) . '</a>';
-                }
-
-                return $strEmail;
             case 'mailto2':
             case 'email2':
-                $value = Company::get('email2');
-
-                if (empty($value))
+                if (empty($value = $company->get('email2')))
                 {
                     return '';
                 }
 
                 $strEmail = StringUtil::encodeEmail($value);
+                return 'mailto2' === $field ? '<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;' . $strEmail . '" title="' . $strEmail . '">' . preg_replace('/\?.*$/', '', $strEmail) . '</a>' : $strEmail;
 
-                if($field === 'mailto2')
-                {
-                    $strEmail = '<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;' . $strEmail . '" title="' . $strEmail . '">' . preg_replace('/\?.*$/', '', $strEmail) . '</a>';
-                }
-
-                return $strEmail;
             case 'tel':
             case 'tel2':
-                $value = Company::get($field === 'tel' ? 'phone' : 'phone2');
+                return empty($value = $company->get($field === 'tel' ? 'phone' : 'phone2')) ? '' : '<a href="tel:' . (preg_replace('/[^a-z0-9\+]/i', '', (string)$value)) . '" title="' . $value . '">' . $value . '</a>';
 
-                if (empty($value))
-                {
-                    return '';
-                }
-
-                $strTel = preg_replace('/[^a-z0-9\+]/i', '', (string) $value);
-
-                return '<a href="tel:' . $strTel . '" title="' . $value . '">' . $value . '</a>';
             case 'address':
-                $arrAddress = array();
+                $arrAddress = [];
 
-                $postal = Company::get('postal');
-                $city = Company::get('city');
-                $street = Company::get('street');
-
-                if ($street)
+                if (!!$street = $company->get('street'))
                 {
                     $arrAddress[] = $street;
                 }
 
-                if($postal && $city)
+                $postal = $company->get('postal');
+                $city   = $company->get('city');
+
+                if (!!$postal && !!$city)
                 {
                     $arrAddress[] = $postal . ' ' . $city;
                 }
-                elseif ($postal)
+                elseif (!!$postal)
                 {
                     $arrAddress[] = $postal;
                 }
-                elseif ($city)
+                elseif (!!$city)
                 {
                     $arrAddress[] = $city;
                 }
 
                 return implode(', ', $arrAddress);
-			case 'country':
-				$value = Company::get('country');
 
-				if (empty($value))
-				{
-					return '';
-				}
+            case 'country':
+                return empty($value = $company->get('country')) ? '' : System::getContainer()->get('contao.intl.countries')->getCountries()[strtoupper($value)] ?? $value;
 
-				System::loadLanguageFile('countries');
+            case 'countrycode':
+                return $company->get('country');
 
-				$strCountry = $GLOBALS['TL_LANG']['CNT'][$value];
-
-				return $strCountry;
-			case 'countrycode':
-				return Company::get('country');
             case 'vcard_url':
-                $pageId = 0;
-                $request = $this->requestStack->getCurrentRequest();
-                if (null !== $request) {
-                    /** @var PageModel $page */
-                    $page = $request->attributes->get('pageModel');
-                    $pageId = $page->id;
-                }
-
+                $pageId = (null !== ($request = $this->requestStack->getCurrentRequest())) ? $request->attributes->get('pageModel')->id : 0;
                 return $this->router->generate('contao_company_vcard_download', ['page' => $pageId]);
-        }
 
-        return Company::get($field);
+            default:
+                return (string) $company->get($field) ?? '';
+        }
     }
 }
