@@ -8,7 +8,7 @@
 
 ---
 
-> Working with **Contao 4.9** and up to **Contao 4.13** (PHP ^7.4 and PHP 8)
+> Working with **Contao 4.13** and **Contao 5.1** (PHP ^8.1)
 
 ---
 
@@ -33,7 +33,7 @@ You can display company details dynamically simply by using the provided company
 
 ## Features
 
-- Compatible with Contao 4.9 and higher versions (PHP 8 Support)
+- Compatible with Contao 4.13 and higher versions (PHP 8 Support)
 - Easy setup for company details
 - All company details can be overwritten within website roots
 - Fallback company details
