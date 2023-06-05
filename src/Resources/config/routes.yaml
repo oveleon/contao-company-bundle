@@ -1,3 +1,0 @@
-company:
-    resource: '../../Controller'
-    type: annotation
