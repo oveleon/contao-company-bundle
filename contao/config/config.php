@@ -11,9 +11,12 @@
  */
 
 // Front end modules
+use Oveleon\ContaoCompanyBundle\ModuleLogo;
+use Oveleon\ContaoCompanyBundle\ModuleSocialMediaList;
+
 $GLOBALS['FE_MOD']['company'] = [
-    'logo'            => 'Oveleon\ContaoCompanyBundle\ModuleLogo',
-    'socialmedialist' => 'Oveleon\ContaoCompanyBundle\ModuleSocialMediaList'
+    'logo'            => ModuleLogo::class,
+    'socialmedialist' => ModuleSocialMediaList::class
 ];
 
 // Register hooks
@@ -21,22 +24,22 @@ $GLOBALS['TL_HOOKS']['getPageLayout'][] = ['Oveleon\ContaoCompanyBundle\Company'
 
 // Company field mapping
 $GLOBALS['TL_COMPANY_MAPPING'] = [
-    'logo' => 'companyLogo',
-    'name' => 'companyName',
-    'street' => 'companyStreet',
-    'postal' => 'companyPostal',
-    'city' => 'companyCity',
-    'state' => 'companyState',
-    'country' => 'companyCountry',
-    'phone' => 'companyPhone',
-    'phone2' => 'companyPhone2',
-    'fax' => 'companyFax',
-    'email' => 'companyEmail',
-    'email2' => 'companyEmail2',
-    'info' => 'companyInfo',
-    'info2' => 'companyInfo2',
+    'logo'        => 'companyLogo',
+    'name'        => 'companyName',
+    'street'      => 'companyStreet',
+    'postal'      => 'companyPostal',
+    'city'        => 'companyCity',
+    'state'       => 'companyState',
+    'country'     => 'companyCountry',
+    'phone'       => 'companyPhone',
+    'phone2'      => 'companyPhone2',
+    'fax'         => 'companyFax',
+    'email'       => 'companyEmail',
+    'email2'      => 'companyEmail2',
+    'info'        => 'companyInfo',
+    'info2'       => 'companyInfo2',
     'socialmedia' => 'companySocialMedia'
 ];
 
 // Back end form fields
-$GLOBALS['BE_FFL']['companyColumnWizard'] = 'Oveleon\ContaoCompanyBundle\ColumnWizard';
+$GLOBALS['BE_FFL']['cyColumnWizard'] = CompanyColumnWizard::class;

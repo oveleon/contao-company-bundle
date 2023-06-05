@@ -17,7 +17,9 @@ use Contao\Environment;
 use Contao\FilesModel;
 use Contao\Module;
 use Contao\PageModel;
+use Contao\StringUtil;
 use Contao\System;
+use Symfony\Component\DependencyInjection\Exception\ParameterNotFoundException;
 
 /**
  * Front end module "logo".
@@ -55,11 +57,11 @@ class ModuleLogo extends Module
         if ($request && System::getContainer()->get('contao.routing.scope_matcher')->isBackendRequest($request))
         {
             $objTemplate = new BackendTemplate('be_wildcard');
-            $objTemplate->wildcard = '### ' . mb_strtoupper($GLOBALS['TL_LANG']['FMD']['logo'][0], 'UTF-8') . ' ###';
+            $objTemplate->wildcard = '### ' . $GLOBALS['TL_LANG']['FMD']['logo'][0] . ' ###';
             $objTemplate->title = $this->headline;
             $objTemplate->id = $this->id;
             $objTemplate->link = $this->name;
-            $objTemplate->href = 'contao/main.php?do=themes&amp;table=tl_module&amp;act=edit&amp;id=' . $this->id;
+            $objTemplate->href = StringUtil::specialcharsUrl(System::getContainer()->get('router')->generate('contao_backend', ['do'=>'themes', 'table'=>'tl_module', 'act'=>'edit', 'id'=>$this->id]));
 
             return $objTemplate->parse();
         }
@@ -89,37 +91,47 @@ class ModuleLogo extends Module
         /** @var PageModel $objPage */
         global $objPage;
 
-        $this->arrData['singleSRC'] = $this->objFile->path;
-        $this->arrData['size'] = $this->imgSize;
+        $figureBuilder = System::getContainer()
+            ->get('contao.image.studio')
+            ->createFigureBuilder()
+            ->from($this->objFile->path)
+            ->setSize($this->imgSize);
 
-        $this->addImageToTemplate($this->Template, $this->arrData, null, null, $this->objFile);
+        if (null !== ($figure = $figureBuilder->buildIfResourceExists()))
+        {
+            $figure->applyLegacyTemplateData($this->Template);
+        }
 
         // Create rootHref URL
         $strPageUrl = Environment::get('url');
-        $prependLocale = System::getContainer()->getParameter('contao.prepend_locale');
 
-        if($prependLocale)
+        // Contao 4.13 legacy routing fallback + contao 5.1 compatibility
+        try {
+            $prependLocale = System::getContainer()->getParameter('contao.prepend_locale');
+        }
+        catch (ParameterNotFoundException $e)
+        {
+            $prependLocale = '';
+        }
+
+        // Legacy routing
+        if ($prependLocale)
         {
             $strPageUrl .= '/' . $objPage->language;
         }
-        // consider urlPrefix with disabled legacy routing (Contao 4.10 and up)
-        else if(!!$objPage->urlPrefix)
+        else if (!!$objPage->urlPrefix)
         {
             $strPageUrl .= '/' . $objPage->urlPrefix;
         }
 
         $strPageUrl .= '/';
 
-        // Set URI as title tag
-        $strCompanyName = $strPageUrl;
-
-        // Override title tag with company name if it is set
-        if (!empty(Company::get('name')))
-        {
-            $strCompanyName = Company::get('name');
-        }
+        // Override title tag with company name if it is set, otherwise set page URI
+        $strCompanyName = !empty(Company::get('name')) ? Company::get('name') : $strPageUrl;
 
         $this->Template->rootHref = $strPageUrl;
         $this->Template->title = $strCompanyName;
     }
 }
+
+class_alias(ModuleLogo::class, 'ModuleLogo');

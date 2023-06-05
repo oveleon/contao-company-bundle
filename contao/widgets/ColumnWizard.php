@@ -226,3 +226,5 @@ class ColumnWizard extends Widget
         ]);
     }
 }
+
+class_alias(ColumnWizard::class, 'CompanyColumnWizard');
