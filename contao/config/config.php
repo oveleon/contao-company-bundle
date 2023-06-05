@@ -19,9 +19,6 @@ $GLOBALS['FE_MOD']['company'] = [
     'socialmedialist' => ModuleSocialMediaList::class
 ];
 
-// Register hooks
-$GLOBALS['TL_HOOKS']['getPageLayout'][] = ['Oveleon\ContaoCompanyBundle\Company', 'initialize'];
-
 // Company field mapping
 $GLOBALS['TL_COMPANY_MAPPING'] = [
     'logo'        => 'companyLogo',
