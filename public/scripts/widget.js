@@ -16,11 +16,9 @@
 var CyBackend = {
 
     /**
-     * Select wizard
-     *
      * @param {string} id The ID of the target element
      */
-    UniversalWizard: function(id) {
+    ColumnWizard: function(id) {
         var table = $(id),
             tbody = table.getElement('tbody'),
             makeSortable = function(tbody) {
@@ -39,17 +37,10 @@ var CyBackend = {
                     }
                 }
 
-                new Sortables(tbody, {
-                    constrain: true,
-                    opacity: 0.6,
-                    handle: '.drag-handle',
-                    onComplete: function() {
-                        makeSortable(tbody);
-                    }
-                });
+                new Sortables(tbody,{});
             },
             addEventsTo = function(tr) {
-                var command, select, next, ntr, childs, cbx, i;
+                var command, select, next, ntr, childs, i;
                 tr.getElements('button').each(function(bt) {
                     if (bt.hasEvent('click')) return;
                     command = bt.getProperty('data-command');
@@ -61,18 +52,22 @@ var CyBackend = {
                                 ntr = new Element('tr');
                                 childs = tr.getChildren();
                                 for (i=0; i<childs.length; i++) {
-                                    Backend.retrieveInteractiveHelp(childs[i].getElements('button,a'));
                                     next = childs[i].clone(true).inject(ntr, 'bottom');
                                     if (select = childs[i].getElement('select')) {
                                         next.getElement('select').value = select.value;
                                     }
                                 }
                                 ntr.inject(tr, 'after');
-                                ntr.getElement('.chzn-container').destroy();
-                                new Chosen(ntr.getElement('select.tl_select'));
+                                if (ntr.getElement('.chzn-container')) {
+                                    ntr.getElement('.chzn-container').destroy();
+                                }
+
+                                if (ntr.getElement('select.tl_select')) {
+                                    new Chosen(ntr.getElement('select.tl_select'));
+                                }
+
                                 addEventsTo(ntr);
                                 makeSortable(tbody);
-                                Backend.addInteractiveHelp();
                             });
                             break;
                         case 'delete':
@@ -82,7 +77,6 @@ var CyBackend = {
                                     tr.destroy();
                                 }
                                 makeSortable(tbody);
-                                Backend.hideInteractiveHelp();
                             });
                             break;
                         case null:

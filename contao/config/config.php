@@ -11,18 +11,16 @@
  */
 
 // Front end modules
-$GLOBALS['FE_MOD']['company'] = array
-(
+$GLOBALS['FE_MOD']['company'] = [
     'logo'            => 'Oveleon\ContaoCompanyBundle\ModuleLogo',
     'socialmedialist' => 'Oveleon\ContaoCompanyBundle\ModuleSocialMediaList'
-);
+];
 
 // Register hooks
-$GLOBALS['TL_HOOKS']['getPageLayout'][]     = array('Oveleon\ContaoCompanyBundle\Company', 'initialize');
+$GLOBALS['TL_HOOKS']['getPageLayout'][] = ['Oveleon\ContaoCompanyBundle\Company', 'initialize'];
 
 // Company field mapping
-$GLOBALS['TL_COMPANY_MAPPING'] = array
-(
+$GLOBALS['TL_COMPANY_MAPPING'] = [
     'logo' => 'companyLogo',
     'name' => 'companyName',
     'street' => 'companyStreet',
@@ -38,14 +36,7 @@ $GLOBALS['TL_COMPANY_MAPPING'] = array
     'info' => 'companyInfo',
     'info2' => 'companyInfo2',
     'socialmedia' => 'companySocialMedia'
-);
+];
 
 // Back end form fields
-$GLOBALS['BE_FFL']['cySelectTextWizard']          = 'Oveleon\ContaoCompanyBundle\SelectTextWizard';
-
-// Widget JavaScript
-if (defined('TL_MODE') && TL_MODE === 'BE')
-{
-	$GLOBALS['TL_JAVASCRIPT'][] = 'bundles/contaocompany/scripts/widget.js';
-	$GLOBALS['TL_CSS'][]        = 'bundles/contaocompany/styles/selectTextWizard.css';
-}
+$GLOBALS['BE_FFL']['companyColumnWizard'] = 'Oveleon\ContaoCompanyBundle\ColumnWizard';
