@@ -1,3 +1,3 @@
 company:
-    resource: '@ContaoCompanyBundle/src/Controller'
-    type: annotation
+  resource: '@ContaoCompanyBundle/src/Controller'
+  type: annotation
