@@ -1,40 +1,47 @@
 {
-  "name":"oveleon/contao-company-bundle",
-  "type":"contao-bundle",
-  "description":"Company integration for Contao 4 Open Source CMS",
-  "keywords":["contao","company-bundle", "insert-tags"],
-  "homepage":"https://www.oveleon.de/company.html",
-  "license":"MIT",
-  "authors":[
+  "name": "oveleon/contao-company-bundle",
+  "type": "contao-bundle",
+  "description": "Company integration for Contao Open Source CMS",
+  "keywords": [
+    "contao",
+    "company-bundle",
+    "insert-tags"
+  ],
+  "homepage": "https://www.oveleon.de/company.html",
+  "license": "MIT",
+  "authors": [
     {
-      "name":"Oveleon",
-      "homepage":"https://oveleon.de/",
-      "role":"Developer"
-    },
-    {
-      "name": "Fabian Ekert",
-      "homepage": "https://github.com/eki89",
-      "role":"Developer"
+      "name": "Oveleon",
+      "homepage": "https://oveleon.de/",
+      "role": "Developer"
     },
     {
       "name": "Sebastian Zoglowek",
       "homepage": "https://github.com/zoglo",
-      "role":"Developer"
+      "role": "Developer"
+    },
+    {
+      "name": "Fabian Ekert",
+      "homepage": "https://github.com/eki89",
+      "role": "Developer"
     }
   ],
-  "require":{
-    "php": "^7.4 || ^8.0",
-    "contao/core-bundle":"^4.9",
+  "require": {
+    "php": "^8.1",
+    "contao/core-bundle": "^4.13 || ^5.1",
     "jeroendesloovere/vcard": "^1.7"
   },
   "require-dev": {
-    "contao/manager-plugin": "^2.3.1"
+    "contao/manager-plugin": "^2.3.1",
+    "contao/test-case": "^5.1",
+    "phpunit/phpunit": "^9.5",
+    "symfony/phpunit-bridge": "^5.4 || ^6.0"
   },
   "conflict": {
     "contao/core": "*",
     "contao/manager-plugin": "<2.0 || >=3.0"
   },
-  "autoload":{
+  "autoload": {
     "psr-4": {
       "Oveleon\\ContaoCompanyBundle\\": "src/"
     },
@@ -48,9 +55,9 @@
       "contao/templates/"
     ]
   },
-  "extra":{
+  "extra": {
     "branch-alias": {
-      "dev-master": "1.4.x-dev"
+      "dev-main": "1.4.x-dev"
     },
     "contao-manager-plugin": "Oveleon\\ContaoCompanyBundle\\ContaoManager\\Plugin"
   }
