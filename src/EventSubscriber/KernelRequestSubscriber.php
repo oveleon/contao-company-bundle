@@ -10,14 +10,10 @@ use Symfony\Component\Security\Core\Security;
 
 class KernelRequestSubscriber implements EventSubscriberInterface
 {
-    protected $scopeMatcher;
-    protected $security;
-
-    public function __construct(ScopeMatcher $scopeMatcher, Security $security)
-    {
-        $this->scopeMatcher = $scopeMatcher;
-        $this->security     = $security;
-    }
+    public function __construct(
+        protected ScopeMatcher $scopeMatcher,
+        protected Security $security
+    ){}
 
     public static function getSubscribedEvents()
     {

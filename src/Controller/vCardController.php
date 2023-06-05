@@ -14,22 +14,12 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class vCardController extends AbstractController
 {
-    private vCardGenerator $generator;
-
-    /**
-     * @param vCardGenerator $generator
-     */
-    public function __construct(vCardGenerator $generator)
-    {
-        $this->generator = $generator;
-    }
+    public function __construct(
+        private readonly vCardGenerator $generator
+    ){}
 
     /**
      * @Route("/company/vcard/download", name="contao_company_vcard_download")
-     *
-     * @param Request $request
-     *
-     * @return Response
      *
      * @throws \Exception
      */
@@ -37,8 +27,9 @@ class vCardController extends AbstractController
     {
         // Try to load the current contao page
         $pageId = (int) $request->query->get('page');
-        $pageModel = PageModel::findById($pageId);
-        if (null === $pageModel) {
+
+        if (null === ($pageModel = PageModel::findById($pageId)))
+        {
             throw new \Exception('Could not load correct redirect page');
         }
 

@@ -10,7 +10,7 @@
  * @copyright   Oveleon             <https://www.oveleon.de/>
  */
 
-// Front end modules
+use Oveleon\ContaoCompanyBundle\ColumnWizard;
 use Oveleon\ContaoCompanyBundle\ModuleLogo;
 use Oveleon\ContaoCompanyBundle\ModuleSocialMediaList;
 
@@ -39,4 +39,4 @@ $GLOBALS['TL_COMPANY_MAPPING'] = [
 ];
 
 // Back end form fields
-$GLOBALS['BE_FFL']['cyColumnWizard'] = CompanyColumnWizard::class;
+$GLOBALS['BE_FFL']['cyColumnWizard'] = ColumnWizard::class;

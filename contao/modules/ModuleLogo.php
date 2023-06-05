@@ -96,9 +96,7 @@ class ModuleLogo extends Module
         // Contao 4.13 legacy routing fallback + contao 5.1 compatibility
         try {
             $prependLocale = $container->getParameter('contao.prepend_locale');
-        }
-        catch (ParameterNotFoundException $e)
-        {
+        } catch (ParameterNotFoundException $e) {
             $prependLocale = '';
         }
 
