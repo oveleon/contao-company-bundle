@@ -32,7 +32,7 @@ use Symfony\Component\DependencyInjection\Exception\ParameterNotFoundException;
  */
 class ModuleLogo extends Module
 {
-    protected FilesModel $objFile;
+    protected ?FilesModel $objFile;
 
     /**
      * Template
