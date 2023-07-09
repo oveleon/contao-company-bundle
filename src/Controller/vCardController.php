@@ -2,6 +2,8 @@
 
 namespace Oveleon\ContaoCompanyBundle\Controller;
 
+use Contao\CoreBundle\Exception\PageNotFoundException;
+use Contao\Environment;
 use Contao\PageModel;
 use Oveleon\ContaoCompanyBundle\Generator\vCardGenerator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -30,7 +32,7 @@ class vCardController extends AbstractController
 
         if (null === ($pageModel = PageModel::findById($pageId)))
         {
-            throw new \Exception('Could not load correct redirect page');
+            throw new PageNotFoundException('Page not found: ' . Environment::get('uri'));
         }
 
         try {
@@ -48,6 +50,6 @@ class vCardController extends AbstractController
             $headers = [];
         }
 
-        return new Response($vcf, 200, $headers);
+        return new Response($vcf, Response::HTTP_OK, $headers);
     }
 }
