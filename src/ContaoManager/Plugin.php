@@ -22,6 +22,7 @@ use Contao\ManagerPlugin\Routing\RoutingPluginInterface;
 use Oveleon\ContaoCompanyBundle\ContaoCompanyBundle;
 use Symfony\Component\Config\Loader\LoaderResolverInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
+use Oveleon\ProductInstaller\ProductInstaller;
 
 class Plugin implements BundlePluginInterface, RoutingPluginInterface
 {
@@ -32,7 +33,10 @@ class Plugin implements BundlePluginInterface, RoutingPluginInterface
     {
         return [
             BundleConfig::create(ContaoCompanyBundle::class)
-                ->setLoadAfter([ContaoCoreBundle::class])
+                ->setLoadAfter([
+                    ContaoCoreBundle::class,
+                    ProductInstaller::class
+                ])
                 ->setReplace(['company']),
         ];
     }

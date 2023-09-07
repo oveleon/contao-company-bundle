@@ -13,6 +13,8 @@
 use Oveleon\ContaoCompanyBundle\ColumnWizard;
 use Oveleon\ContaoCompanyBundle\ModuleLogo;
 use Oveleon\ContaoCompanyBundle\ModuleSocialMediaList;
+use Oveleon\ContaoCompanyBundle\Export\Validator\ExportFileValidator;
+use Oveleon\ContaoCompanyBundle\EventListener\Import\AddCompanyPageValidatorListener;
 
 $GLOBALS['FE_MOD']['company'] = [
     'logo'            => ModuleLogo::class,
@@ -40,3 +42,7 @@ $GLOBALS['TL_COMPANY_MAPPING'] = [
 
 // Back end form fields
 $GLOBALS['BE_FFL']['cyColumnWizard'] = ColumnWizard::class;
+
+// Hooks
+$GLOBALS['PI_HOOKS']['addValidator'][] = [AddCompanyPageValidatorListener::class, 'addValidators'];
+$GLOBALS['PE_HOOKS']['addValidator'][] = [ExportFileValidator::class, 'addSingleSrcValidator'];
