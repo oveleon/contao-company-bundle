@@ -10,8 +10,12 @@
         <target>Instagram</target>
       </trans-unit>
       <trans-unit id="tl_company_socials.twitter">
-        <source>Twitter</source>
-        <target>Twitter</target>
+        <source>X / Twitter</source>
+        <target>X / Twitter</target>
+      </trans-unit>
+      <trans-unit id="tl_company_socials.mastodon">
+        <source>Mastodon</source>
+        <target>Mastodon</target>
       </trans-unit>
 
       <trans-unit id="tl_company_socials.xing">
