@@ -8,7 +8,10 @@
         <source>Instagram</source>
       </trans-unit>
       <trans-unit id="tl_company_socials.twitter">
-        <source>Twitter</source>
+        <source>X / Twitter</source>
+      </trans-unit>
+      <trans-unit id="tl_company_socials.mastodon">
+        <source>Mastodon</source>
       </trans-unit>
 
       <trans-unit id="tl_company_socials.xing">
