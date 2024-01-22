@@ -93,7 +93,13 @@ class ModuleLogo extends Module
         // Create rootHref URL
         $strPageUrl = Environment::get('url');
 
-        // Contao 4.13 legacy routing fallback + contao 5.1 compatibility
+        // Append preview script within preview mode
+        if ($this->isFrontendPreview())
+        {
+            $strPageUrl .= $container->getParameter('contao.preview_script') ?? '';
+        }
+
+        // Contao 4.13 legacy routing fallback + contao 5.x compatibility
         try {
             $prependLocale = $container->getParameter('contao.prepend_locale');
         } catch (ParameterNotFoundException $e) {
@@ -117,6 +123,20 @@ class ModuleLogo extends Module
 
         $this->Template->rootHref = $strPageUrl;
         $this->Template->title = $strCompanyName;
+    }
+
+    protected function isFrontendPreview(): bool
+    {
+        $container = System::getContainer();
+        $request = $container->get('request_stack')->getCurrentRequest();
+        $tokenChecker = $container->get('contao.security.token_checker');
+
+        if (null === $request || !$request->attributes->get('_preview', false) || !$tokenChecker->canAccessPreview())
+        {
+            return false;
+        }
+
+        return true;
     }
 }
 
