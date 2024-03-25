@@ -10,11 +10,11 @@
  * @copyright   Oveleon             <https://www.oveleon.de/>
  */
 
-use Oveleon\ContaoCompanyBundle\ColumnWizard;
 use Oveleon\ContaoCompanyBundle\ModuleLogo;
 use Oveleon\ContaoCompanyBundle\ModuleSocialMediaList;
 use Oveleon\ContaoCompanyBundle\Export\Validator\ExportFileValidator;
 use Oveleon\ContaoCompanyBundle\EventListener\Import\AddCompanyPageValidatorListener;
+use Oveleon\ContaoCompanyBundle\Widget\ColumnWizard;
 
 $GLOBALS['FE_MOD']['company'] = [
     'logo'            => ModuleLogo::class,

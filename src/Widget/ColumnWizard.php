@@ -9,7 +9,7 @@
  * @copyright   Oveleon             <https://www.oveleon.de/>
  */
 
-namespace Oveleon\ContaoCompanyBundle;
+namespace Oveleon\ContaoCompanyBundle\Widget;
 
 use Contao\FormFieldModel;
 use Contao\Image;
