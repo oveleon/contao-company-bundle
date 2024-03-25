@@ -24,7 +24,8 @@ use Contao\Widget;
 class ColumnWizard extends Widget
 {
     protected $blnSubmitInput = true;
-    protected $strTemplate    = 'be_widget';
+
+    protected $strTemplate = 'be_widget_cw';
 
     protected $dragAndDrop;
     protected $arrColumnFields = [];
@@ -162,13 +163,12 @@ class ColumnWizard extends Widget
                 $arrData = $this->getAttributesFromDca($arrFieldOptions, $strKey);
 
                 $arrData['id'] = $arrData['name'] = $this->strId . '['.$i.']' . '[' . $arrData['name'] . ']';
+                $arrData['template'] = $this->strTemplate;
 
                 if (isset($this->varValue[$i][$strKey]))
                 {
                     $arrData['value'] = $this->varValue[$i][$strKey];
                 }
-
-
 
                 if (!class_exists($strClass))
                 {
