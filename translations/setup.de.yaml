@@ -1,0 +1,7 @@
+setup:
+  prompt:
+    company:
+      companyLogo:
+        label:                  'Logo → Seite'
+        description:            'Ein oder mehrere Seiten beinhalten ein Logo, welches nicht aufgelöst werden kann. Ihre Auswahl wird für alle weiteren Seiten, welche auf das selbe Logo referenzieren, übernommen.'
+        explanation:            'Beim Importieren eines oder mehrerer Seiten konnte das zugehörige Logo nicht gefunden werden. Wählen Sie bitte ein Logo aus der Dateiverwaltung, um eine Verknüpfung zwischen diesen und einer Seite herzustellen.<br/><br/><b>Folgendes Logo wurde nicht importiert und benötigt eine Alternative:</b>'

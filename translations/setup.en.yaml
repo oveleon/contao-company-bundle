@@ -1,0 +1,7 @@
+setup:
+  prompt:
+    company:
+      companyLogo:
+        label:                  'Logo → Page'
+        description:            'One or more pages contain a logo that cannot be resolved. Your selection will be applied to all other pages that reference the same logo.'
+        explanation:            'Beim Importieren eines oder mehrerer Seiten konnte das zugehörige Logo nicht gefunden werden. Please select a logo from the file manager to create a link between them and a page.<br/><br/><b>The following logo was not imported and needs an alternative:</b>'
