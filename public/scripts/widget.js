@@ -14,13 +14,15 @@
  * @author Sebastian Zoglowek <https://github.com/zoglo>
  */
 var CyBackend = {
-
     /**
      * @param {string} id The ID of the target element
      */
     ColumnWizard: function(id) {
         var table = $(id),
             tbody = table.getElement('tbody'),
+            replaceIndex = (i, attribute) => {
+                return attribute.replace(/\[[0-9]+]/g, '[' + i + ']');
+            },
             makeSortable = function(tbody) {
                 var rows = tbody.getChildren(),
                     childs, i, j, select, input;
@@ -29,15 +31,24 @@ var CyBackend = {
                     childs = rows[i].getChildren();
                     for (j=0; j<childs.length; j++) {
                         if (select = childs[j].getElement('select')) {
-                            select.name = select.name.replace(/\[[0-9]+]/g, '[' + i + ']');
+                            select.name = replaceIndex(i, select.name)
+                            select.id = replaceIndex(i, select.id)
                         }
                         if (input = childs[j].getElement('input')) {
-                            input.name = input.name.replace(/\[[0-9]+]/g, '[' + i + ']')
+                            input.name = replaceIndex(i, input.name);
+                            input.id = replaceIndex(i, input.id);
                         }
                     }
                 }
 
-                new Sortables(tbody,{});
+                new Sortables(tbody,{
+                    constrain: true,
+                    opacity: 0.6,
+                    handle: '.drag-handle',
+                    onComplete: function() {
+                        makeSortable(tbody);
+                    }
+                });
             },
             addEventsTo = function(tr) {
                 var command, select, next, ntr, childs, i;
