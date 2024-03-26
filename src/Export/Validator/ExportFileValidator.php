@@ -13,7 +13,7 @@ class ExportFileValidator
 {
     public function addSingleSrcValidator($exporter): void
     {
-        $exporter->addValidator(PageModel::getTable(), function (PageModel $model) use ($exporter)
+        $exporter->addValidator(PageModel::getTable(), function (array|PageModel &$model) use ($exporter)
         {
             $exporter->convertSingleUuid($model, 'companyLogo');
         });
