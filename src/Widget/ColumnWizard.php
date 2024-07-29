@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  * This file is part of Oveleon Company Bundle.
  *
@@ -17,9 +20,7 @@ use Contao\StringUtil;
 use Contao\Widget;
 
 /**
- * Provide methods to handle multiple columns of different widgets
- *
- * @author Sebastian Zoglowek <https://github.com/zoglo>
+ * Provide methods to handle multiple columns of different widgets.
  */
 class ColumnWizard extends Widget
 {
@@ -28,6 +29,7 @@ class ColumnWizard extends Widget
     protected $strTemplate = 'be_widget_cw';
 
     protected $dragAndDrop;
+
     protected $arrColumnFields = [];
 
     public function __construct($arrAttributes = null)
@@ -44,9 +46,9 @@ class ColumnWizard extends Widget
     }
 
     /**
-     * Add specific attributes
+     * Add specific attributes.
      */
-    public function __set($strKey, $varValue)
+    public function __set($strKey, $varValue): void
     {
         switch ($strKey)
         {
@@ -98,9 +100,9 @@ class ColumnWizard extends Widget
     }
 
     /**
-     * Check for a valid option
+     * Check for a valid option.
      */
-    public function validate()
+    public function validate(): void
     {
         $varValue = $this->getPost($this->strName);
 
@@ -113,7 +115,7 @@ class ColumnWizard extends Widget
     }
 
     /**
-     * Generate the widget and return it as string
+     * Generate the widget and return it as string.
      *
      * @return string
      */
@@ -127,7 +129,7 @@ class ColumnWizard extends Widget
         }
 
         // Make sure there is at least an empty array
-        if (!is_array($this->varValue) || !count($this->varValue))
+        if (!\is_array($this->varValue) || [] === $this->varValue)
         {
             $this->varValue = [['']];
         }
@@ -137,7 +139,7 @@ class ColumnWizard extends Widget
 
         foreach ($this->arrColumnFields as $k => $v)
         {
-            $strFieldLabels .= '<th>' . ($v['label'] ?? '') . '</th>';
+            $strFieldLabels .= '<th>'.($v['label'] ?? '').'</th>';
 
             // Unset labels for other columns
             if (isset($v['label']))
@@ -150,19 +152,19 @@ class ColumnWizard extends Widget
         $strFields = '';
 
         // Add the input fields
-        for ($i=0, $c=\count($this->varValue); $i<$c; $i++)
+        for ($i = 0, $c = \count($this->varValue); $i < $c; ++$i)
         {
-            //Open table row
+            // Open table row
             $strFields .= '<tr>';
 
-            foreach ($this->arrColumnFields as $strKey=>$arrFieldOptions)
+            foreach ($this->arrColumnFields as $strKey => $arrFieldOptions)
             {
                 /** @var FormFieldModel $objField */
                 $strClass = $GLOBALS['BE_FFL'][$arrFieldOptions['inputType']];
 
                 $arrData = $this->getAttributesFromDca($arrFieldOptions, $strKey);
 
-                $arrData['id'] = $arrData['name'] = $this->strId . '['.$i.']' . '[' . $arrData['name'] . ']';
+                $arrData['id'] = $arrData['name'] = $this->strId.'['.$i.']['.$arrData['name'].']';
                 $arrData['template'] = $this->strTemplate;
 
                 if (isset($this->varValue[$i][$strKey]))
@@ -181,7 +183,7 @@ class ColumnWizard extends Widget
                 $blnFileTree = false;
 
                 // Create custom FileTree Picker
-                if ($arrFieldOptions['inputType'] == 'fileTree')
+                if ('fileTree' === $arrFieldOptions['inputType'])
                 {
                     $strFilePicker = $objWidget->parse();
 
@@ -199,13 +201,13 @@ class ColumnWizard extends Widget
             // Add the buttons
             foreach ($arrButtons as $button)
             {
-                if ($button == 'drag')
+                if ('drag' === $button)
                 {
-                    $strFields .= ' <button type="button" class="drag-handle" title="' . StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['move']) . '" aria-hidden="true">' . Image::getHtml('drag.svg') . '</button>';
+                    $strFields .= ' <button type="button" class="drag-handle" title="'.StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['move']).'" aria-hidden="true">'.Image::getHtml('drag.svg').'</button>';
                 }
                 else
                 {
-                    $strFields .= ' <button type="button" data-command="' . $button . '" title="' . StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['mw_' . $button]) . '">' . Image::getHtml($button . '.svg') . '</button>';
+                    $strFields .= ' <button type="button" data-command="'.$button.'" title="'.StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['mw_'.$button]).'">'.Image::getHtml($button.'.svg').'</button>';
                 }
             }
 
@@ -216,14 +218,17 @@ class ColumnWizard extends Widget
         }
 
         // Add the label and return the wizard
-        return vsprintf('<table id="ctrl_%s" class="%s">%s<tbody class="sortable">%s</tbody></table>%s%s', [
-            $this->strId,
-            'tl_modulewizard columnWizard',
-            $strFieldLabels,
-            $strFields,
-            '<script>CyBackend.ColumnWizard("ctrl_' . $this->strId . '")</script>',
-            '<div class="columnWizard-divider"></div>'
-        ]);
+        return vsprintf(
+            '<table id="ctrl_%s" class="%s">%s<tbody class="sortable">%s</tbody></table>%s%s',
+            [
+                $this->strId,
+                'tl_modulewizard columnWizard',
+                $strFieldLabels,
+                $strFields,
+                '<script>CyBackend.ColumnWizard("ctrl_'.$this->strId.'")</script>',
+                '<div class="columnWizard-divider"></div>',
+            ],
+        );
     }
 }
 

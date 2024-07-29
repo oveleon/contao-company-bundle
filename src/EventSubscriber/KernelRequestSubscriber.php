@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Oveleon\ContaoCompanyBundle\EventSubscriber;
 
 use Contao\CoreBundle\Routing\ScopeMatcher;
@@ -12,8 +14,9 @@ class KernelRequestSubscriber implements EventSubscriberInterface
 {
     public function __construct(
         protected ScopeMatcher $scopeMatcher,
-        protected Security $security
-    ){}
+        protected Security $security,
+    ) {
+    }
 
     public static function getSubscribedEvents()
     {
@@ -26,7 +29,7 @@ class KernelRequestSubscriber implements EventSubscriberInterface
 
         if ($this->scopeMatcher->isBackendRequest($request))
         {
-            $GLOBALS['TL_CSS'][]        = 'bundles/contaocompany/css/backend.css|static';
+            $GLOBALS['TL_CSS'][] = 'bundles/contaocompany/css/backend.css|static';
             $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/contaocompany/scripts/widget.js|static';
         }
     }

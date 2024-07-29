@@ -77,7 +77,7 @@ class ModuleSocialMediaList extends Module
             ];
         }
 
-        if (!count($this->arrItems))
+        if ($this->arrItems === [])
         {
             return '';
         }

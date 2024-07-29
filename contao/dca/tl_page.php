@@ -20,7 +20,7 @@ $manipulator = PaletteManipulator::create();
 // Add the legend and fields to the root palette of tl_page
 $manipulator
     ->addLegend('company_legend', 'chmod_legend', PaletteManipulator::POSITION_AFTER, true)
-    ->addField(['companyLogo', 'companyName', 'companyStreet', 'companyPostal', 'companyCity', 'companyState', 'companyCountry', 'companyPhone', 'companyPhone2', 'companyFax', 'companyEmail', 'companyEmail2', 'companyInfo', 'companyInfo2', 'companySocialMedia'], 'company_legend', Contao\CoreBundle\DataContainer\PaletteManipulator::POSITION_APPEND)
+    ->addField(['companyLogo', 'companyName', 'companyStreet', 'companyPostal', 'companyCity', 'companyState', 'companyCountry', 'companyPhone', 'companyPhone2', 'companyFax', 'companyEmail', 'companyEmail2', 'companyInfo', 'companyInfo2', 'companySocialMedia'], 'company_legend', PaletteManipulator::POSITION_APPEND)
     ->applyToPalette('root', 'tl_page')
 ;
 

@@ -32,7 +32,7 @@ use Symfony\Component\DependencyInjection\Exception\ParameterNotFoundException;
  */
 class ModuleLogo extends Module
 {
-    protected ?FilesModel $objFile;
+    protected ?FilesModel $objFile = null;
 
     /**
      * Template
@@ -42,8 +42,6 @@ class ModuleLogo extends Module
 
     /**
      * Display a wildcard in the back end
-     *
-     * @return string
      */
     public function generate(): string
     {
@@ -102,7 +100,7 @@ class ModuleLogo extends Module
         // Contao 4.13 legacy routing fallback + contao 5.x compatibility
         try {
             $prependLocale = $container->getParameter('contao.prepend_locale');
-        } catch (ParameterNotFoundException $e) {
+        } catch (ParameterNotFoundException) {
             $prependLocale = '';
         }
 
@@ -111,7 +109,7 @@ class ModuleLogo extends Module
         {
             $strPageUrl .= '/' . $objPage->language;
         }
-        else if (!!$objPage->urlPrefix)
+        elseif ((bool) $objPage->urlPrefix)
         {
             $strPageUrl .= '/' . $objPage->urlPrefix;
         }
@@ -119,7 +117,7 @@ class ModuleLogo extends Module
         $strPageUrl .= '/';
 
         // Override title tag with company name if it is set, otherwise set page URI
-        $strCompanyName = !empty($companyName) ? $companyName : $strPageUrl;
+        $strCompanyName = empty($companyName) ? $strPageUrl : $companyName;
 
         $this->Template->rootHref = $strPageUrl;
         $this->Template->title = $strCompanyName;
@@ -130,13 +128,7 @@ class ModuleLogo extends Module
         $container = System::getContainer();
         $request = $container->get('request_stack')->getCurrentRequest();
         $tokenChecker = $container->get('contao.security.token_checker');
-
-        if (null === $request || !$request->attributes->get('_preview', false) || !$tokenChecker->canAccessPreview())
-        {
-            return false;
-        }
-
-        return true;
+        return !(null === $request || !$request->attributes->get('_preview', false) || !$tokenChecker->canAccessPreview());
     }
 }
 
