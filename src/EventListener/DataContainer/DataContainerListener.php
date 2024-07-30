@@ -18,14 +18,7 @@ use Symfony\Component\Security\Core\Security;
 
 class DataContainerListener
 {
-    public function __construct(
-        protected ContaoFramework $framework,
-        protected Connection $connection,
-        protected Security $security,
-    ) {
-    }
-
-    public function clearEmptySocialMediaValue($varValue, DataContainer|null $dc)
+    public static function clearEmptySocialMediaValue($varValue, DataContainer|null $dc)
     {
         if ('' === $varValue)
         {

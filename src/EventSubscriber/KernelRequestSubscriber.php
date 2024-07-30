@@ -14,7 +14,6 @@ class KernelRequestSubscriber implements EventSubscriberInterface
 {
     public function __construct(
         protected ScopeMatcher $scopeMatcher,
-        protected Security $security,
     ) {
     }
 
