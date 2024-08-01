@@ -2,7 +2,6 @@ services:
     contao_company.listener.insert_tags:
         class: Oveleon\ContaoCompanyBundle\EventListener\InsertTagsListener
         arguments:
-            - '@contao.framework'
             - '@router.default'
             - '@request_stack'
         tags:
