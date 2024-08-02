@@ -41,7 +41,7 @@ class Company
             static::$arrCache[$strKey] = static::$strKey();
         }
 
-        return static::$arrCache[$strKey];
+        return static::$arrCache[$strKey] ?? '';
     }
 
     public static function set(string $strKey, mixed $varValue): void
