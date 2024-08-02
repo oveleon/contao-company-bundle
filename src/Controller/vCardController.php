@@ -2,6 +2,7 @@
 
 namespace Oveleon\ContaoCompanyBundle\Controller;
 
+use Exception;
 use Contao\CoreBundle\Exception\PageNotFoundException;
 use Contao\Environment;
 use Contao\PageModel;
@@ -11,9 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route(defaults={"_scope" = "frontend"})
- */
+#[Route(defaults: ['_scope' => 'frontend'])]
 class vCardController extends AbstractController
 {
     public function __construct(
@@ -21,10 +20,9 @@ class vCardController extends AbstractController
     ){}
 
     /**
-     * @Route("/company/vcard/download", name="contao_company_vcard_download")
-     *
-     * @throws \Exception
+     * @throws Exception
      */
+    #[Route(path: '/company/vcard/download', name: 'contao_company_vcard_download')]
     public function download(Request $request): Response
     {
         // Try to load the current contao page
@@ -45,7 +43,7 @@ class vCardController extends AbstractController
                 ->getContent();
 
             $headers = $this->generator->getHeaders();
-        } catch (\Exception $e) {
+        } catch (Exception) {
             $vcf = '';
             $headers = [];
         }

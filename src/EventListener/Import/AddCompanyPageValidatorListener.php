@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Oveleon\ContaoCompanyBundle\EventListener\Import;
 
 use Contao\Controller;
 use Contao\FilesModel;
 use Contao\PageModel;
-use Oveleon\ProductInstaller\Import\Prompt\FormPromptType;
-use Oveleon\ProductInstaller\Import\Validator;
-use Oveleon\ProductInstaller\Import\TableImport;
 use Oveleon\ContaoCompanyBundle\Import\Validator\CompanyPageValidator;
+use Oveleon\ProductInstaller\Import\Prompt\FormPromptType;
+use Oveleon\ProductInstaller\Import\TableImport;
+use Oveleon\ProductInstaller\Import\Validator;
 
 class AddCompanyPageValidatorListener
 {
@@ -23,9 +25,9 @@ class AddCompanyPageValidatorListener
      *
      * @category BEFORE_IMPORT_ROW
      */
-    public static function setCompanyLogoConnection(array &$row, TableImport $importer): ?array
+    public static function setCompanyLogoConnection(array &$row, TableImport $importer): array|null
     {
-        if(!$importer->hasValue($row, 'companyLogo'))
+        if (!$importer->hasValue($row, 'companyLogo'))
         {
             return null;
         }
@@ -33,13 +35,19 @@ class AddCompanyPageValidatorListener
         // Get translator
         $translator = Controller::getContainer()->get('translator');
 
-        return $importer->useIdentifierConnectionLogic($row, 'companyLogo', PageModel::getTable(), FilesModel::getTable(), [
-            'class'       => 'w50',
-            'isFile'      => true,
-            'widget'      => FormPromptType::FILE,
-            'popupTitle'  => $translator->trans('setup.prompt.company.companyLogo.label', [], 'setup'),
-            'label'       => $translator->trans('setup.prompt.company.companyLogo.label', [], 'setup'),
-            'description' => $translator->trans('setup.prompt.company.companyLogo.description', [], 'setup'),
-        ]);
+        return $importer->useIdentifierConnectionLogic(
+            $row,
+            'companyLogo',
+            PageModel::getTable(),
+            FilesModel::getTable(),
+            [
+                'class' => 'w50',
+                'isFile' => true,
+                'widget' => FormPromptType::FILE,
+                'popupTitle' => $translator->trans('setup.prompt.company.companyLogo.label', [], 'setup'),
+                'label' => $translator->trans('setup.prompt.company.companyLogo.label', [], 'setup'),
+                'description' => $translator->trans('setup.prompt.company.companyLogo.description', [], 'setup'),
+            ],
+        );
     }
 }

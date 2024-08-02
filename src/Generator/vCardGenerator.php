@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Oveleon\ContaoCompanyBundle\Generator;
 
 use Contao\FilesModel;
@@ -12,9 +14,10 @@ use Symfony\Component\Filesystem\Path;
 class vCardGenerator
 {
     public function __construct(
-        private ?VCard $vCard,
-        private Company $company
-    ){}
+        private VCard|null $vCard,
+        private Company $company,
+    ) {
+    }
 
     /**
      * Generate a vcard with the given company values.
@@ -26,6 +29,7 @@ class vCardGenerator
 
         // Generate the vcard
         $this->vCard = new VCard();
+
         $this
             ->addName()
             ->addCompany()
@@ -46,7 +50,8 @@ class vCardGenerator
      */
     public function getContent(): string
     {
-        if (null === $this->vCard) {
+        if (!$this->vCard instanceof VCard)
+        {
             throw new \Exception('You must create a v-card first!');
         }
 
@@ -77,12 +82,12 @@ class vCardGenerator
 
     private function addAddress(): self
     {
-        $street  = $this->company->get('street') ?: null;
-        $city    = $this->company->get('city') ?: null;
-        $state   = $this->company->get('state') ?: null;
-        $zip     = $this->company->get('postal') ?: null;
+        $street = $this->company->get('street') ?: null;
+        $city = $this->company->get('city') ?: null;
+        $state = $this->company->get('state') ?: null;
+        $zip = $this->company->get('postal') ?: null;
         $country = $this->company->get('country') ?: null;
-        $type    = 'WORK;POSTAL';
+        $type = 'WORK;POSTAL';
 
         if (null === $street && null === $city && null === $state && null === $zip && null === $country)
         {
@@ -145,10 +150,9 @@ class vCardGenerator
     private function addLogo(): self
     {
         if (
-            null === ($uuid = $this->company->get('logo') ?: null) ||
-            null === ($file = FilesModel::findByUuid($uuid))
-        )
-        {
+            null === ($uuid = $this->company->get('logo') ?: null)
+            || null === ($file = FilesModel::findByUuid($uuid))
+        ) {
             return $this;
         }
 

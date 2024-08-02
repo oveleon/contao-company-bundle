@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Oveleon\ContaoCompanyBundle;
 
 use Contao\Config;
@@ -11,17 +13,17 @@ class Company
 
     public function __construct(PageModel|null $pageModel)
     {
-        if (null !== $pageModel)
+        if ($pageModel instanceof PageModel)
         {
-            $rootPage = PageModel::findByPk($pageModel->rootId);
+            $rootPage = PageModel::findById($pageModel->rootId);
 
             foreach ($GLOBALS['TL_COMPANY_MAPPING'] as $key => $field)
             {
-                $this->set($key, Config::get($field));
+                static::set($key, Config::get($field));
 
                 if (!empty($rootPage->{$field}))
                 {
-                    $this->set($key, $rootPage->{$field});
+                    static::set($key, $rootPage->{$field});
                 }
             }
         }
@@ -34,12 +36,12 @@ class Company
             return static::$arrCache[$strKey];
         }
 
-        if (in_array($strKey, get_class_methods(self::class)))
+        if (\in_array($strKey, get_class_methods(self::class), true))
         {
             static::$arrCache[$strKey] = static::$strKey();
         }
 
-        return static::$arrCache[$strKey];
+        return static::$arrCache[$strKey] ?? '';
     }
 
     public static function set(string $strKey, mixed $varValue): void

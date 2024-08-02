@@ -1,22 +1,22 @@
 services:
-  _defaults:
-    autowire: true
-    autoconfigure: true
-    public: true
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: true
 
-  contao_company.company:
-    class: Oveleon\ContaoCompanyBundle\Company
-    public: true
+    contao_company.company:
+        class: Oveleon\ContaoCompanyBundle\Company
+        public: true
 
-  contao_company.vcard.generator:
-    class: Oveleon\ContaoCompanyBundle\Generator\vCardGenerator
+    contao_company.vcard.generator:
+        class: Oveleon\ContaoCompanyBundle\Generator\vCardGenerator
 
-  Oveleon\ContaoCompanyBundle\:
-    resource: '../src/'
-    exclude: '../src/{Model,DependencyInjection,Resources}'
+    Oveleon\ContaoCompanyBundle\:
+        resource: '../src/'
+        exclude: '../src/{Model,DependencyInjection,Resources}'
 
-  Oveleon\ContaoCompanyBundle\Controller\vCardController:
-    arguments:
-      - '@contao_company.vcard.generator'
-    tags:
-      - controller.service_arguments
+    Oveleon\ContaoCompanyBundle\Controller\vCardController:
+        arguments:
+            - '@contao_company.vcard.generator'
+        tags:
+            - controller.service_arguments
