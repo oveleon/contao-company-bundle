@@ -1,3 +1,0 @@
-company:
-    resource: '../src/Controller'
-    type: attribute
