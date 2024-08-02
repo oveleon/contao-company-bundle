@@ -14,7 +14,6 @@ declare(strict_types=1);
 
 namespace Oveleon\ContaoCompanyBundle\Widget;
 
-use Contao\FormFieldModel;
 use Contao\Image;
 use Contao\StringUtil;
 use Contao\Widget;
@@ -159,7 +158,6 @@ class ColumnWizard extends Widget
 
             foreach ($this->arrColumnFields as $strKey => $arrFieldOptions)
             {
-                /** @var FormFieldModel $objField */
                 $strClass = $GLOBALS['BE_FFL'][$arrFieldOptions['inputType']];
 
                 $arrData = $this->getAttributesFromDca($arrFieldOptions, $strKey);

@@ -7,7 +7,6 @@ namespace Oveleon\ContaoCompanyBundle\Generator;
 use Contao\FilesModel;
 use Contao\PageModel;
 use Contao\System;
-use Exception;
 use JeroenDesloovere\VCard\VCard;
 use Oveleon\ContaoCompanyBundle\Company;
 use Symfony\Component\Filesystem\Path;
@@ -47,13 +46,13 @@ class vCardGenerator
     /**
      * Get the content of the vcard as string.
      *
-     * @throws Exception
+     * @throws \Exception
      */
     public function getContent(): string
     {
         if (!$this->vCard instanceof VCard)
         {
-            throw new Exception('You must create a v-card first!');
+            throw new \Exception('You must create a v-card first!');
         }
 
         return $this->vCard->getOutput();

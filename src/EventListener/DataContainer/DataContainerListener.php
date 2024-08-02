@@ -10,11 +10,8 @@ declare(strict_types=1);
 
 namespace Oveleon\ContaoCompanyBundle\EventListener\DataContainer;
 
-use Contao\CoreBundle\Framework\ContaoFramework;
 use Contao\DataContainer;
 use Contao\StringUtil;
-use Doctrine\DBAL\Connection;
-use Symfony\Component\Security\Core\Security;
 
 class DataContainerListener
 {
