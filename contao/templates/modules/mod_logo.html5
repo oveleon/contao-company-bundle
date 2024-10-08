@@ -2,11 +2,11 @@
 
 <?php $this->block('content'); ?>
 
-  <?php if ($this->addLink): ?>
+  <?php if ($this->addRedirect): ?>
   <a href="<?= $this->rootHref ?>" title="<?= $this->title ?>">
   <?php endif; ?>
     <?php $this->insert('image', $this->arrData); ?>
-  <?php if ($this->addLink): ?>
+  <?php if ($this->addRedirect): ?>
   </a>
   <?php endif; ?>
 

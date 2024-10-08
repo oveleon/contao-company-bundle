@@ -102,7 +102,7 @@ Keep in mind that saving these will overwrite the modules and insert-tags for th
 
 1. Create the front-end module *Logo*
 2. Set up an image size
-3. Decide wether the logo should link to the website root
+3. Decide wether the logo should redirect to the website root
 4. Embed the module within your layout (e.g. header-section) or in your articles
 
 ### Social media list
@@ -247,7 +247,7 @@ Your company information can be displayed using following *insert-tags*.
 ## Front end modules
 
 ### Logo (Company)
-Displays the saved company logo with an optional link to the website root.
+Displays the saved company logo with an optional redirect to the website root.
 
 The image for the logo-module is set up within the system or root page settings.
 

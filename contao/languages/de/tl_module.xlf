@@ -5,13 +5,13 @@
         <source>Logo settings</source>
         <target>Logo-Einstellungen</target>
       </trans-unit>
-      <trans-unit id="tl_module.companyLogoAddLink.0">
-        <source>Website root link</source>
-        <target>Startpunkt-Link</target>
+      <trans-unit id="tl_module.companyLogoRedirect.0">
+        <source>Activate redirect</source>
+        <target>Weiterleitung aktivieren</target>
       </trans-unit>
-      <trans-unit id="tl_module.companyLogoAddLink.1">
-        <source>Link logo to the website root.</source>
-        <target>Das Logo auf den Startpunkt der Webseite verlinken.</target>
+      <trans-unit id="tl_module.companyLogoRedirect.1">
+        <source>Adds a redirect to the website root.</source>
+        <target>Fügt eine Weiterleitung zum Startpunkt der Website hinzu.</target>
       </trans-unit>
     </body>
   </file>
