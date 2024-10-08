@@ -4,6 +4,12 @@
       <trans-unit id="tl_module.logo_legend">
         <source>Logo settings</source>
       </trans-unit>
+      <trans-unit id="tl_module.companyLogoAddLink.0">
+        <source>Website root link</source>
+      </trans-unit>
+      <trans-unit id="tl_module.companyLogoAddLink.1">
+        <source>Link logo to the website root.</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>
