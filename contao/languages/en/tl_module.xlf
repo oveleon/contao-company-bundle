@@ -4,6 +4,12 @@
       <trans-unit id="tl_module.logo_legend">
         <source>Logo settings</source>
       </trans-unit>
+      <trans-unit id="tl_module.companyLogoRedirect.0">
+        <source>Activate redirect</source>
+      </trans-unit>
+      <trans-unit id="tl_module.companyLogoRedirect.1">
+        <source>Adds a redirect to the website root.</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

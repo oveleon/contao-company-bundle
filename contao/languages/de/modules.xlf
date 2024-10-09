@@ -15,7 +15,7 @@
       </trans-unit>
       <trans-unit id="FMD.socialmedialist.0">
         <source>Social media list</source>
-        <target>Social-Media Liste</target>
+        <target>Social-Media-Liste</target>
       </trans-unit>
       <trans-unit id="FMD.socialmedialist.1">
         <source>Generates a list based on the stored social media links</source>

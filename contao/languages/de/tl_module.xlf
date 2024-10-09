@@ -5,6 +5,14 @@
         <source>Logo settings</source>
         <target>Logo-Einstellungen</target>
       </trans-unit>
+      <trans-unit id="tl_module.companyLogoRedirect.0">
+        <source>Activate redirect</source>
+        <target>Weiterleitung aktivieren</target>
+      </trans-unit>
+      <trans-unit id="tl_module.companyLogoRedirect.1">
+        <source>Adds a redirect to the website root.</source>
+        <target>Fügt eine Weiterleitung zum Startpunkt der Website hinzu.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

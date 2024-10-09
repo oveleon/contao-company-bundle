@@ -121,6 +121,7 @@ class ModuleLogo extends Module
 
         $this->Template->rootHref = $strPageUrl;
         $this->Template->title = $strCompanyName;
+        $this->Template->addRedirect = $this->companyLogoRedirect;
     }
 
     protected function isFrontendPreview(): bool
