@@ -89,7 +89,7 @@ class vCardGenerator
         $country = $this->company->get('country') ?: null;
         $type = 'WORK;POSTAL';
 
-        if (null === $street && null === $city && null === $state && null === $zip && null === $country)
+        if ($street === null && $city === null && $state === null && $zip === null && $country === null)
         {
             return $this;
         }
@@ -107,7 +107,7 @@ class vCardGenerator
             $mail = $this->company->get('email2') ?: null;
         }
 
-        if (null === $mail)
+        if ($mail === null)
         {
             return $this;
         }
@@ -125,7 +125,7 @@ class vCardGenerator
             $phone = $this->company->get('phone2') ?: null;
         }
 
-        if (null === $phone)
+        if ($phone === null)
         {
             return $this;
         }

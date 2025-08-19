@@ -14,8 +14,9 @@ declare(strict_types=1);
 
 namespace Oveleon\ContaoCompanyBundle\Widget;
 
-use Contao\Image;
+use Contao\CoreBundle\ContaoCoreBundle;
 use Contao\StringUtil;
+use Contao\System;
 use Contao\Widget;
 
 /**
@@ -27,9 +28,9 @@ class ColumnWizard extends Widget
 
     protected $strTemplate = 'be_widget_cw';
 
-    protected $dragAndDrop;
+    protected array $arrColumnFields = [];
 
-    protected $arrColumnFields = [];
+    private bool $hasStimulus;
 
     public function __construct($arrAttributes = null)
     {
@@ -37,6 +38,7 @@ class ColumnWizard extends Widget
 
         $this->preserveTags = true;
         $this->decodeEntities = true;
+        $this->hasStimulus = \in_array(version_compare(ContaoCoreBundle::getVersion(), '5.3.999', '<'), [0, false, null], true);
 
         foreach ($this->arrOptions as $arrOption)
         {
@@ -120,113 +122,80 @@ class ColumnWizard extends Widget
      */
     public function generate()
     {
-        $arrButtons = ['copy', 'delete'];
-
-        if ($this->dragAndDrop)
-        {
-            $arrButtons[] = 'drag';
-        }
-
         // Make sure there is at least an empty array
-        if (!\is_array($this->varValue) || [] === $this->varValue)
+        if (!\is_array($this->varValue) || $this->varValue === [])
         {
             $this->varValue = [['']];
         }
 
-        // Add the labels
-        $strFieldLabels = '<thead><tr>';
+        $labels = $rows = [];
 
-        foreach ($this->arrColumnFields as $k => $v)
-        {
-            $strFieldLabels .= '<th>'.($v['label'] ?? '').'</th>';
-
-            // Unset labels for other columns
-            if (isset($v['label']))
-            {
-                unset($this->arrColumnFields[$k]['label']);
-            }
-        }
-
-        // Build fields
-        $strFields = '';
-
-        // Add the input fields
         for ($i = 0, $c = \count($this->varValue); $i < $c; ++$i)
         {
-            // Open table row
-            $strFields .= '<tr>';
+            $columns = [];
 
-            foreach ($this->arrColumnFields as $strKey => $arrFieldOptions)
+            foreach ($this->arrColumnFields as $key => $options)
             {
-                $strClass = $GLOBALS['BE_FFL'][$arrFieldOptions['inputType']];
+                $labels[] = $options['label'] ?? '';
 
-                $arrData = $this->getAttributesFromDca($arrFieldOptions, $strKey);
+                // Unset all the row labels
+                unset($this->arrColumnFields[$key]['label'], $options['label']);
 
-                $arrData['id'] = $arrData['name'] = $this->strId.'['.$i.']['.$arrData['name'].']';
-                $arrData['template'] = $this->strTemplate;
-
-                if (isset($this->varValue[$i][$strKey]))
-                {
-                    $arrData['value'] = $this->varValue[$i][$strKey];
-                }
-
-                if (!class_exists($strClass))
-                {
-                    continue;
-                }
-
-                /** @var Widget $objWidget */
-                $objWidget = new $strClass($arrData);
-
-                $blnFileTree = false;
-
-                // Create custom FileTree Picker
-                if ('fileTree' === $arrFieldOptions['inputType'])
-                {
-                    $strFilePicker = $objWidget->parse();
-
-                    $blnFileTree = true;
-                }
-
-                $strFields .= vsprintf('<td>%s</td>', [
-                    $blnFileTree ? $strFilePicker : $objWidget->parse(),
-                ]);
+                $columns[] = $this->parseWidget($key, $options, $i);
             }
 
-            // Open table for buttons
-            $strFields .= '<td>';
-
-            // Add the buttons
-            foreach ($arrButtons as $button)
-            {
-                if ('drag' === $button)
-                {
-                    $strFields .= ' <button type="button" class="drag-handle" title="'.StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['move']).'" aria-hidden="true">'.Image::getHtml('drag.svg').'</button>';
-                }
-                else
-                {
-                    $strFields .= ' <button type="button" data-command="'.$button.'" title="'.StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['mw_'.$button]).'">'.Image::getHtml($button.'.svg').'</button>';
-                }
-            }
-
-            $strFields .= '</td></tr>';
-
-            // Reset options
-            $arrOptions = [];
+            $rows[$i] = $columns;
         }
 
-        // Add the label and return the wizard
-        return vsprintf(
-            '<table id="ctrl_%s" class="%s">%s<tbody class="sortable">%s</tbody></table>%s%s',
-            [
-                $this->strId,
-                'tl_modulewizard columnWizard',
-                $strFieldLabels,
-                $strFields,
-                '<script>CyBackend.ColumnWizard("ctrl_'.$this->strId.'")</script>',
-                '<div class="columnWizard-divider"></div>',
-            ],
-        );
+        return System::getContainer()->get('twig')->render('@Contao_ContaoCompanyBundle/widget/column_wizard.html.twig', [
+            'id' => $this->strId,
+            'labels' => $labels,
+            'rows' => $rows,
+            'stimulus' => $this->hasStimulus,
+        ]);
+    }
+
+    private function parseWidget(string $type, array $options, int $increment): string
+    {
+        if (
+            !isset($options['inputType'])
+            || !class_exists($widgetClass = $GLOBALS['BE_FFL'][$options['inputType']])
+        ) {
+            return '';
+        }
+
+        $data = $this->getAttributesFromDca($options, $type);
+
+        $data['name'] = $this->strId . '[' . $increment . '][' . $data['name'] . ']';
+        $data['template'] = $this->strTemplate;
+
+        if (!$this->hasStimulus)
+        {
+            $data['id'] = $data['name'];
+        }
+
+        if (isset($this->varValue[$increment][$type]))
+        {
+            $data['value'] = $this->varValue[$increment][$type];
+        }
+
+        $widget = new $widgetClass($data);
+
+        /*$blnFileTree = false;
+
+        // Create custom FileTree Picker
+        if ('fileTree' === $options['inputType'])
+        {
+            $strFilePicker = $objWidget->parse();
+
+            $blnFileTree = true;
+        }
+
+        $strFields .= vsprintf('<td>%s</td>', [
+            $blnFileTree ? $strFilePicker : $objWidget->parse(),
+        ]);*/
+
+        return $widget->parse();
     }
 }
 

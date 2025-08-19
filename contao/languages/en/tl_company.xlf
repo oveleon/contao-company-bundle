@@ -32,13 +32,13 @@
         <source>City</source>
       </trans-unit>
       <trans-unit id="tl_company.companyCity.1">
-        <source>Plase enter the name of the city.</source>
+        <source>Please enter the name of the city.</source>
       </trans-unit>
       <trans-unit id="tl_company.companyState.0">
         <source>State</source>
       </trans-unit>
       <trans-unit id="tl_company.companyState.1">
-        <source>Plase enter the name of the state.</source>
+        <source>Please enter the name of the state.</source>
       </trans-unit>
       <trans-unit id="tl_company.companyCountry.0">
         <source>Country</source>

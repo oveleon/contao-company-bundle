@@ -13,18 +13,20 @@ class Company
 
     public function __construct(PageModel|null $pageModel)
     {
-        if ($pageModel instanceof PageModel)
+        if (!($pageModel instanceof PageModel))
         {
-            $rootPage = PageModel::findById($pageModel->rootId);
+            return;
+        }
 
-            foreach ($GLOBALS['TL_COMPANY_MAPPING'] as $key => $field)
+        $rootPage = PageModel::findById($pageModel->rootId);
+
+        foreach ($GLOBALS['TL_COMPANY_MAPPING'] ?? [] as $key => $field)
+        {
+            static::set($key, Config::get($field));
+
+            if (!empty($rootPage->{$field}))
             {
-                static::set($key, Config::get($field));
-
-                if (!empty($rootPage->{$field}))
-                {
-                    static::set($key, $rootPage->{$field});
-                }
+                static::set($key, $rootPage->{$field});
             }
         }
     }

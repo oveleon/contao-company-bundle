@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of Oveleon Company Bundle.
  *
@@ -11,13 +13,15 @@
  */
 
 // Add palettes to tl_module
-$GLOBALS['TL_DCA']['tl_module']['palettes']['logo']            = '{title_legend},name,headline,type;{logo_legend},imgSize,companyLogoRedirect;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID';
-$GLOBALS['TL_DCA']['tl_module']['palettes']['socialmedialist'] = '{title_legend},name,headline,type;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['logo'] = '{title_legend},name,headline,type;{logo_legend},imgSize,companyLogoRedirect;{template_legend:collapsed},customTpl;{protected_legend:collapsed},protected;{expert_legend:collapsed},guests,cssID';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['socialmedialist'] = '{title_legend},name,headline,type;{template_legend:collapsed},customTpl;{protected_legend:collapsed},protected;{expert_legend:collapsed},guests,cssID';
 
 // Add fields to tl_module
 $GLOBALS['TL_DCA']['tl_module']['fields']['companyLogoRedirect'] = [
-    'exclude'                 => true,
-    'inputType'               => 'checkbox',
-    'eval'                    => ['tl_class'=>'w50 m12'],
-    'sql'                     => "char(1) NOT NULL default '1'"
+    'exclude' => true,
+    'inputType' => 'checkbox',
+    'eval' => [
+        'tl_class' => 'w50 m12',
+    ],
+    'sql' => "char(1) NOT NULL default '1'",
 ];

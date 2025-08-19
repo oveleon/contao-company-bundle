@@ -1,0 +1,86 @@
+{% trans_default_domain "contao_default" %}
+
+{% set table_attributes = attrs()
+    .set('id', 'ctrl_' ~ id)
+    .addClass(['tl_modulewizard', 'column_wizard'])
+    .set('data-controller', 'contao--row-wizard', stimulus)
+%}
+
+<table{{ table_attributes }}>
+    <thead>
+    <tr>
+        {% if stimulus %}
+            <th></th>
+        {% endif %}
+        {% for label in labels %}
+            <th>{{ label }}</th>
+        {% endfor %}
+        <th></th>
+    </tr>
+    </thead>
+    {% set table_body_attributes = attrs()
+        .addClass('sortable')
+        .set('data-controller', 'contao--sortable', stimulus)
+        .set('data-contao--sortable-handle-value', '.drag-handle', stimulus)
+        .set('data-action', 'contao--sortable:update->contao--row-wizard#updateSorting', stimulus)
+        .set('data-contao--row-wizard-target', 'body', stimulus)
+    %}
+
+    <tbody{{ table_body_attributes }}>
+        {% for row in rows %}
+            <tr{% if stimulus %} data-contao--row-wizard-target="row"{% endif %}>
+
+                {% if stimulus %}
+                    <td>
+                        {% set drag_handle_attributes = attrs()
+                            .set('type', 'button')
+                            .set('data-action', 'keydown->contao--sortable#move')
+                            .addClass('drag-handle')
+                        %}
+                        <button{{ drag_handle_attributes}}>{{ backend_icon('drag.svg', 'MSC.move'|trans) }}</button>
+                    </td>
+                {% endif %}
+
+                {% for widget in row %}
+                    <td>{{ widget|raw }}</td>
+                {% endfor %}
+
+                {# Controls #}
+                <td class="tl_right">
+                    {# Edit #}
+                    {% set edit_anchor_attributes = attrs()
+                        .set('title', 'MSC.editElement'|trans)
+                        .addClass(['module_link', 'hidden'])
+                    %}
+                    <a{{ edit_anchor_attributes }}></a>
+
+                    {# Copy row #}
+                    {% set copy_button_attributes = attrs()
+                        .set('type', 'button')
+                        .set('data-action', 'contao--row-wizard#copy contao--scroll-offset#store', stimulus)
+                        .set('data-command', 'copy', not stimulus)
+                    %}
+                    <button{{ copy_button_attributes }}>{{ backend_icon('copy.svg', 'MSC.mw_copy'|trans) }}</button>
+
+                    {# Delete row #}
+                    {% set delete_button_attributes = attrs()
+                        .set('type', 'button')
+                        .set('data-action', stimulus ? 'contao--row-wizard#delete contao--scroll-offset#store' : 'contao--scroll-offset#store')
+                        .set('data-command', 'delete', not stimulus)
+                    %}
+                    <button{{ delete_button_attributes }}>{{ backend_icon('delete.svg', 'MSC.mw_delete'|trans) }}</button>
+
+                    {% if not stimulus %}
+                        {# Drag row #}
+                        {% set drag_handle_attributes = attrs()
+                            .set('type', 'button')
+                            .addClass('drag-handle')
+                            .set('aria-hidden', 'true')
+                        %}
+                        <button{{ drag_handle_attributes}}>{{ backend_icon('drag.svg', 'MSC.move'|trans) }}</button>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

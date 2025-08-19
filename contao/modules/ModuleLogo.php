@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of Oveleon Company Bundle.
  *
@@ -24,44 +26,48 @@ use Symfony\Component\DependencyInjection\Exception\ParameterNotFoundException;
 /**
  * Front end module "logo".
  *
- * @property integer 	$id
- * @property string		$headline
- *
- * @author Fabian Ekert <https://github.com/eki89>
- * @author Sebastian Zoglowek <https://github.com/zoglo>
+ * @property int    $id
+ * @property string $headline
  */
 class ModuleLogo extends Module
 {
-    protected ?FilesModel $objFile = null;
+    protected FilesModel|null $objFile = null;
 
     /**
-     * Template
+     * Template.
      * @var string
      */
     protected $strTemplate = 'mod_logo';
 
     /**
-     * Display a wildcard in the back end
+     * Display a wildcard in the back end.
      */
     public function generate(): string
     {
-        $request = System::getContainer()->get('request_stack')->getCurrentRequest();
+        $container = System::getContainer();
 
-        if ($request && System::getContainer()->get('contao.routing.scope_matcher')->isBackendRequest($request))
+        $request = $container->get('request_stack')->getCurrentRequest();
+
+        if ($request && $container->get('contao.routing.scope_matcher')->isBackendRequest($request))
         {
             $objTemplate = new BackendTemplate('be_wildcard');
             $objTemplate->wildcard = '### ' . $GLOBALS['TL_LANG']['FMD']['logo'][0] . ' ###';
             $objTemplate->title = $this->headline;
             $objTemplate->id = $this->id;
             $objTemplate->link = $this->name;
-            $objTemplate->href = StringUtil::specialcharsUrl(System::getContainer()->get('router')->generate('contao_backend', ['do'=>'themes', 'table'=>'tl_module', 'act'=>'edit', 'id'=>$this->id]));
+            $objTemplate->href = StringUtil::specialcharsUrl($container->get('router')->generate('contao_backend', [
+                'do' => 'themes',
+                'table' => 'tl_module',
+                'act' => 'edit',
+                'id' => $this->id,
+            ]));
 
             return $objTemplate->parse();
         }
 
         if (
-            ('' === ($singleSRC = System::getContainer()->get('contao_company.company')->get('logo'))) ||
-            (null === ($this->objFile = FilesModel::findByUuid($singleSRC)) || !is_file(System::getContainer()->getParameter('kernel.project_dir') . '/' . $this->objFile->path))
+            ('' === ($singleSRC = $container->get('contao_company.company')->get('logo')))
+            || (null === ($this->objFile = FilesModel::findByUuid($singleSRC)) || !is_file($container->getParameter('kernel.project_dir') . '/' . $this->objFile->path))
         ) {
             return '';
         }
@@ -76,12 +82,13 @@ class ModuleLogo extends Module
 
         $container = System::getContainer();
 
-        $companyName   = $container->get('contao_company.company')->get('name');
+        $companyName = $container->get('contao_company.company')->get('name');
         $figureBuilder = $container
             ->get('contao.image.studio')
             ->createFigureBuilder()
             ->from($this->objFile->path)
-            ->setSize($this->imgSize);
+            ->setSize($this->imgSize)
+        ;
 
         if (null !== ($figure = $figureBuilder->buildIfResourceExists()))
         {
@@ -98,9 +105,12 @@ class ModuleLogo extends Module
         }
 
         // Contao 4.13 legacy routing fallback + contao 5.x compatibility
-        try {
+        try
+        {
             $prependLocale = $container->getParameter('contao.prepend_locale');
-        } catch (ParameterNotFoundException) {
+        }
+        catch (ParameterNotFoundException)
+        {
             $prependLocale = '';
         }
 
@@ -129,7 +139,8 @@ class ModuleLogo extends Module
         $container = System::getContainer();
         $request = $container->get('request_stack')->getCurrentRequest();
         $tokenChecker = $container->get('contao.security.token_checker');
-        return !(null === $request || !$request->attributes->get('_preview', false) || !$tokenChecker->canAccessPreview());
+
+        return !($request === null || !$request->attributes->get('_preview', false) || !$tokenChecker->canAccessPreview());
     }
 }
 
