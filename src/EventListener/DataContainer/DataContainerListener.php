@@ -17,17 +17,17 @@ class DataContainerListener
 {
     public static function clearEmptySocialMediaValue($varValue, DataContainer|null $dc)
     {
-        if ('' === $varValue)
+        if ($varValue === '')
         {
             return $varValue;
         }
 
-        if (0 === \count($arrValue = StringUtil::deserialize($varValue, true)))
+        if (\count($arrValue = StringUtil::deserialize($varValue, true)) === 0)
         {
             return '';
         }
 
-        if (\array_key_exists('type', $arrValue[0]) && '' === $arrValue[0]['type'])
+        if (\array_key_exists('type', $arrValue[0]) && $arrValue[0]['type'] === '')
         {
             return '';
         }

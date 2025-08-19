@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of Oveleon Company Bundle.
  *
@@ -19,43 +21,48 @@ use Contao\System;
 
 /**
  * Front end module "social media list".
- *
- * @author Fabian Ekert <https://github.com/eki89>
  */
 class ModuleSocialMediaList extends Module
 {
     /**
-     * Social media items
+     * Social media items.
      * @var array
      */
     protected $arrItems;
 
     /**
-     * Template
+     * Template.
      * @var string
      */
     protected $strTemplate = 'mod_socialmedialist';
 
     /**
-     * Display a wildcard in the back end
+     * Display a wildcard in the back end.
      *
      * @return string
      */
     public function generate()
     {
-	    $request = System::getContainer()->get('request_stack')->getCurrentRequest();
+        $container = System::getContainer();
 
-	    if ($request && System::getContainer()->get('contao.routing.scope_matcher')->isBackendRequest($request))
-	    {
-		    $objTemplate = new BackendTemplate('be_wildcard');
-		    $objTemplate->wildcard = '### ' . $GLOBALS['TL_LANG']['FMD']['socialmedialist'][0] . ' ###';
-		    $objTemplate->title = $this->headline;
-		    $objTemplate->id = $this->id;
-		    $objTemplate->link = $this->name;
-            $objTemplate->href = StringUtil::specialcharsUrl(System::getContainer()->get('router')->generate('contao_backend', ['do'=>'themes', 'table'=>'tl_module', 'act'=>'edit', 'id'=>$this->id]));
+        $request = $container->get('request_stack')->getCurrentRequest();
 
-		    return $objTemplate->parse();
-	    }
+        if ($request && $container->get('contao.routing.scope_matcher')->isBackendRequest($request))
+        {
+            $objTemplate = new BackendTemplate('be_wildcard');
+            $objTemplate->wildcard = '### ' . $GLOBALS['TL_LANG']['FMD']['socialmedialist'][0] . ' ###';
+            $objTemplate->title = $this->headline;
+            $objTemplate->id = $this->id;
+            $objTemplate->link = $this->name;
+            $objTemplate->href = StringUtil::specialcharsUrl($container->get('router')->generate('contao_backend', [
+                'do' => 'themes',
+                'table' => 'tl_module',
+                'act' => 'edit',
+                'id' => $this->id,
+            ]));
+
+            return $objTemplate->parse();
+        }
 
         $this->loadLanguageFile('tl_company_socials');
 
@@ -64,16 +71,19 @@ class ModuleSocialMediaList extends Module
 
         foreach ($arrSocialMedia as $item)
         {
-            if (empty($item['type']) || empty($item['url']))
+            if (empty($item['type']))
             {
                 continue;
             }
-
+            if (empty($item['url']))
+            {
+                continue;
+            }
             $this->arrItems[] = [
-                'url'   => $item['url'],
+                'url' => $item['url'],
                 'class' => $item['type'],
                 'title' => $GLOBALS['TL_LANG']['tl_company_socials'][$item['type']],
-                'label' => $GLOBALS['TL_LANG']['tl_company_socials'][$item['type']]
+                'label' => $GLOBALS['TL_LANG']['tl_company_socials'][$item['type']],
             ];
         }
 
@@ -86,9 +96,9 @@ class ModuleSocialMediaList extends Module
     }
 
     /**
-     * Generate the module
+     * Generate the module.
      */
-    protected function compile()
+    protected function compile(): void
     {
         $this->Template->items = $this->arrItems;
     }

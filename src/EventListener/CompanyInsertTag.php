@@ -14,38 +14,36 @@ declare(strict_types=1);
 
 namespace Oveleon\ContaoCompanyBundle\EventListener;
 
+use Contao\CoreBundle\DependencyInjection\Attribute\AsInsertTag;
+use Contao\CoreBundle\InsertTag\Exception\InvalidInsertTagException;
+use Contao\CoreBundle\InsertTag\InsertTagResult;
+use Contao\CoreBundle\InsertTag\OutputType;
+use Contao\CoreBundle\InsertTag\ResolvedInsertTag;
 use Contao\StringUtil;
 use Contao\System;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\RouterInterface;
 
-/**
- * Handles insert tags for company details.
- */
-class InsertTagsListener
+#[AsInsertTag('company')]
+class CompanyInsertTag
 {
-    private const SUPPORTED_TAGS = [
-        'company',
-    ];
-
     public function __construct(
         private readonly RouterInterface $router,
         private readonly RequestStack $requestStack,
     ) {
     }
 
-    public function __invoke(string $tag, bool $useCache, $cacheValue, array $flags): string|false
+    public function __invoke(ResolvedInsertTag $insertTag): InsertTagResult
     {
-        $elements = explode('::', $tag);
-        $key = strtolower($elements[0]);
-
-        if (\in_array($key, self::SUPPORTED_TAGS, true))
+        if ($insertTag->getParameters()->get(0) === null)
         {
-            return $this->replaceCompanyInsertTags($elements[1]);
+            throw new InvalidInsertTagException('Missing parameters for insert tag.');
         }
 
-        return false;
+        $return = $this->replaceCompanyInsertTags($insertTag->getParameters()->get(0));
+
+        return new InsertTagResult($return, OutputType::html);
     }
 
     /**
@@ -55,7 +53,7 @@ class InsertTagsListener
     {
         $company = System::getContainer()->get('contao_company.company');
 
-        switch ($field)
+        switch (strtolower($field))
         {
             case 'mailto':
             case 'email':
@@ -66,7 +64,7 @@ class InsertTagsListener
 
                 $strEmail = StringUtil::encodeEmail($value);
 
-                return 'mailto' === $field ? '<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;'.$strEmail.'" title="'.$strEmail.'">'.preg_replace('/\?.*$/', '', $strEmail).'</a>' : $strEmail;
+                return $field === 'mailto' ? '<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;' . $strEmail . '" title="' . $strEmail . '">' . preg_replace('/\?.*$/', '', $strEmail) . '</a>' : $strEmail;
 
             case 'mailto2':
             case 'email2':
@@ -77,11 +75,11 @@ class InsertTagsListener
 
                 $strEmail = StringUtil::encodeEmail($value);
 
-                return 'mailto2' === $field ? '<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;'.$strEmail.'" title="'.$strEmail.'">'.preg_replace('/\?.*$/', '', $strEmail).'</a>' : $strEmail;
+                return $field === 'mailto2' ? '<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;' . $strEmail . '" title="' . $strEmail . '">' . preg_replace('/\?.*$/', '', $strEmail) . '</a>' : $strEmail;
 
             case 'tel':
             case 'tel2':
-                return empty($value = $company->get('tel' === $field ? 'phone' : 'phone2')) ? '' : '<a href="tel:'.preg_replace('/[^a-z0-9\+]/i', '', (string) $value).'" title="'.$value.'">'.$value.'</a>';
+                return empty($value = $company->get($field === 'tel' ? 'phone' : 'phone2')) ? '' : '<a href="tel:' . preg_replace('/[^a-z0-9\+]/i', '', (string) $value) . '" title="' . $value . '">' . $value . '</a>';
 
             case 'address':
                 $arrAddress = [];
@@ -96,7 +94,7 @@ class InsertTagsListener
 
                 if ((bool) $postal && (bool) $city)
                 {
-                    $arrAddress[] = $postal.' '.$city;
+                    $arrAddress[] = $postal . ' ' . $city;
                 }
                 elseif ((bool) $postal)
                 {
@@ -118,7 +116,9 @@ class InsertTagsListener
             case 'vcard_url':
                 $pageId = (($request = $this->requestStack->getCurrentRequest()) instanceof Request) ? $request->attributes->get('pageModel')->id : 0;
 
-                return $this->router->generate('contao_company_vcard_download', ['page' => $pageId]);
+                return $this->router->generate('contao_company_vcard_download', [
+                    'page' => $pageId,
+                ]);
 
             default:
                 return (string) $company->get($field) ?? '';

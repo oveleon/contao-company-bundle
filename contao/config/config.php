@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of Oveleon Company Bundle.
  *
@@ -10,34 +12,34 @@
  * @copyright   Oveleon             <https://www.oveleon.de/>
  */
 
+use Oveleon\ContaoCompanyBundle\EventListener\Import\AddCompanyPageValidatorListener;
+use Oveleon\ContaoCompanyBundle\Export\Validator\ExportFileValidator;
 use Oveleon\ContaoCompanyBundle\ModuleLogo;
 use Oveleon\ContaoCompanyBundle\ModuleSocialMediaList;
-use Oveleon\ContaoCompanyBundle\Export\Validator\ExportFileValidator;
-use Oveleon\ContaoCompanyBundle\EventListener\Import\AddCompanyPageValidatorListener;
 use Oveleon\ContaoCompanyBundle\Widget\ColumnWizard;
 
 $GLOBALS['FE_MOD']['company'] = [
-    'logo'            => ModuleLogo::class,
-    'socialmedialist' => ModuleSocialMediaList::class
+    'logo' => ModuleLogo::class,
+    'socialmedialist' => ModuleSocialMediaList::class,
 ];
 
 // Company field mapping
 $GLOBALS['TL_COMPANY_MAPPING'] = [
-    'logo'        => 'companyLogo',
-    'name'        => 'companyName',
-    'street'      => 'companyStreet',
-    'postal'      => 'companyPostal',
-    'city'        => 'companyCity',
-    'state'       => 'companyState',
-    'country'     => 'companyCountry',
-    'phone'       => 'companyPhone',
-    'phone2'      => 'companyPhone2',
-    'fax'         => 'companyFax',
-    'email'       => 'companyEmail',
-    'email2'      => 'companyEmail2',
-    'info'        => 'companyInfo',
-    'info2'       => 'companyInfo2',
-    'socialmedia' => 'companySocialMedia'
+    'logo' => 'companyLogo',
+    'name' => 'companyName',
+    'street' => 'companyStreet',
+    'postal' => 'companyPostal',
+    'city' => 'companyCity',
+    'state' => 'companyState',
+    'country' => 'companyCountry',
+    'phone' => 'companyPhone',
+    'phone2' => 'companyPhone2',
+    'fax' => 'companyFax',
+    'email' => 'companyEmail',
+    'email2' => 'companyEmail2',
+    'info' => 'companyInfo',
+    'info2' => 'companyInfo2',
+    'socialmedia' => 'companySocialMedia',
 ];
 
 // Back end form fields

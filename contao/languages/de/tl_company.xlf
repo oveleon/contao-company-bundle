@@ -42,7 +42,7 @@
         <target>Ort</target>
       </trans-unit>
       <trans-unit id="tl_company.companyCity.1">
-        <source>Plase enter the name of the city.</source>
+        <source>Please enter the name of the city.</source>
         <target>Bitte geben Sie den Namen des Ortes ein.</target>
       </trans-unit>
       <trans-unit id="tl_company.companyState.0">
@@ -50,7 +50,7 @@
         <target>Staat</target>
       </trans-unit>
       <trans-unit id="tl_company.companyState.1">
-        <source>Plase enter the name of the state.</source>
+        <source>Please enter the name of the state.</source>
         <target>Bitte geben Sie den Namen des Staates ein.</target>
       </trans-unit>
       <trans-unit id="tl_company.companyCountry.0">
@@ -107,7 +107,7 @@
       </trans-unit>
       <trans-unit id="tl_company.companyInfo.1">
         <source>Here you can store any further information.</source>
-        <target>Hier können sie eine beliebige weiteitere Information hinterlegen.</target>
+        <target>Hier können sie eine beliebige weitere Information hinterlegen.</target>
       </trans-unit>
       <trans-unit id="tl_company.companyInfo2.0">
         <source>Info 2</source>
@@ -115,7 +115,7 @@
       </trans-unit>
       <trans-unit id="tl_company.companyInfo2.1">
         <source>Here you can store any further information.</source>
-        <target>Hier können sie eine beliebige weiteitere Information hinterlegen.</target>
+        <target>Hier können sie eine beliebige weitere Information hinterlegen.</target>
       </trans-unit>
       <trans-unit id="tl_company.companySocialMedia.0">
         <source>Social-Media</source>
