@@ -30,7 +30,7 @@ class ColumnWizard extends Widget
 
     protected array $arrColumnFields = [];
 
-    private bool $hasStimulus;
+    private readonly bool $hasStimulus;
 
     public function __construct($arrAttributes = null)
     {
@@ -38,7 +38,7 @@ class ColumnWizard extends Widget
 
         $this->preserveTags = true;
         $this->decodeEntities = true;
-        $this->hasStimulus = \in_array(version_compare(ContaoCoreBundle::getVersion(), '5.3.999', '<'), [0, false, null], true);
+        $this->hasStimulus = version_compare(ContaoCoreBundle::getVersion(), '5.3.999', '<');
 
         foreach ($this->arrOptions as $arrOption)
         {
@@ -180,20 +180,6 @@ class ColumnWizard extends Widget
         }
 
         $widget = new $widgetClass($data);
-
-        /*$blnFileTree = false;
-
-        // Create custom FileTree Picker
-        if ('fileTree' === $options['inputType'])
-        {
-            $strFilePicker = $objWidget->parse();
-
-            $blnFileTree = true;
-        }
-
-        $strFields .= vsprintf('<td>%s</td>', [
-            $blnFileTree ? $strFilePicker : $objWidget->parse(),
-        ]);*/
 
         return $widget->parse();
     }
