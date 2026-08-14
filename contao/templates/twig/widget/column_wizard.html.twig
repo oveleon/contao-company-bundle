@@ -4,6 +4,7 @@
     .set('id', 'ctrl_' ~ id)
     .addClass(['tl_modulewizard', 'column_wizard'])
     .set('data-controller', 'contao--row-wizard', stimulus)
+    .set('data-contao--row-wizard-name-value', id, stimulus)
 %}
 
 <table{{ table_attributes }}>
