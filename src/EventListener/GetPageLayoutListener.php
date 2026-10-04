@@ -16,14 +16,27 @@ namespace Oveleon\ContaoCompanyBundle\EventListener;
 
 use Contao\Config;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
+use Contao\CoreBundle\Routing\ResponseContext\JsonLd\JsonLdManager;
+use Contao\CoreBundle\Routing\ResponseContext\ResponseContextAccessor;
+use Contao\Environment;
+use Contao\FilesModel;
 use Contao\LayoutModel;
 use Contao\PageModel;
 use Contao\PageRegular;
+use Contao\StringUtil;
 use Contao\System;
+use Oveleon\ContaoCompanyBundle\Company;
+use Oveleon\ContaoCompanyBundle\SchemaOrg\CompanySchemaOrgBuilder;
 
 #[AsHook('getPageLayout')]
 class GetPageLayoutListener
 {
+    public function __construct(
+        private readonly CompanySchemaOrgBuilder $schemaOrgBuilder,
+        private readonly ResponseContextAccessor $responseContextAccessor,
+    ) {
+    }
+
     public function __invoke(PageModel $pageModel, LayoutModel $layout, PageRegular $pageRegular): void
     {
         $rootPage = PageModel::findById($pageModel->rootId);
@@ -38,5 +51,46 @@ class GetPageLayoutListener
                 $company->set($key, $rootPage->{$field});
             }
         }
+
+        $this->addSchemaOrgData($company, $rootPage);
+    }
+
+    private function addSchemaOrgData(Company $company, PageModel $rootPage): void
+    {
+        if (
+            !($responseContext = $this->responseContextAccessor->getResponseContext())
+            || !$responseContext->has(JsonLdManager::class)
+        ) {
+            return;
+        }
+
+        $companyData = [];
+
+        foreach (array_keys($GLOBALS['TL_COMPANY_MAPPING']) as $key)
+        {
+            $companyData[$key] = $company->get($key);
+        }
+
+        $companyData['socialmedia'] = StringUtil::deserialize($companyData['socialmedia'], true);
+
+        $logoUrl = null;
+
+        if (
+            !empty($companyData['logo'])
+            && null !== ($logo = FilesModel::findByUuid($companyData['logo']))
+        ) {
+            $logoUrl = rtrim(Environment::get('base'), '/') . '/' . ltrim($logo->path, '/');
+        }
+
+        if (null === ($schemaData = $this->schemaOrgBuilder->build($companyData, $rootPage->getAbsoluteUrl(), $logoUrl)))
+        {
+            return;
+        }
+
+        $jsonLdManager = $responseContext->get(JsonLdManager::class);
+        $jsonLdManager
+            ->getGraphForSchema(JsonLdManager::SCHEMA_ORG)
+            ->add($jsonLdManager->createSchemaOrgTypeFromArray($schemaData))
+        ;
     }
 }

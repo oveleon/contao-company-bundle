@@ -46,6 +46,7 @@ You can display company details dynamically simply by using the provided company
   + [Contao Manager](#via-contao-manager)
 + [Setup](#setup)
   + [Company-Details](#setup-company-details)
+  + [Structured data](#structured-data-json-ld)
   + [Logo](#logo-module)
   + [Social-media-list](#social-media-list)
 + [Insert tags](#insert-tags)
@@ -59,6 +60,7 @@ You can display company details dynamically simply by using the provided company
 - Easy setup for company details
 - All company details can be overwritten within website roots
 - Fallback company details
+- Schema.org Organization data in JSON-LD format
 - Insert tags
 - Logo module
   - Href works with prepend locale and different website roots
@@ -97,6 +99,15 @@ After installing the contao-company-bundle, you need to run a **contao install**
 
 4. If you want to overwrite your company-details for different website roots, go to `Layout > Site structure > Edit page (Root page)` and navigate to the palette: `Company-details`.
 Keep in mind that saving these will overwrite the modules and insert-tags for this root page.
+
+### Structured data (JSON-LD)
+
+If a company name is configured, the bundle automatically adds an `Organization` node to Contao's existing
+Schema.org graph. The node contains the website root URL and all available address, phone, fax and e-mail data.
+The configured logo and social media profile URLs are included as `logo` and `sameAs` properties.
+
+Values configured on the website root override the global company settings in the same way as for the modules and
+insert tags. No additional template or front end module is required.
 
 ### Logo module
 
